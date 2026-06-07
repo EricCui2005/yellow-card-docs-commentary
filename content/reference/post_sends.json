@@ -1,0 +1,356 @@
+{
+  "title": "Create Send Transaction",
+  "slug": "post_sends",
+  "method": "POST",
+  "path": "/sends",
+  "description": "Initiate a send transaction from vault.",
+  "excerpt": "Initiate a send transaction from vault.",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string",
+              "description": "The stablecoin identifier to transfer (e.g. USDT_TRC20, USDC_SOL)."
+            },
+            "vaultId": {
+              "type": "string",
+              "description": "The unique ID of the originating vault from which funds will be withdrawn.\nUSD_BALANCE is also acceptable here, to transfer from USD float balance to destination vault."
+            },
+            "amount": {
+              "type": "integer",
+              "description": "The transfer amount."
+            },
+            "sequenceId": {
+              "type": "string",
+              "description": "A unique client-generated reference used to ensure idempotency and prevent duplicate transfers."
+            },
+            "destination": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "INTERNAL is used when transferring from one vault to another vault.\nEXTERNAL is used when transferring to external wallet addresses.\nUSD_BALANCE is used when topping up USD Float balance from a vault.",
+                  "default": "INTERNAL",
+                  "enum": [
+                    "USD_BALANCE",
+                    "INTERNAL",
+                    "EXTERNAL"
+                  ]
+                },
+                "address": {
+                  "type": "string",
+                  "description": "The blockchain wallet address."
+                },
+                "vaultId": {
+                  "type": "string",
+                  "description": "The internal vault ID to transfer funds to. Only required if INTERNAL."
+                }
+              },
+              "required": [
+                "type",
+                "address"
+              ],
+              "description": "The destination details for the transfer. The structure varies depending on transfer type (on-chain, internal vault, etc.)."
+            },
+            "countryCode": {
+              "type": "string",
+              "description": "Recipient country code. e.g. NG",
+              "default": "NG"
+            },
+            "travelRuleData": {
+              "type": "string",
+              "description": "Travel rule data based on travel rule config for recipient country code."
+            }
+          },
+          "required": [
+            "token",
+            "vaultId",
+            "amount",
+            "sequenceId",
+            "destination",
+            "countryCode",
+            "travelRuleData"
+          ]
+        },
+        "examples": {
+          "New Example": {
+            "summary": "New Example",
+            "value": {
+              "token": "USDT_TRC20",
+              "vaultId": "ec96d00e-67d3-4da0-8022-cf267f7e67e5",
+              "amount": 15,
+              "countryCode": "NG",
+              "sequenceId": "14d7ca44-afad-4d08-97d2-e98de10dfaf-22",
+              "destination": {
+                "type": "EXTERNAL",
+                "address": "TP8iP5xDUaSu92gViDEaz2Ps6aAinRn6iX"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "201": {
+      "description": "Create Send Transaction",
+      "headers": {
+        "Date": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Content-Length": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "Connection": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "CF-RAY": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "x-amzn-requestid": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "access-control-allow-origin": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amz-apigw-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-trace-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "access-control-allow-credentials": {
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "cf-cache-status": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Set-Cookie": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Strict-Transport-Security": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "expect-ct": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "referrer-policy": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-content-type-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-frame-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-xss-protection": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "X-Hiring": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Server": {
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "content": {
+        "application/json": {
+          "examples": {
+            "Created": {
+              "summary": "Created",
+              "value": {
+                "id": "f16f278b-1313-50eb-a511-46ed296c68ec",
+                "sequenceId": "14d7ca44-afad-4d08-97d2-e98de10dfaf-04",
+                "partnerId": "06b3054b-1ac5-42c6-8687-d2195c1f0e4b",
+                "amount": 10,
+                "networkFee": 0,
+                "token": "USDT_TRC20",
+                "countryCode": "NG",
+                "type": "send",
+                "status": "created",
+                "destinationAddress": "9343af1f-cca4-448c-b460-b178c6dbe34f",
+                "destinationType": "INTERNAL",
+                "destinationVaultId": "9343af1f-cca4-448c-b460-b178c6dbe34f",
+                "sourceAddress": "15f62532-a28d-42fd-9997-cdc2876cce13",
+                "sourceVaultId": "15f62532-a28d-42fd-9997-cdc2876cce13",
+                "createdAt": 1761868420068,
+                "updatedAt": 1761868420068
+              }
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "id"
+              },
+              "sequenceId": {
+                "type": "string"
+              },
+              "partnerId": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "integer"
+              },
+              "networkFee": {
+                "type": "integer"
+              },
+              "token": {
+                "type": "string"
+              },
+              "currency": {
+                "type": "string"
+              },
+              "network": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "destinationAddress": {
+                "type": "string"
+              },
+              "destinationType": {
+                "type": "string"
+              },
+              "destinationVaultId": {
+                "type": "string"
+              },
+              "sourceAddress": {
+                "type": "string"
+              },
+              "sourceVaultId": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "ValidationError"
+              },
+              "message": {
+                "type": "string",
+                "example": "vault id not found"
+              }
+            }
+          },
+          "examples": {
+            "Bad Request": {
+              "summary": "Bad Request",
+              "value": {
+                "code": "ValidationError",
+                "message": "vault id not found"
+              }
+            }
+          }
+        }
+      },
+      "description": "Bad Request"
+    },
+    "500": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          },
+          "examples": {
+            "Internal Server Error": {
+              "summary": "Internal Server Error",
+              "value": {
+                "code": "InternalServerError",
+                "message": "something went wrong"
+              }
+            }
+          }
+        }
+      },
+      "description": "Internal Server Error"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

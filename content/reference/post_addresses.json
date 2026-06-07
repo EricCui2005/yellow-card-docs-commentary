@@ -1,0 +1,236 @@
+{
+  "title": "Generate Address",
+  "slug": "post_addresses",
+  "method": "POST",
+  "path": "/addresses",
+  "description": "Generate deposit address. ",
+  "excerpt": "Generate deposit address. ",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "token": {
+              "type": "string",
+              "default": "",
+              "description": "A combination of crypto currency network pair for asset. e,g, USDC_SOL "
+            },
+            "vaultId": {
+              "type": "string",
+              "default": ""
+            }
+          },
+          "required": [
+            "token",
+            "vaultId"
+          ]
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "example": "0xbebfA3cE1BA1d9385e9D53A1B1d71ECeB80245E4"
+              },
+              "token": {
+                "type": "string",
+                "example": "USDT_POLYGON"
+              },
+              "vaultId": {
+                "type": "string",
+                "example": "vault_internal_uuid"
+              }
+            }
+          },
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "address": "0xbebfA3cE1BA1d9385e9D53A1B1d71ECeB80245E4",
+                "token": "USDT_POLYGON",
+                "vaultId": "vault_internal_uuid"
+              }
+            }
+          }
+        }
+      },
+      "description": "OK"
+    },
+    "400": {
+      "description": "Generate Address",
+      "headers": {
+        "Date": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Content-Length": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "Connection": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "CF-RAY": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "x-amzn-requestid": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "access-control-allow-origin": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amz-apigw-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-trace-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "access-control-allow-credentials": {
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "cf-cache-status": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Strict-Transport-Security": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "expect-ct": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "referrer-policy": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-content-type-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-frame-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-xss-protection": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "X-Hiring": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Set-Cookie": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Server": {
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "content": {
+        "application/json": {
+          "examples": {
+            "Bad Request": {
+              "summary": "Bad Request",
+              "value": {
+                "code": "ValidationError",
+                "message": "invalid token supplied"
+              }
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "ValidationError"
+              },
+              "message": {
+                "type": "string",
+                "example": "invalid token supplied"
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          },
+          "examples": {
+            "Internal Server Error": {
+              "summary": "Internal Server Error",
+              "value": {
+                "code": "InternalServerError",
+                "message": "something went wrong"
+              }
+            }
+          }
+        }
+      },
+      "description": "Internal Server Error"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

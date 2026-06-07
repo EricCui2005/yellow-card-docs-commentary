@@ -1,0 +1,82 @@
+{
+  "title": "Travel Rule Config",
+  "slug": "travel-rule-config",
+  "method": "GET",
+  "path": "/travel-rule/config",
+  "description": "Returns the travel rule compliance configuration for a specific country. This configuration defines the data collection requirements and processing rules that apply when sending transactions from that country. Use this to understand which fields you need to collect from your users before initiating a send transaction.",
+  "excerpt": "Returns the travel rule compliance configuration for a specific country. This configuration defines the data collection requirements and processing rules that apply when sending transactions from that country. Use this to understand which fields you need to collect from your users before initiating a send transaction.",
+  "parameters": [
+    {
+      "in": "query",
+      "name": "countryCode",
+      "schema": {
+        "type": "string",
+        "default": "ISO country code to retrieve the travel rule configuration for (e.g. NG, ZA, KE, US)."
+      },
+      "required": true
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "",
+      "content": {
+        "application/json": {
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "id": "config-550e8400-e29b-41d4-a716-446655440000",
+                "countryCode": "NG",
+                "minAmount": 1000,
+                "status": "ACTIVE",
+                "timeoutAction": "PROCEED",
+                "counterPartyRepair": "outgoing",
+                "repairWaitTime": 30,
+                "repairCount": 3,
+                "dataFields": [
+                  {
+                    "displayName": "Sender Full Name",
+                    "fieldType": "string",
+                    "required": true,
+                    "payloadName": "senderName"
+                  },
+                  {
+                    "displayName": "Sender Date of Birth",
+                    "fieldType": "date",
+                    "required": true,
+                    "payloadName": "senderDob"
+                  }
+                ]
+              }
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "default": "Unique identifier for this travel rule configuration."
+              }
+            },
+            "required": [
+              "id"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

@@ -1,0 +1,120 @@
+{
+  "title": "Get Fee Config",
+  "slug": "get-fee-config",
+  "method": "POST",
+  "path": "/fees/get-config",
+  "description": "Retrieves the fee configuration that would be applied to a transaction.",
+  "excerpt": "Retrieves the fee configuration that would be applied to a transaction.",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "txType": {
+              "type": "string",
+              "enum": [
+                "send",
+                "receive"
+              ],
+              "description": "The transaction type (send or receive)"
+            },
+            "country": {
+              "type": "string",
+              "description": "Any supported 2 letter country code e.g. KE"
+            },
+            "currency": {
+              "type": "string",
+              "description": "Any supported currency for the country provided above e.g. KES"
+            },
+            "channelType": {
+              "type": "string",
+              "enum": [
+                "momo",
+                "bank"
+              ],
+              "description": "The channel type used in the transaction"
+            },
+            "directSettlement": {
+              "type": "boolean",
+              "default": "",
+              "description": "Flag to decide if the transaction is a direct settlement or not."
+            }
+          },
+          "required": [
+            "txType",
+            "country",
+            "directSettlement",
+            "currency",
+            "channelType"
+          ]
+        },
+        "examples": {
+          "New Example": {
+            "summary": "New Example",
+            "value": {
+              "txType": "send",
+              "country": "ZA",
+              "currency": "ZAR",
+              "channelType": "bank",
+              "directSettlement": false
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "",
+      "content": {
+        "application/json": {
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "serviceFee": {
+                  "minFeeLocal": 55,
+                  "feePercentage": 0.25,
+                  "flatFeeLocal": 0
+                }
+              }
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "serviceFee": {
+                "type": "object",
+                "properties": {
+                  "minFeeLocal": {
+                    "type": "number"
+                  },
+                  "feePercentage": {
+                    "type": "number"
+                  },
+                  "flatFeeLocal": {
+                    "type": "number"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": ""
+}

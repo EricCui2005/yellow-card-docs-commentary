@@ -1,0 +1,82 @@
+{
+  "title": "Create Receive Account",
+  "slug": "create-virtual-account",
+  "method": "POST",
+  "path": "/receive-accounts",
+  "description": "Create a virtual account with the local currency and a unique reference for the account.",
+  "excerpt": "Create a virtual account with the local currency and a unique reference for the account.",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "alias": {
+              "type": "string",
+              "description": "Must contain only letters and numbers — no spaces or special characters"
+            },
+            "fiat": {
+              "type": "string",
+              "enum": [
+                "MXN",
+                "ARS",
+                "COP",
+                "BRL"
+              ]
+            }
+          },
+          "required": [
+            "alias",
+            "fiat"
+          ]
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "fiat": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "description": "Current status of the virtual account. It will initially be `pending` and eventually either `active` or `failed`.",
+                "enum": [
+                  "pending",
+                  "failed",
+                  "active"
+                ]
+              },
+              "alias": {
+                "type": "string",
+                "description": ""
+              }
+            },
+            "required": [
+              "fiat"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<p>When a virtual account is created it starts in <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">pending</code> status. It will eventually update to either <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">active</code> or <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">failed</code> after a few minutes.</p>\n<blockquote class=\"callout callout_error\" theme=\"❗️\"><span class=\"callout-icon\">❗️</span><p>Ensure <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">alias</code> must contain only letters and numbers — no spaces or special characters.</p></blockquote>"
+}

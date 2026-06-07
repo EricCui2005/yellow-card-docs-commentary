@@ -1,0 +1,569 @@
+{
+  "title": "Get Asset Config",
+  "slug": "get_vaults-config",
+  "method": "GET",
+  "path": "/vaults/config",
+  "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code.",
+  "excerpt": "List of stablecoin configuration objects, including supported networks, metadata, and UI flags.",
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "OK",
+      "headers": {
+        "Date": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Transfer-Encoding": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Connection": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Content-Encoding": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "CF-Ray": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "CF-Cache-Status": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Origin": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Set-Cookie": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Strict-Transport-Security": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "access-control-allow-credentials": {
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "x-amz-apigw-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-requestid": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-trace-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "X-Hiring": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Vary": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "expect-ct": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "referrer-policy": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-content-type-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-frame-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-xss-protection": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "Server": {
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "content": {
+        "application/json": {
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": [
+                {
+                  "code": "USDC",
+                  "resources": [
+                    {
+                      "type": "file_url",
+                      "content": "https://f.hubspotusercontent30.net/hubfs/9304636/PDF/centre-whitepaper.pdf",
+                      "id": "WHITEPAPER"
+                    }
+                  ],
+                  "zones": [
+                    "stablecoins"
+                  ],
+                  "updatedAt": "2024-12-06T07:13:13.561Z",
+                  "networks": {
+                    "XLM": {
+                      "nativeAsset": "XLM",
+                      "chainCurrencyId": "USDC",
+                      "addressRegex": "^G[A-Z2-7]{55}$",
+                      "requiresMemo": true,
+                      "activities": [
+                        "SEND",
+                        "RECEIVE"
+                      ],
+                      "explorerUrl": "https://blockchair.com/stellar/transaction/__TX_HASH__",
+                      "name": "Stellar",
+                      "enabled": true,
+                      "network": "XLM"
+                    },
+                    "SOL": {
+                      "nativeAsset": "SOL",
+                      "chainCurrencyId": "USDC",
+                      "addressRegex": "^[1-9A-HJ-NP-Za-km-z]{32,44}$",
+                      "requiresMemo": false,
+                      "activities": [
+                        "SEND",
+                        "RECEIVE"
+                      ],
+                      "explorerUrl": "https://explorer.solana.com/tx/__TX_HASH__",
+                      "name": "Solana",
+                      "enabled": true,
+                      "network": "SOL"
+                    },
+                    "CELO": {
+                      "nativeAsset": "CELO",
+                      "chainCurrencyId": "USDC",
+                      "addressRegex": "^(0x)[0-9A-Fa-f]{40}$",
+                      "requiresMemo": false,
+                      "activities": [
+                        "SEND",
+                        "RECEIVE"
+                      ],
+                      "explorerUrl": "https://celoscan.io/tx/__TX_HASH__",
+                      "name": "Celo",
+                      "enabled": true,
+                      "network": "CELO"
+                    },
+                    "ERC20": {
+                      "nativeAsset": "ETH",
+                      "chainCurrencyId": "USDC",
+                      "addressRegex": "^(0x)[0-9A-Fa-f]{40}$",
+                      "requiresMemo": false,
+                      "activities": [
+                        "SEND",
+                        "RECEIVE"
+                      ],
+                      "explorerUrl": "https://etherscan.io/tx/__TX_HASH__",
+                      "name": "Ethereum",
+                      "enabled": true,
+                      "network": "ERC20"
+                    },
+                    "BASE": {
+                      "nativeAsset": "OP",
+                      "chainCurrencyId": "USDC",
+                      "addressRegex": "^(0x)[0-9A-Fa-f]{40}$",
+                      "requiresMemo": false,
+                      "activities": [
+                        "SEND",
+                        "RECEIVE"
+                      ],
+                      "explorerUrl": "https://basescan.org/tx/__TX_HASH__",
+                      "name": "Base",
+                      "enabled": true,
+                      "network": "BASE"
+                    }
+                  },
+                  "createdAt": "2024-12-06T07:13:13.561Z",
+                  "isUTXOBased": false,
+                  "description": "USDC is a stablecoin, pegged 1:1 to the US$. Created by Circle & Coinbase, each USDC unit in circulation is backed by $1 held in reserve, consisting of a mix of cash and short-term U.S. Treasury bonds.<br /><br />Join the USDC ecosystem and enjoy the benefits of stability and peace of mind as you make digital transactions with confidence! 🛡️",
+                  "id": "usd-coin",
+                  "name": "USD Coin",
+                  "defaultNetwork": "ERC20"
+                }
+              ]
+            }
+          },
+          "schema": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "string",
+                  "example": "USDC"
+                },
+                "resources": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "type": {
+                        "type": "string",
+                        "example": "file_url"
+                      },
+                      "content": {
+                        "type": "string",
+                        "example": "https://f.hubspotusercontent30.net/hubfs/9304636/PDF/centre-whitepaper.pdf"
+                      },
+                      "id": {
+                        "type": "string",
+                        "example": "WHITEPAPER"
+                      }
+                    }
+                  }
+                },
+                "zones": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "example": "stablecoins"
+                  }
+                },
+                "updatedAt": {
+                  "type": "string",
+                  "example": "2024-12-06T07:13:13.561Z"
+                },
+                "networks": {
+                  "type": "object",
+                  "properties": {
+                    "XLM": {
+                      "type": "object",
+                      "properties": {
+                        "nativeAsset": {
+                          "type": "string",
+                          "example": "XLM"
+                        },
+                        "chainCurrencyId": {
+                          "type": "string",
+                          "example": "USDC"
+                        },
+                        "addressRegex": {
+                          "type": "string",
+                          "example": "^G[A-Z2-7]{55}$"
+                        },
+                        "requiresMemo": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "activities": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "SEND"
+                          }
+                        },
+                        "explorerUrl": {
+                          "type": "string",
+                          "example": "https://blockchair.com/stellar/transaction/__TX_HASH__"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Stellar"
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "network": {
+                          "type": "string",
+                          "example": "XLM"
+                        }
+                      }
+                    },
+                    "SOL": {
+                      "type": "object",
+                      "properties": {
+                        "nativeAsset": {
+                          "type": "string",
+                          "example": "SOL"
+                        },
+                        "chainCurrencyId": {
+                          "type": "string",
+                          "example": "USDC"
+                        },
+                        "addressRegex": {
+                          "type": "string",
+                          "example": "^[1-9A-HJ-NP-Za-km-z]{32,44}$"
+                        },
+                        "requiresMemo": {
+                          "type": "boolean",
+                          "example": false,
+                          "default": true
+                        },
+                        "activities": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "SEND"
+                          }
+                        },
+                        "explorerUrl": {
+                          "type": "string",
+                          "example": "https://explorer.solana.com/tx/__TX_HASH__"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Solana"
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "network": {
+                          "type": "string",
+                          "example": "SOL"
+                        }
+                      }
+                    },
+                    "CELO": {
+                      "type": "object",
+                      "properties": {
+                        "nativeAsset": {
+                          "type": "string",
+                          "example": "CELO"
+                        },
+                        "chainCurrencyId": {
+                          "type": "string",
+                          "example": "USDC"
+                        },
+                        "addressRegex": {
+                          "type": "string",
+                          "example": "^(0x)[0-9A-Fa-f]{40}$"
+                        },
+                        "requiresMemo": {
+                          "type": "boolean",
+                          "example": false,
+                          "default": true
+                        },
+                        "activities": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "SEND"
+                          }
+                        },
+                        "explorerUrl": {
+                          "type": "string",
+                          "example": "https://celoscan.io/tx/__TX_HASH__"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Celo"
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "network": {
+                          "type": "string",
+                          "example": "CELO"
+                        }
+                      }
+                    },
+                    "ERC20": {
+                      "type": "object",
+                      "properties": {
+                        "nativeAsset": {
+                          "type": "string",
+                          "example": "ETH"
+                        },
+                        "chainCurrencyId": {
+                          "type": "string",
+                          "example": "USDC"
+                        },
+                        "addressRegex": {
+                          "type": "string",
+                          "example": "^(0x)[0-9A-Fa-f]{40}$"
+                        },
+                        "requiresMemo": {
+                          "type": "boolean",
+                          "example": false,
+                          "default": true
+                        },
+                        "activities": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "SEND"
+                          }
+                        },
+                        "explorerUrl": {
+                          "type": "string",
+                          "example": "https://etherscan.io/tx/__TX_HASH__"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Ethereum"
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "network": {
+                          "type": "string",
+                          "example": "ERC20"
+                        }
+                      }
+                    },
+                    "BASE": {
+                      "type": "object",
+                      "properties": {
+                        "nativeAsset": {
+                          "type": "string",
+                          "example": "OP"
+                        },
+                        "chainCurrencyId": {
+                          "type": "string",
+                          "example": "USDC"
+                        },
+                        "addressRegex": {
+                          "type": "string",
+                          "example": "^(0x)[0-9A-Fa-f]{40}$"
+                        },
+                        "requiresMemo": {
+                          "type": "boolean",
+                          "example": false,
+                          "default": true
+                        },
+                        "activities": {
+                          "type": "array",
+                          "items": {
+                            "type": "string",
+                            "example": "SEND"
+                          }
+                        },
+                        "explorerUrl": {
+                          "type": "string",
+                          "example": "https://basescan.org/tx/__TX_HASH__"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Base"
+                        },
+                        "enabled": {
+                          "type": "boolean",
+                          "example": true,
+                          "default": true
+                        },
+                        "network": {
+                          "type": "string",
+                          "example": "BASE"
+                        }
+                      }
+                    }
+                  }
+                },
+                "createdAt": {
+                  "type": "string",
+                  "example": "2024-12-06T07:13:13.561Z"
+                },
+                "isUTXOBased": {
+                  "type": "boolean",
+                  "example": false,
+                  "default": true
+                },
+                "description": {
+                  "type": "string",
+                  "example": "USDC is a stablecoin, pegged 1:1 to the US$. Created by Circle & Coinbase, each USDC unit in circulation is backed by $1 held in reserve, consisting of a mix of cash and short-term U.S. Treasury bonds.<br /><br />Join the USDC ecosystem and enjoy the benefits of stability and peace of mind as you make digital transactions with confidence! 🛡️"
+                },
+                "id": {
+                  "type": "string",
+                  "example": "usd-coin"
+                },
+                "name": {
+                  "type": "string",
+                  "example": "USD Coin"
+                },
+                "defaultNetwork": {
+                  "type": "string",
+                  "example": "ERC20"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          },
+          "examples": {
+            "Internal Server Error": {
+              "summary": "Internal Server Error",
+              "value": {
+                "code": "InternalServerError",
+                "message": "something went wrong"
+              }
+            }
+          }
+        }
+      },
+      "description": "Internal Server Error"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": "<p>List of Supported Stablecoins by Network:</p>\n<p><strong>USDC</strong></p>\n<ul>\n<li>USDC_XLM</li>\n<li>USDC_SOL</li>\n<li>USDC_CELO</li>\n<li>USDC_ERC20</li>\n<li>USDC_BASE</li>\n</ul>\n<p><strong>USDT</strong></p>\n<ul>\n<li>USDT_SOL</li>\n<li>USDT_CELO</li>\n<li>USDT_POLYGON</li>\n<li>USDT_TRC20</li>\n</ul>\n<p><strong>CUSD</strong></p>\n<ul>\n<li>CUSD_CELO</li>\n</ul>\n<p><strong>PYUSD</strong></p>\n<ul>\n<li>PYUSD_SOL</li>\n<li>PYUSD_ERC20</li>\n</ul>"
+}

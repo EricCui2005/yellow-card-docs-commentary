@@ -1,0 +1,230 @@
+{
+  "title": "Deny Send Request",
+  "slug": "deny-payment-request",
+  "method": "POST",
+  "path": "/send/{id}/deny",
+  "description": "Deny a payment request.",
+  "excerpt": "Deny a send request.",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "Unique Send Identifier",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {},
+        "examples": {
+          "Request Example": {
+            "value": {
+              "sender": {
+                "name": "j",
+                "country": "N",
+                "phone": "+12514218828",
+                "address": "12dsa",
+                "dob": "02/01/1997",
+                "email": "justin@yellowcard.io",
+                "idNumber": "12",
+                "idType": "12"
+              },
+              "destination": {
+                "accountName": "Héloïse D'arban",
+                "accountNumber": "0760349371",
+                "accountType": "bank",
+                "networkId": "5f1af11b-305f-4420-8fce-65ed2725a409"
+              },
+              "channelId": "fe8f4989-3bf6-41ca-9621-ffe2bc127569",
+              "sequenceId": "wseks28asdasd",
+              "amount": 50,
+              "currency": "NGN",
+              "country": "NG",
+              "reason": "other",
+              "partnerId": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01",
+              "id": "9ae480ef-71cc-4ba3-9eb8-6970a8d707aa",
+              "status": "created",
+              "convertedAmount": 20026,
+              "rate": 400.52,
+              "expiresAt": "2023-02-02T09:40:48.628Z",
+              "createdAt": "2023-02-02T09:30:48.629Z",
+              "updatedAt": "2023-02-02T09:30:48.629Z"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n    \"currency\": \"NGN\",\n    \"rate\": 679.91,\n    \"status\": \"denied\",\n    \"createdAt\": \"2023-03-21T17:02:50.380Z\",\n    \"sequenceId\": \"6hajhfba-aHbv-4b96-v28d-5h8a19c2aa8c\",\n    \"country\": \"NG\",\n    \"reason\": \"other\",\n    \"sender\": {\n        \"country\": \"Nigeria\",\n        \"address\": \"12 John Street, Lagos\",\n        \"idType\": \"12\",\n        \"phone\": \"+12514218828\",\n        \"dob\": \"02/01/1997\",\n        \"name\": \"John Smith\",\n        \"idNumber\": \"12\",\n        \"email\": \"justin@yellowcard.io\"\n    },\n    \"convertedAmount\": 60000,\n    \"channelId\": \"fe8f4989-3bf6-41ca-9621-ffe2bc127569\",\n    \"expiresAt\": \"2023-03-21T17:12:50.370Z\",\n    \"updatedAt\": \"2023-03-21T17:03:04.373Z\",\n    \"amount\": 88.25,\n    \"destination\": {\n        \"networkName\": \"Stanbic Ibtc Bank\",\n        \"networkId\": \"3d4d08c1-4811-4fee-9349-a302328e55c1\",\n        \"accountNumber\": \"0760349371\",\n        \"accountName\": \"Héloïse D'arban\",\n        \"accountType\": \"bank\"\n    },\n    \"id\": \"a2d094ec-5b45-56b1-83dd-5f83f91bebca\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "partnerId": {
+                "type": "string",
+                "example": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01"
+              },
+              "currency": {
+                "type": "string",
+                "example": "NGN"
+              },
+              "rate": {
+                "type": "number",
+                "example": 679.91,
+                "default": 0
+              },
+              "status": {
+                "type": "string",
+                "example": "denied"
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2023-03-21T17:02:50.380Z"
+              },
+              "sequenceId": {
+                "type": "string",
+                "example": "6hajhfba-aHbv-4b96-v28d-5h8a19c2aa8c"
+              },
+              "country": {
+                "type": "string",
+                "example": "NG"
+              },
+              "reason": {
+                "type": "string",
+                "example": "other"
+              },
+              "sender": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string",
+                    "example": "Nigeria"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "12 John Street, Lagos"
+                  },
+                  "idType": {
+                    "type": "string",
+                    "example": "12"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "+12514218828"
+                  },
+                  "dob": {
+                    "type": "string",
+                    "example": "02/01/1997"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "John Smith"
+                  },
+                  "idNumber": {
+                    "type": "string",
+                    "example": "12"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "justin@yellowcard.io"
+                  }
+                }
+              },
+              "convertedAmount": {
+                "type": "integer",
+                "example": 60000,
+                "default": 0
+              },
+              "channelId": {
+                "type": "string",
+                "example": "fe8f4989-3bf6-41ca-9621-ffe2bc127569"
+              },
+              "expiresAt": {
+                "type": "string",
+                "example": "2023-03-21T17:12:50.370Z"
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2023-03-21T17:03:04.373Z"
+              },
+              "amount": {
+                "type": "number",
+                "example": 88.25,
+                "default": 0
+              },
+              "destination": {
+                "type": "object",
+                "properties": {
+                  "networkName": {
+                    "type": "string",
+                    "example": "Stanbic Ibtc Bank"
+                  },
+                  "networkId": {
+                    "type": "string",
+                    "example": "3d4d08c1-4811-4fee-9349-a302328e55c1"
+                  },
+                  "accountNumber": {
+                    "type": "string",
+                    "example": "0760349371"
+                  },
+                  "accountName": {
+                    "type": "string",
+                    "example": "Héloïse D'arban"
+                  },
+                  "accountType": {
+                    "type": "string",
+                    "example": "bank"
+                  }
+                }
+              },
+              "id": {
+                "type": "string",
+                "example": "a2d094ec-5b45-56b1-83dd-5f83f91bebca"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<br/>\n<blockquote class=\"callout callout_warn\" theme=\"⚠️\"><span class=\"callout-icon\">⚠️</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"updated-terminology\"></div><div class=\"heading-text\">Updated Terminology</div><a aria-label=\"Skip link to Updated Terminology\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#updated-terminology\"></a></h3><p>Payments are now called Sends. These Send endpoints replace the legacy Payments endpoints. The functionality remains identical, only the terminology has changed. Legacy payment endpoints are deprecated but will continue to  work. We recommend migrating to these new <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/send</code> endpoints for future compatibility.</p></blockquote>"
+}

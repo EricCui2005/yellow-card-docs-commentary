@@ -1,0 +1,125 @@
+{
+  "title": "Update Wallet",
+  "slug": "update-wallet",
+  "method": "PATCH",
+  "path": "/sub-wallets/{id}",
+  "description": "Update subwallet name and metadata",
+  "excerpt": "Update subwallet name and metadata",
+  "parameters": [
+    {
+      "in": "path",
+      "name": "id",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Wallet name. e.g. NGN Trading ",
+              "default": "NGN Trading"
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "examples": {
+          "Update Wallet": {
+            "summary": "Update Wallet",
+            "value": "{\n  \"name\": \"NGN Primary\",\n}"
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "201": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "examples": {
+            "Created": {
+              "summary": "Created",
+              "value": {
+                "id": "6fb07a60-a2c2-5eb6-bb4b-6a91b04962b1",
+                "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                "sequenceId": "james-uuid-test-3",
+                "name": "NGN Primary",
+                "metadata": {},
+                "currency": "NGN",
+                "status": "active",
+                "createdAt": 1768578971832,
+                "updatedAt": 1768578971832,
+                "availableBalance": 0
+              }
+            }
+          }
+        }
+      },
+      "description": "Created"
+    },
+    "400": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "examples": {
+            "Bad Request": {
+              "summary": "Bad Request",
+              "value": {
+                "code": "ValidationError",
+                "message": "wallet with sequenceId james-uuid-test-3 and currency NGN already exists"
+              }
+            }
+          }
+        }
+      },
+      "description": "Bad Request"
+    },
+    "500": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "examples": {
+            "Internal Server Error": {
+              "summary": "Internal Server Error",
+              "value": {
+                "code": "InternalServerError",
+                "message": "something went wrong"
+              }
+            }
+          }
+        }
+      },
+      "description": "Internal Server Error"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

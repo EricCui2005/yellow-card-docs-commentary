@@ -1,0 +1,181 @@
+# Per-page word-level text diff
+
+## getting-started
+  ratio=1.000  orig_tokens=260 local_tokens=260
+  (no diff)
+
+## getting-started-api
+  ratio=1.000  orig_tokens=239 local_tokens=239
+  (no diff)
+
+## getting-started-1
+  ratio=1.000  orig_tokens=793 local_tokens=793
+  (no diff)
+
+## go-live-api
+  ratio=1.000  orig_tokens=276 local_tokens=276
+  (no diff)
+
+## making-a-collection
+  ratio=1.000  orig_tokens=389 local_tokens=389
+  (no diff)
+
+## disbursement-user-journey
+  ratio=1.000  orig_tokens=515 local_tokens=515
+  (no diff)
+
+## send-cross-border-remittances
+  ratio=1.000  orig_tokens=360 local_tokens=360
+  (no diff)
+
+## pay-global-suppliers-invoices
+  ratio=1.000  orig_tokens=357 local_tokens=357
+  (no diff)
+
+## accept-stablecoin-payments
+  ratio=1.000  orig_tokens=376 local_tokens=376
+  (no diff)
+
+## accept-local-currency-payments
+  ratio=1.000  orig_tokens=385 local_tokens=385
+  (no diff)
+
+## buy-sell-digital-assets
+  ratio=1.000  orig_tokens=763 local_tokens=763
+  (no diff)
+
+## digital-asset-wallet-functionality
+  ratio=1.000  orig_tokens=653 local_tokens=653
+  (no diff)
+
+## access-to-usdeur
+  ratio=1.000  orig_tokens=127 local_tokens=127
+  (no diff)
+
+## authentication-api
+  ratio=1.000  orig_tokens=160 local_tokens=160
+  (no diff)
+
+## environments-api
+  ratio=1.000  orig_tokens=10 local_tokens=10
+  (no diff)
+
+## sandbox-testing-api
+  ratio=1.000  orig_tokens=407 local_tokens=407
+  (no diff)
+
+## coverage-api
+  ratio=1.000  orig_tokens=46 local_tokens=46
+  (no diff)
+
+## africa
+  ratio=1.000  orig_tokens=260 local_tokens=260
+  (no diff)
+
+## latin-america
+  ratio=1.000  orig_tokens=133 local_tokens=133
+  (no diff)
+
+## asia
+  ratio=1.000  orig_tokens=47 local_tokens=47
+  (no diff)
+
+## europe
+  ratio=1.000  orig_tokens=39 local_tokens=39
+  (no diff)
+
+## api-transaction-limits
+  ratio=1.000  orig_tokens=481 local_tokens=481
+  (no diff)
+
+## channels-api
+  ratio=1.000  orig_tokens=587 local_tokens=587
+  (no diff)
+
+## networks
+  ratio=1.000  orig_tokens=213 local_tokens=213
+  (no diff)
+
+## using-rates-data
+  ratio=1.000  orig_tokens=63 local_tokens=63
+  (no diff)
+
+## kyc-metadata
+  ratio=1.000  orig_tokens=403 local_tokens=403
+  (no diff)
+
+## webhooks-api
+  ratio=1.000  orig_tokens=482 local_tokens=482
+  (no diff)
+
+## events-api
+  ratio=1.000  orig_tokens=329 local_tokens=329
+  (no diff)
+
+## errors-api
+  ratio=1.000  orig_tokens=199 local_tokens=199
+  (no diff)
+
+## list-collections-guide-api
+  ratio=1.000  orig_tokens=522 local_tokens=522
+  (no diff)
+
+## payment-reasons-api
+  ratio=1.000  orig_tokens=117 local_tokens=117
+  (no diff)
+
+## error-codes
+  ratio=1.000  orig_tokens=219 local_tokens=219
+  (no diff)
+
+## cancellation-refunds-collection-requests
+  ratio=1.000  orig_tokens=323 local_tokens=323
+  (no diff)
+
+## request-for-quote
+  ratio=1.000  orig_tokens=367 local_tokens=367
+  (no diff)
+
+## direct-settlement
+  ratio=1.000  orig_tokens=847 local_tokens=847
+  (no diff)
+
+## wallet-infrastructure-guide
+  ratio=1.000  orig_tokens=641 local_tokens=641
+  (no diff)
+
+## virtual-accounts
+  ratio=1.000  orig_tokens=1063 local_tokens=1063
+  (no diff)
+
+## creating-a-virtual-account
+  ratio=1.000  orig_tokens=389 local_tokens=389
+  (no diff)
+
+## initiating-sends
+  ratio=1.000  orig_tokens=1010 local_tokens=1010
+  (no diff)
+
+## webhooks
+  ratio=1.000  orig_tokens=326 local_tokens=326
+  (no diff)
+
+## integration-security-guide
+  ratio=1.000  orig_tokens=662 local_tokens=662
+  (no diff)
+
+## settlement-api
+  ratio=1.000  orig_tokens=240 local_tokens=240
+  (no diff)
+
+## sso
+  ratio=1.000  orig_tokens=2507 local_tokens=2507
+  (no diff)
+
+## api-glossary
+  ratio=1.000  orig_tokens=1177 local_tokens=1177
+  (no diff)
+
+## mcp
+  ratio=1.000  orig_tokens=227 local_tokens=227
+  (no diff)

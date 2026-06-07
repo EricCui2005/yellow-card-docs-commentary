@@ -1,0 +1,425 @@
+{
+  "title": "Submit Send Request",
+  "slug": "submit-payment",
+  "method": "POST",
+  "path": "/send",
+  "description": "Submit a send request. This will lock in a rate and await approval.",
+  "excerpt": "Submit a send request. This will lock in a rate and await approval.",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "sequenceId",
+            "reason",
+            "sender",
+            "destination",
+            "customerUID",
+            "customerType",
+            "forceAccept"
+          ],
+          "properties": {
+            "channelId": {
+              "type": "string",
+              "description": "The identifier of the specific channel to execute payment through"
+            },
+            "sequenceId": {
+              "type": "string",
+              "description": "Represents a unique id for the transaction from your end"
+            },
+            "amount": {
+              "type": "integer",
+              "description": "Amount in USD to transact",
+              "format": "int32"
+            },
+            "localAmount": {
+              "type": "integer",
+              "description": "The amount in local currency to transact",
+              "format": "int32"
+            },
+            "reason": {
+              "type": "string",
+              "description": "The reason for the withdrawal"
+            },
+            "sender": {
+              "type": "object",
+              "description": "Sender KYC details",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Sender's Full Name.   Required only if `customerType` is retail."
+                },
+                "country": {
+                  "type": "string",
+                  "description": "Sender's country in ISO 3166. Required only if `customerType` is retail."
+                },
+                "phone": {
+                  "type": "string",
+                  "description": "Sender's Phone Number in E.164 format."
+                },
+                "address": {
+                  "type": "string",
+                  "description": "Sender's Address. Required only if `customerType` is retail."
+                },
+                "dob": {
+                  "type": "string",
+                  "description": "Sender's DOB (mm/dd/yyyy). Required only if `customerType` is retail."
+                },
+                "email": {
+                  "type": "string",
+                  "description": "Sender's Email Address. Required only for certain channels that require sender email."
+                },
+                "idNumber": {
+                  "type": "string",
+                  "description": "Sender's national ID number. Required only if `customerType` is retail."
+                },
+                "idType": {
+                  "type": "string",
+                  "description": "Type of ID. Required only if `customerType` is retail."
+                },
+                "businessId": {
+                  "type": "string",
+                  "description": "Sender business id. Required only if `customerType` is institution."
+                },
+                "businessName": {
+                  "type": "string",
+                  "description": "Sender business id. Required only if `customerType` is institution."
+                },
+                "additionalIdType": {
+                  "type": "string",
+                  "description": "Sender's additional ID type. Required only if `customerType` is retail and sender country is Nigeria"
+                },
+                "additionalIdNumber": {
+                  "type": "string",
+                  "description": "Sender's additional ID number. Required only if `customerType` is retail and sender country is Nigeria"
+                }
+              }
+            },
+            "destination": {
+              "type": "object",
+              "description": "Destination and Recipient Details",
+              "required": [
+                "accountNumber",
+                "accountType",
+                "networkId",
+                "accountName"
+              ],
+              "properties": {
+                "accountNumber": {
+                  "type": "string",
+                  "description": "Destination account number"
+                },
+                "accountType": {
+                  "type": "string",
+                  "description": "Account type",
+                  "enum": [
+                    "bank",
+                    "momo"
+                  ]
+                },
+                "networkId": {
+                  "type": "string",
+                  "description": "Network ID"
+                },
+                "accountBank": {
+                  "type": "string"
+                },
+                "networkName": {
+                  "type": "string"
+                },
+                "country": {
+                  "type": "string"
+                },
+                "accountName": {
+                  "type": "string"
+                },
+                "phoneNumber": {
+                  "type": "string"
+                }
+              }
+            },
+            "forceAccept": {
+              "type": "boolean",
+              "description": "Specify whether or not you want to skip the accept payment step",
+              "default": false,
+              "enum": [
+                true,
+                false
+              ]
+            },
+            "customerType": {
+              "type": "string",
+              "description": "Determines the type of validation that is performed on the sender. If value is `institution`, the sender request object will be validated to ensure it includes `businessName` and `businessId` parameter. If the value is `retail`, the sender request object will be validated to ensure it includes `name`, `phone`, `email`, `country`, `address`, `dob`, `idNumber` and `idType`.",
+              "default": "retail",
+              "enum": [
+                "retail",
+                "institution"
+              ]
+            },
+            "customerUID": {
+              "type": "string",
+              "description": "Unique identifier for the customer"
+            },
+            "channelType": {
+              "type": "string",
+              "enum": [
+                "momo",
+                "bank"
+              ]
+            },
+            "country": {
+              "type": "string",
+              "description": "Country ISO 3166 code e.g. NG, KE, CI. This field is only required when using `channelType`"
+            },
+            "currency": {
+              "type": "string",
+              "description": "Currency code e.g. NGN, KES, XAF, XOF. This field is only required when using `channelType`"
+            }
+          }
+        },
+        "examples": {
+          "Request Example": {
+            "value": {
+              "id": "12",
+              "channelId": "12fghj20-a0oikjs2",
+              "sequenceId": "123",
+              "currency": "GHS",
+              "country": "GH",
+              "amount": 500,
+              "reason": "entertainment",
+              "convertedAmount": 20000,
+              "status": "created",
+              "rate": 14,
+              "sender": {
+                "name": "John Doe",
+                "country": "United States",
+                "phone": "+1293019990",
+                "address": "20019 Giantlane Or.",
+                "dob": "19/10/2002",
+                "email": "john.doe@yellowcard.io",
+                "idNumber": "12345",
+                "idType": "license"
+              },
+              "destination": {
+                "accountName": "Json Bourne",
+                "accountNumber": "1111111111",
+                "accountType": "bank",
+                "networkId": "28sh203-18272-1aks2-1233ma"
+              },
+              "createdAt": "2022-12-18T23:54:55.380Z",
+              "updatedAt": "2022-12-18T23:54:55.380Z",
+              "expiresAt": "2023-02-02T09:40:48.628Z"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": {
+                "id": "12",
+                "channelId": "12",
+                "sequenceId": "123",
+                "currency": "GHS",
+                "country": "GH",
+                "amount": 500,
+                "reason": "entertainment",
+                "forceAccept": true,
+                "directSettlement": false,
+                "convertedAmount": 20000,
+                "partnerId": "partner-id",
+                "requestSource": "api",
+                "attempt": 1,
+                "status": "created",
+                "rate": 14,
+                "fiatWallet": "USD",
+                "sender": {
+                  "name": "Justin",
+                  "country": "United States",
+                  "phone": "+12514218828",
+                  "address": "1404 Attwater Dr.",
+                  "dob": "02/01/1997",
+                  "email": "justin@yellowcard.io",
+                  "idNumber": "12345",
+                  "idType": "license"
+                },
+                "destination": {
+                  "accountName": "Elom",
+                  "accountNumber": "123",
+                  "accountType": "bank",
+                  "networkId": "012"
+                },
+                "createdAt": "2022-12-18T23:54:55.380Z",
+                "updatedAt": "2022-12-18T23:54:55.380Z",
+                "expiresAt": "2023-02-02T09:40:48.628Z"
+              }
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "12"
+              },
+              "channelId": {
+                "type": "string",
+                "example": "12"
+              },
+              "sequenceId": {
+                "type": "string",
+                "example": "123"
+              },
+              "currency": {
+                "type": "string",
+                "example": "GHS"
+              },
+              "country": {
+                "type": "string",
+                "example": "GH"
+              },
+              "amount": {
+                "type": "integer",
+                "example": 500,
+                "default": 0
+              },
+              "reason": {
+                "type": "string",
+                "example": "entertainment"
+              },
+              "convertedAmount": {
+                "type": "integer",
+                "example": 20000,
+                "default": 0
+              },
+              "status": {
+                "type": "string",
+                "example": "created"
+              },
+              "rate": {
+                "type": "integer",
+                "example": 14,
+                "default": 0
+              },
+              "sender": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "Justin"
+                  },
+                  "country": {
+                    "type": "string",
+                    "example": "United States"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "+12514218828"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "1404 Attwater Dr."
+                  },
+                  "dob": {
+                    "type": "string",
+                    "example": "02/01/1997"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "justin@yellowcard.io"
+                  },
+                  "idNumber": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "idType": {
+                    "type": "string",
+                    "example": "license"
+                  }
+                }
+              },
+              "destination": {
+                "type": "object",
+                "properties": {
+                  "accountName": {
+                    "type": "string",
+                    "example": "Elom"
+                  },
+                  "accountNumber": {
+                    "type": "string",
+                    "example": "123"
+                  },
+                  "accountType": {
+                    "type": "string",
+                    "example": "bank"
+                  },
+                  "networkId": {
+                    "type": "string",
+                    "example": "012"
+                  }
+                }
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2022-12-18T23:54:55.380Z"
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2022-12-18T23:54:55.380Z"
+              },
+              "expiresAt": {
+                "type": "string",
+                "example": "2023-02-02T09:40:48.628Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"BadRequestError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "BadRequestError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<br/>\n<blockquote class=\"callout callout_warn\" theme=\"⚠️\"><span class=\"callout-icon\">⚠️</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"updated-terminology\"></div><div class=\"heading-text\">Updated Terminology</div><a aria-label=\"Skip link to Updated Terminology\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#updated-terminology\"></a></h3><p>Payments are now called Sends. These Send endpoints replace the legacy Payments endpoints. The functionality remains identical, only the terminology has changed. Legacy payment endpoints are deprecated but will continue to  work. We recommend migrating to these new <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/send</code> endpoints for future compatibility.</p></blockquote>\n<blockquote class=\"callout callout_info\" theme=\"📘\"><span class=\"callout-icon\">📘</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"amount-in-usd-or-local-currency\"></div><div class=\"heading-text\">Amount in USD or local currency</div><a aria-label=\"Skip link to Amount in USD or local currency\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#amount-in-usd-or-local-currency\"></a></h3><p>The <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">amount</code> field and the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">localAmount</code> field are interchangeable in the request body. <strong>Either one is required, but not both</strong>. Specifying the USD <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">amount</code> will then calculate an amount in local currency based on the partner rates, while specifying a <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">localAmount</code> in the local currency will fix this amount for the user while calculating the USD amount from the rates. The <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">convertedAmount</code> in the response body indicates the amount in local currency that has either been fixed or calculated.</p></blockquote>\n<blockquote class=\"callout callout_warn\" theme=\"🚧\"><span class=\"callout-icon\">🚧</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"ten-minute-expiry\"></div><div class=\"heading-text\">Ten Minute Expiry</div><a aria-label=\"Skip link to Ten Minute Expiry\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#ten-minute-expiry\"></a></h3><p>Send requests have ten minutes to be accepted or will automatically mark itself as expired.</p></blockquote>\n<blockquote class=\"callout callout_info\" theme=\"📘\"><span class=\"callout-icon\">📘</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"force-accept\"></div><div class=\"heading-text\">Force Accept</div><a aria-label=\"Skip link to Force Accept\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#force-accept\"></a></h3><p>Setting <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">forceAccept</code> field to <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">true</code> allows you to skip the accept send request and your send would start processing once you submit send request.</p></blockquote>\n<br/>\n<blockquote class=\"callout callout_info\" theme=\"📘\"><span class=\"callout-icon\">📘</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"channel-note\"></div><div class=\"heading-text\">Channel Note</div><a aria-label=\"Skip link to Channel Note\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#channel-note\"></a></h3><p>You can now use <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">channelType</code> as an alternative to specifying a channelId in your Submit Send API Request.</p><p>When using <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">channelType</code> you&#x27;re required to pass the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">country</code> and <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">currency</code> in the send request</p><p>When you provide a <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">channelType</code>, <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">country</code> and <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">currency</code>  the system will automatically select an appropriate active channel for your transaction.</p><p>Available Channel Types:</p><ul>\n<li>momo</li>\n<li>bank</li>\n</ul></blockquote>\n<br/>\n<div><div style=\"height:50px;border:1px solid var(--color-border-default, rgba(black, 0.1));border-radius:var(--border-radius-lg, 7.5px);min-width:230px;display:inline-flex;padding:10px\"><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:30px;width:30px\"></div><div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:150px;margin:0 15px;margin-bottom:6px\"></div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:75px;margin:0 15px\"></div></div></div></div>\n<div><div style=\"height:50px;border:1px solid var(--color-border-default, rgba(black, 0.1));border-radius:var(--border-radius-lg, 7.5px);min-width:230px;display:inline-flex;padding:10px\"><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:30px;width:30px\"></div><div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:150px;margin:0 15px;margin-bottom:6px\"></div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:75px;margin:0 15px\"></div></div></div></div>\n<h1 class=\"heading heading-1 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"latam-send-fields\"></div><div class=\"heading-text\">LATAM Send Fields</div><a aria-label=\"Skip link to LATAM Send Fields\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#latam-send-fields\"></a></h1>\n<p>When sending send transactions to LATAM currencies, additional fields are required beyond the standard request body. This document outlines the currency-specific fields per currency.</p>\n<hr/>\n<h2 class=\"heading heading-2 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"mxn--mexico\"></div><div class=\"heading-text\">MXN — Mexico</div><a aria-label=\"Skip link to MXN — Mexico\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#mxn--mexico\"></a></h2>\n<p>No extra fields required. Ensure <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">destination.accountNumber</code> is a valid <strong>18-digit CLABE</strong> number.</p>\n<hr/>\n<h2 class=\"heading heading-2 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"ars--argentina\"></div><div class=\"heading-text\">ARS — Argentina</div><a aria-label=\"Skip link to ARS — Argentina\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#ars--argentina\"></a></h2>\n<div class=\"rdmd-table\"><div class=\"rdmd-table-inner\"><table><thead><tr><th>Field</th><th>Location</th><th>Required</th><th>Description</th></tr></thead><tbody><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">accountNumber</code></td><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">destination</code></td><td>Yes</td><td>CVU or CBU — must be exactly <strong>22 digits</strong></td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">cuit</code></td><td>request root</td><td>Yes</td><td>Argentine tax ID — must be exactly <strong>11 digits</strong></td></tr></tbody></table></div></div>\n<hr/>\n<h2 class=\"heading heading-2 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"brl--brazil\"></div><div class=\"heading-text\">BRL — Brazil</div><a aria-label=\"Skip link to BRL — Brazil\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#brl--brazil\"></a></h2>\n<div class=\"rdmd-table\"><div class=\"rdmd-table-inner\"><table><thead><tr><th>Field</th><th>Location</th><th>Required</th><th>Description</th></tr></thead><tbody><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">pixKeyType</code></td><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">destination</code></td><td>Yes</td><td>Pix key type — one of: <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">CPF</code>, <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">CNPJ</code>, <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">EMAIL</code>, <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">PHONE</code>, <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">RANDOM_KEY</code></td></tr></tbody></table></div></div>\n<p><strong>Pix key format by type (<code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">destination.accountNumber</code>):</strong></p>\n<div class=\"rdmd-table\"><div class=\"rdmd-table-inner\"><table><thead><tr><th><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">pixKeyType</code></th><th>Expected format</th></tr></thead><tbody><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">CPF</code></td><td>11 digits</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">CNPJ</code></td><td>14 digits</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">EMAIL</code></td><td>Valid email address</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">PHONE</code></td><td>10–11 digits</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">RANDOM_KEY</code></td><td>UUID format (contains <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">-</code>)</td></tr></tbody></table></div></div>\n<hr/>\n<h2 class=\"heading heading-2 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"cop--colombia\"></div><div class=\"heading-text\">COP — Colombia</div><a aria-label=\"Skip link to COP — Colombia\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#cop--colombia\"></a></h2>\n<div class=\"rdmd-table\"><div class=\"rdmd-table-inner\"><table><thead><tr><th>Field</th><th>Location</th><th>Required</th><th>Description</th></tr></thead><tbody><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">identificationType</code></td><td>request root</td><td>Yes</td><td>Document type code (see table below)</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">identificationNumber</code></td><td>request root</td><td>Yes</td><td>Document number</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">accountType</code></td><td>request root</td><td>No</td><td>Account type code — defaults to <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">ch</code> (savings) if omitted</td></tr></tbody></table></div></div>\n<p><strong><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">accountType</code> values:</strong></p>\n<div class=\"rdmd-table\"><div class=\"rdmd-table-inner\"><table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">cc</code></td><td>Checking account</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">ch</code></td><td>Savings account (default)</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">dp</code></td><td>Electronic deposit</td></tr></tbody></table></div></div>\n<p><strong><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">identificationType</code> values:</strong></p>\n<div class=\"rdmd-table\"><div class=\"rdmd-table-inner\"><table><thead><tr><th>Value</th><th>Description</th></tr></thead><tbody><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">cc</code></td><td>Citizenship ID</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">nit</code></td><td>Tax ID</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">ce</code></td><td>Foreigner ID</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">pa</code></td><td>Passport</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">ppt</code></td><td>Temporary Protection Permit</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">ti</code></td><td>Identity Card</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">rc</code></td><td>Civil Registry</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">te</code></td><td>Foreigner Card</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">die</code></td><td>Foreign ID Document</td></tr><tr><td><code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">nd</code></td><td>No Document</td></tr></tbody></table></div></div>\n<div><div style=\"height:50px;border:1px solid var(--color-border-default, rgba(black, 0.1));border-radius:var(--border-radius-lg, 7.5px);min-width:230px;display:inline-flex;padding:10px\"><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:30px;width:30px\"></div><div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:150px;margin:0 15px;margin-bottom:6px\"></div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:75px;margin:0 15px\"></div></div></div></div>\n<br/>"
+}

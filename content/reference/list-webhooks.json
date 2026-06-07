@@ -1,0 +1,103 @@
+{
+  "title": "List Webhooks",
+  "slug": "list-webhooks",
+  "method": "GET",
+  "path": "/webhooks",
+  "description": "List all webhooks associated with your account.",
+  "excerpt": "List all webhooks associated with your account.",
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"webhooks\": [\n        {\n            \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n            \"active\": true,\n            \"updatedAt\": \"2022-01-19T10:18:46.903Z\",\n            \"createdAt\": \"2022-01-19T10:18:46.903Z\",\n            \"url\": \"https://o1lce324xh.execute-api.eu-west-2.amazonaws.com/staging/webhook/test\",\n            \"id\": \"860ba0db-5012-4ebc-98ee-d88278ead198\",\n            \"state\": \"COLLECTION.FAILED\"\n        }\n    ]\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "webhooks": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "partnerId": {
+                      "type": "string",
+                      "example": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01"
+                    },
+                    "active": {
+                      "type": "boolean",
+                      "example": true,
+                      "default": true
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2022-01-19T10:18:46.903Z"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2022-01-19T10:18:46.903Z"
+                    },
+                    "url": {
+                      "type": "string",
+                      "example": "https://o1lce324xh.execute-api.eu-west-2.amazonaws.com/staging/webhook/test"
+                    },
+                    "id": {
+                      "type": "string",
+                      "example": "860ba0db-5012-4ebc-98ee-d88278ead198"
+                    },
+                    "state": {
+                      "type": "string",
+                      "example": "COLLECTION.FAILED"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"BadRequestError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "BadRequestError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<div><div style=\"height:50px;border:1px solid var(--color-border-default, rgba(black, 0.1));border-radius:var(--border-radius-lg, 7.5px);min-width:230px;display:inline-flex;padding:10px\"><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:30px;width:30px\"></div><div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:150px;margin:0 15px;margin-bottom:6px\"></div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:75px;margin:0 15px\"></div></div></div></div>"
+}

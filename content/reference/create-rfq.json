@@ -1,0 +1,159 @@
+{
+  "title": "Create RFQ",
+  "slug": "create-rfq",
+  "method": "POST",
+  "path": "/rfq",
+  "description": "Create conversion request from one currency to the other.",
+  "excerpt": "Create conversion request from one currency to the other.",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "sourceCurrency": {
+              "type": "string",
+              "enum": [
+                "USDT",
+                "USD",
+                "NGN",
+                "KES",
+                "ZAR",
+                "BWP",
+                "TZS",
+                "XOF"
+              ],
+              "default": "USDT"
+            },
+            "sourceCurrencyType": {
+              "type": "string",
+              "enum": [
+                "crypto",
+                "fiat"
+              ],
+              "default": "crypto"
+            },
+            "destinationCurrency": {
+              "type": "string",
+              "enum": [
+                "USDT",
+                "USD",
+                "KES",
+                "NGN",
+                "ZAR",
+                "BWP",
+                "TZS",
+                "XOF"
+              ],
+              "default": "KES"
+            },
+            "destinationCurrencyType": {
+              "type": "string",
+              "enum": [
+                "crypto",
+                "fiat"
+              ],
+              "default": "fiat"
+            },
+            "amount": {
+              "type": "number",
+              "default": "100000"
+            },
+            "idempotencyKey": {
+              "type": "string",
+              "default": "uuid-for-transaction"
+            }
+          },
+          "required": [
+            "sourceCurrency",
+            "sourceCurrencyType",
+            "destinationCurrency",
+            "destinationCurrencyType",
+            "amount",
+            "idempotencyKey"
+          ]
+        },
+        "examples": {
+          "New Example": {
+            "summary": "New Example",
+            "value": {
+              "sourceCurrency": "USDT",
+              "sourceCurrencyType": "crypto",
+              "destinationCurrency": "KES",
+              "destinationCurrencyType": "fiat",
+              "amount": 800,
+              "idempotencyKey": "james-uuid-test-10"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": ""
+    },
+    "201": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "examples": {
+            "Created": {
+              "summary": "Created",
+              "value": {
+                "id": "rfq_f785ce51-596d-4b35-a53b-11d107ca5586",
+                "idempotencyKey": "james-uuid-test-11",
+                "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                "partnerName": "New Test Partner",
+                "sourceCurrency": "USDT",
+                "sourceCurrencyType": "crypto",
+                "destinationCurrency": "KES",
+                "destinationCurrencyType": "fiat",
+                "sourceAmount": 800,
+                "status": "RFQ_PENDING_REVIEW",
+                "customerStatus": "Quote_PENDING_REVIEW",
+                "createdAt": "2026-02-04T13:04:10.545563845Z",
+                "updatedAt": "2026-02-04T13:04:10.545563845Z",
+                "createdBy": "internal-service",
+                "auditTrail": [
+                  {
+                    "timestamp": "2026-02-04T13:04:10.545566925Z",
+                    "action": "RFQ_CREATED",
+                    "userId": "internal-service",
+                    "userName": "Internal Service",
+                    "role": "system",
+                    "toStatus": "RFQ_PENDING_REVIEW",
+                    "details": {
+                      "amount": "800.00",
+                      "destinationCurrency": "KES",
+                      "destinationCurrencyType": "fiat",
+                      "sourceCurrency": "USDT",
+                      "sourceCurrencyType": "crypto"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "description": "Created"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

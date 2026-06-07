@@ -1,0 +1,281 @@
+{
+  "getting-started": {
+    "description": null,
+    "pages": [
+      {
+        "slug": "getting-started-1",
+        "title": "Getting Started",
+        "type": "basic"
+      }
+    ],
+    "external": null
+  },
+  "getting-started-api": {
+    "description": "Check out our step-by-step going live guide ",
+    "pages": [
+      {
+        "slug": "getting-started-1",
+        "title": "Getting Started",
+        "type": "basic"
+      }
+    ],
+    "external": null
+  },
+  "getting-started-1": {
+    "description": null,
+    "pages": [
+      {
+        "slug": "go-live-api",
+        "title": "Going Live",
+        "type": "basic"
+      }
+    ],
+    "external": null
+  },
+  "go-live-api": {
+    "description": null,
+    "pages": [
+      {
+        "slug": "making-a-collection",
+        "title": "Making a Collection",
+        "type": "basic"
+      }
+    ],
+    "external": null
+  },
+  "making-a-collection": {
+    "description": null,
+    "pages": [
+      {
+        "slug": "disbursement-user-journey",
+        "title": "Making a Send",
+        "type": "basic"
+      }
+    ],
+    "external": null
+  },
+  "disbursement-user-journey": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "send-cross-border-remittances": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "pay-global-suppliers-invoices": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "accept-stablecoin-payments": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "accept-local-currency-payments": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "buy-sell-digital-assets": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "digital-asset-wallet-functionality": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "access-to-usdeur": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "authentication-api": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "environments-api": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "sandbox-testing-api": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "coverage-api": {
+    "description": null,
+    "pages": [
+      {
+        "slug": "api-transaction-limits",
+        "title": "Transaction Limits",
+        "type": "basic"
+      }
+    ],
+    "external": null
+  },
+  "africa": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "latin-america": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "asia": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "europe": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "api-transaction-limits": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "channels-api": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "networks": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "using-rates-data": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "kyc-metadata": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "webhooks-api": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "events-api": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "errors-api": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "list-collections-guide-api": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "payment-reasons-api": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "error-codes": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "cancellation-refunds-collection-requests": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "request-for-quote": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "direct-settlement": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "wallet-infrastructure-guide": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "virtual-accounts": {
+    "description": null,
+    "pages": [
+      {
+        "slug": "creating-a-virtual-account",
+        "title": "Create Virtual Accounts",
+        "type": "basic"
+      }
+    ],
+    "external": null
+  },
+  "creating-a-virtual-account": {
+    "description": null,
+    "pages": [
+      {
+        "slug": "initiating-sends",
+        "title": "Initiate Sends",
+        "type": "basic"
+      }
+    ],
+    "external": null
+  },
+  "initiating-sends": {
+    "description": null,
+    "pages": [
+      {
+        "slug": "webhooks",
+        "title": "Webhooks",
+        "type": "basic"
+      }
+    ],
+    "external": null
+  },
+  "webhooks": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "integration-security-guide": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "settlement-api": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "sso": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "api-glossary": {
+    "description": null,
+    "pages": [],
+    "external": null
+  },
+  "mcp": {
+    "description": null,
+    "pages": [],
+    "external": null
+  }
+}

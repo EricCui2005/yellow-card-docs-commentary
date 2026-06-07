@@ -1,0 +1,233 @@
+{
+  "title": "List Virtual Accounts",
+  "slug": "list-virtual-accounts",
+  "method": "GET",
+  "path": "/virtual-accounts",
+  "description": "Retrieves paginated list of virtual bank accounts for the authenticated partner",
+  "excerpt": "Retrieves paginated list of virtual bank accounts for the authenticated partner",
+  "parameters": [
+    {
+      "in": "query",
+      "name": "currency",
+      "schema": {
+        "type": "string"
+      },
+      "description": "Filter by currency (e.g., USD, NGN)"
+    },
+    {
+      "in": "query",
+      "name": "status",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "PENDING",
+          "ACTIVE",
+          "CLOSED",
+          "FROZEN"
+        ]
+      },
+      "description": "Filter by account status"
+    },
+    {
+      "in": "query",
+      "name": "accountType",
+      "schema": {
+        "type": "string",
+        "enum": [
+          "primary",
+          "subwallet"
+        ]
+      },
+      "description": "Filter between primary and subwallet accounts (linked to a sub-wallet via subwalletId)."
+    },
+    {
+      "in": "query",
+      "name": "pageSize",
+      "schema": {
+        "type": "integer",
+        "default": ""
+      },
+      "description": "Number of results per page (default 15, max 100)"
+    },
+    {
+      "in": "query",
+      "name": "cursor",
+      "schema": {
+        "type": "string"
+      },
+      "description": "Pagination cursor for fetching next page"
+    }
+  ],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {}
+        },
+        "examples": {
+          "New Example": {
+            "summary": "New Example",
+            "value": {
+              "name": "NGN Primary",
+              "currency": "NGN",
+              "sequenceId": "6fb07a60-a2c2-5eb6-bb4b-6a91b04962b1"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "virtualAccounts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "8ef125f8-ef39-46bc-a36f-c534bc0ee2ce",
+                      "description": "Virtual account unique identifier"
+                    },
+                    "subwalletId": {
+                      "type": "string",
+                      "example": "6959f27c-9886-536b-a276-e1f4c2e632db",
+                      "description": "Associated sub-wallet identifier (custom wallet only)"
+                    },
+                    "provider": {
+                      "type": "string",
+                      "example": "erebor"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "example": "USD",
+                      "description": "Account currency code"
+                    },
+                    "accountNumber": {
+                      "type": "string",
+                      "example": "1234567890",
+                      "description": "Bank account number"
+                    },
+                    "routingNumber": {
+                      "type": "string",
+                      "example": "125108405",
+                      "description": "Bank routing number"
+                    },
+                    "accountName": {
+                      "type": "string",
+                      "example": "Primary Account Number",
+                      "description": "Account holder name"
+                    },
+                    "bankName": {
+                      "type": "string",
+                      "example": "Erebor Bank",
+                      "description": "Bank name"
+                    },
+                    "bankAddress": {
+                      "type": "string",
+                      "example": "",
+                      "description": "Bank address"
+                    },
+                    "swiftCode": {
+                      "type": "string",
+                      "example": "PCBBUS66XXX",
+                      "description": "SWIFT code (if applicable)"
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "ACTIVE",
+                      "enum": [
+                        "PENDING",
+                        "ACTIVE",
+                        "CLOSED",
+                        "FROZEN"
+                      ]
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2026-02-10T10:25:36.338Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2026-02-10T10:25:36.338Z"
+                    }
+                  }
+                }
+              },
+              "pagination": {
+                "type": "object",
+                "properties": {
+                  "pageSize": {
+                    "type": "integer",
+                    "example": 5,
+                    "default": 0,
+                    "description": "Number of results per page"
+                  },
+                  "nextCursor": {
+                    "type": "string",
+                    "example": "WzE3NzA2OTI4NzkzNDksImEyYjNlNWQ1LTMxYjAtNDNmMC1hZTY4LWNiYTg2ZmExNTg0OCJd",
+                    "description": "Cursor for fetching the next page of results"
+                  },
+                  "total": {
+                    "type": "integer",
+                    "example": 6,
+                    "default": 0,
+                    "description": "Total number of matching virtual accounts"
+                  }
+                }
+              }
+            }
+          },
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "virtualAccounts": [
+                  {
+                    "id": "8ef125f8-ef39-46bc-a36f-c534bc0ee2ce",
+                    "subwalletId": "6959f27c-9886-536b-a276-e1f4c2e632db",
+                    "provider": "erebor",
+                    "currency": "USD",
+                    "accountNumber": "1234567890",
+                    "routingNumber": "125108405",
+                    "accountName": "Primary Account Number",
+                    "bankName": "Erebor Bank",
+                    "bankAddress": "",
+                    "swiftCode": "PCBBUS66XXX",
+                    "status": "ACTIVE",
+                    "createdAt": "2026-02-10T10:25:36.338Z",
+                    "updatedAt": "2026-02-10T10:25:36.338Z"
+                  }
+                ],
+                "pagination": {
+                  "pageSize": 5,
+                  "nextCursor": "WzE3NzA2OTI4NzkzNDksImEyYjNlNWQ1LTMxYjAtNDNmMC1hZTY4LWNiYTg2ZmExNTg0OCJd",
+                  "total": 6
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "OK"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

@@ -1,0 +1,667 @@
+{
+  "title": "Get Transactions",
+  "slug": "get-transactions",
+  "method": "GET",
+  "path": "/sends",
+  "description": "List transactions, filter by query params.",
+  "excerpt": "List transactions, filter by query params.",
+  "parameters": [
+    {
+      "in": "query",
+      "name": "vaultId",
+      "schema": {
+        "type": "string",
+        "default": "f9fa9aef-449e-46af-a677-3eabda0d1598"
+      },
+      "required": false,
+      "description": "Returns transactions where the vault appears on either side \u2014 as the source or destination. Use this for a complete view of a vault's activity."
+    },
+    {
+      "in": "query",
+      "name": "sourceVaultId",
+      "schema": {
+        "type": "string",
+        "default": "f9fa9aef-449e-46af-a677-3eabda0d1598"
+      },
+      "description": "Narrows results to transactions that originated from this specific vault."
+    },
+    {
+      "in": "query",
+      "name": "destinationVaultId",
+      "schema": {
+        "type": "string",
+        "default": "f9fa9aef-449e-46af-a677-3eabda0d1598"
+      },
+      "description": "Narrows results to transactions where funds were sent to this specific vault."
+    },
+    {
+      "in": "query",
+      "name": "startDate",
+      "schema": {
+        "type": "string",
+        "format": "date",
+        "default": "2025-01-01T00:00:00.000Z"
+      },
+      "description": "Returns transactions created on or after this timestamp. \n"
+    },
+    {
+      "in": "query",
+      "name": "endDate",
+      "schema": {
+        "type": "string",
+        "default": "2025-01-01T00:00:00.000Z"
+      },
+      "description": "Returns transactions created on or before this timestamp. "
+    },
+    {
+      "in": "query",
+      "name": "token\t",
+      "schema": {
+        "type": "string",
+        "default": "USDT_TRC20"
+      },
+      "description": "Filters by the asset token used in the transaction. \n"
+    },
+    {
+      "in": "query",
+      "name": "status",
+      "schema": {
+        "type": "string",
+        "default": "complete",
+        "enum": [
+          "created",
+          "processing",
+          "complete",
+          "failed"
+        ]
+      },
+      "description": "Filters by the current transaction status."
+    },
+    {
+      "in": "query",
+      "name": "sourceAddress",
+      "schema": {
+        "type": "string",
+        "default": "TMSkxBZpzhEQJHtSoz9QLwTf75LbVsC3ar"
+      },
+      "description": "Filters by the on-chain wallet address from which the transaction was sent."
+    },
+    {
+      "in": "query",
+      "name": "pageSize",
+      "schema": {
+        "type": "string",
+        "default": "15"
+      },
+      "description": "Number of transactions to return per page. Defaults to 15, maximum is 100.\n"
+    },
+    {
+      "in": "query",
+      "name": "cursor",
+      "schema": {
+        "type": "string",
+        "default": "WzE3NjgyMzQxOTE0NjYsIjdhZDk1OTcyLTdkYjUtNTZmZC05NDQwLWNiN2Y2ZmRiNTBkNiJd"
+      },
+      "description": "Opaque pagination token returned in pagination.nextCursor from the previous response. Pass this value to retrieve the next page of results."
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "transactions": [
+                  {
+                    "id": "7166cbdf-2f31-52df-a945-c503779577d1",
+                    "sequenceId": "fe0d2370-3611-4497-a31d-33062ff449d2",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "transactionHash": "b0f6911f62f765966d1775e3a2dd88416bf69ca11779c963890cd842b1c9023c",
+                    "externalId": "837fc557-89e0-4751-a432-b0fa13646ee0",
+                    "amount": "25.00",
+                    "networkFee": "3.08424",
+                    "token": "USDT_TRC20",
+                    "currency": "USDT",
+                    "network": "TRC20",
+                    "type": "send",
+                    "status": "complete",
+                    "destinationType": "INTERNAL",
+                    "sourceAddress": "TMSkxBZpzhEQJHtSoz9QLwTf75LbVsC3ar",
+                    "destinationAddress": "a0c829c9-ce1f-4123-9b1d-096b475c3b09",
+                    "destinationTag": "",
+                    "sourceVaultId": "f9fa9aef-449e-46af-a677-3eabda0d1598",
+                    "destinationVaultId": "a0c829c9-ce1f-4123-9b1d-096b475c3b09",
+                    "apiKey": "4111b96e14fc39039bb4e4540f2cf670",
+                    "countryCode": "NG",
+                    "travelRuleData": {},
+                    "error": "",
+                    "createdAt": "2026-02-22T19:15:49.082Z",
+                    "updatedAt": "2026-02-22T19:16:30.347Z"
+                  },
+                  {
+                    "id": "7dc5ece9-92b7-5b0c-b0a3-aae0cb9e2f19",
+                    "sequenceId": "7c78d0bc-0846-4777-8932-dab484446721",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "transactionHash": "2d90c363d0944089d87802c34db526a9f4661e0302820a533d522bdb35746e08",
+                    "externalId": "2b8b915c-e44e-4e0b-9599-5297f9035bb8",
+                    "amount": "1.00",
+                    "networkFee": "5.88924",
+                    "token": "USDT_TRC20",
+                    "currency": "USDT",
+                    "network": "TRC20",
+                    "type": "send",
+                    "status": "complete",
+                    "destinationType": "INTERNAL",
+                    "sourceAddress": "TMSkxBZpzhEQJHtSoz9QLwTf75LbVsC3ar",
+                    "destinationAddress": "a0c829c9-ce1f-4123-9b1d-096b475c3b09",
+                    "destinationTag": "",
+                    "sourceVaultId": "f9fa9aef-449e-46af-a677-3eabda0d1598",
+                    "destinationVaultId": "a0c829c9-ce1f-4123-9b1d-096b475c3b09",
+                    "apiKey": "4111b96e14fc39039bb4e4540f2cf670",
+                    "countryCode": "NG",
+                    "travelRuleData": {},
+                    "error": "",
+                    "createdAt": "2026-02-22T19:10:50.124Z",
+                    "updatedAt": "2026-02-22T19:11:33.215Z"
+                  },
+                  {
+                    "id": "12fcf8d7-6011-58c8-ae72-0e15acb68982",
+                    "sequenceId": "14d7ca44-afad-4d08-97d2-e98de10dfaf-60",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "transactionHash": "114a3567f326f63c2097b6d3578890ba461d523f1502b89081aca9cece5faa83",
+                    "externalId": "4b81fe94-7324-5903-9989-ab60765eae77",
+                    "amount": "45.00",
+                    "networkFee": "2.73945",
+                    "token": "USDT_TRC20",
+                    "currency": "USDT",
+                    "network": "TRC20",
+                    "type": "send",
+                    "status": "complete",
+                    "destinationType": "EXTERNAL",
+                    "sourceAddress": "TMSkxBZpzhEQJHtSoz9QLwTf75LbVsC3ar",
+                    "destinationAddress": "TP8iP5xDUaSu92gViDEaz2Ps6aAinRn6iX",
+                    "destinationTag": "",
+                    "sourceVaultId": "f9fa9aef-449e-46af-a677-3eabda0d1598",
+                    "destinationVaultId": "",
+                    "apiKey": "90c0cce7fb5cb8820f516fe7afe447fc",
+                    "countryCode": "NG",
+                    "travelRuleData": {
+                      "firstName": "James",
+                      "lastName": "Falola"
+                    },
+                    "error": "",
+                    "createdAt": "2026-01-14T11:44:14.444Z",
+                    "updatedAt": "2026-01-14T11:46:51.530Z"
+                  },
+                  {
+                    "id": "6c6cc1a1-a26d-568c-ab14-9286f7a100b5",
+                    "sequenceId": "c177b17e-99d4-52cf-b7cc-d7d4c8b7fcfc",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "transactionHash": "",
+                    "externalId": "c177b17e-99d4-52cf-b7cc-d7d4c8b7fcfc",
+                    "amount": "200.00",
+                    "networkFee": "",
+                    "token": "USDT_TRC20",
+                    "currency": "USDT",
+                    "network": "TRC20",
+                    "type": "receive",
+                    "status": "complete",
+                    "destinationType": "INTERNAL",
+                    "sourceAddress": "TP8iP5xDUaSu92gViDEaz2Ps6aAinRn6iX",
+                    "destinationAddress": "TMSkxBZpzhEQJHtSoz9QLwTf75LbVsC3ar",
+                    "destinationTag": "",
+                    "sourceVaultId": "",
+                    "destinationVaultId": "",
+                    "apiKey": "",
+                    "countryCode": "",
+                    "travelRuleData": {},
+                    "error": "",
+                    "createdAt": "2026-01-14T11:43:50.880Z",
+                    "updatedAt": "2026-01-14T11:43:50.880Z"
+                  },
+                  {
+                    "id": "02924fda-f5ac-52db-a873-eb98b899bdad",
+                    "sequenceId": "14d7ca44-afad-4d08-97d2-e98de10dfaf-59",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "transactionHash": "",
+                    "externalId": "",
+                    "amount": "20.00",
+                    "networkFee": "0.00",
+                    "token": "USDT_TRC20",
+                    "currency": "USDT",
+                    "network": "TRC20",
+                    "type": "send",
+                    "status": "failed",
+                    "destinationType": "EXTERNAL",
+                    "sourceAddress": "TMSkxBZpzhEQJHtSoz9QLwTf75LbVsC3ar",
+                    "destinationAddress": "TP8iP5xDUaSu92gViDEaz2Ps6aAinRn6iX",
+                    "destinationTag": "",
+                    "sourceVaultId": "f9fa9aef-449e-46af-a677-3eabda0d1598",
+                    "destinationVaultId": "",
+                    "apiKey": "90c0cce7fb5cb8820f516fe7afe447fc",
+                    "countryCode": "NG",
+                    "travelRuleData": {
+                      "firstName": "James",
+                      "lastName": "Falola"
+                    },
+                    "error": "insufficient TRX balance for gas fee. required: 4.2294, available: 0",
+                    "createdAt": "2026-01-14T11:34:32.991Z",
+                    "updatedAt": "2026-01-14T11:34:35.374Z"
+                  },
+                  {
+                    "id": "ed91e1fc-d5b3-509d-9a81-8a776da772a5",
+                    "sequenceId": "14d7ca44-afad-4d08-97d2-e98de10dfaf-58",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "transactionHash": "",
+                    "externalId": "",
+                    "amount": "20.00",
+                    "networkFee": "0.00",
+                    "token": "USDT_TRC20",
+                    "currency": "USDT",
+                    "network": "TRC20",
+                    "type": "send",
+                    "status": "failed",
+                    "destinationType": "EXTERNAL",
+                    "sourceAddress": "TL39TM5ZJjhRuv5pZYEcBaRrhAXGbJFM8Q",
+                    "destinationAddress": "TP8iP5xDUaSu92gViDEaz2Ps6aAinRn6iX",
+                    "destinationTag": "",
+                    "sourceVaultId": "a0c829c9-ce1f-4123-9b1d-096b475c3b09",
+                    "destinationVaultId": "",
+                    "apiKey": "90c0cce7fb5cb8820f516fe7afe447fc",
+                    "countryCode": "NG",
+                    "travelRuleData": {
+                      "firstName": "James",
+                      "lastName": "Falola"
+                    },
+                    "error": "insufficient TRX balance for gas fee. required: 4.2294, available: 0",
+                    "createdAt": "2026-01-14T11:32:24.575Z",
+                    "updatedAt": "2026-01-14T11:32:27.133Z"
+                  },
+                  {
+                    "id": "ea64fe8f-6656-5d61-b30f-52a6ecdd407f",
+                    "sequenceId": "14d7ca44-afad-4d08-97d2-e98de10dfaf-56",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "transactionHash": "",
+                    "externalId": "",
+                    "amount": "20.00",
+                    "networkFee": "0.00",
+                    "token": "USDT_TRC20",
+                    "currency": "USDT",
+                    "network": "TRC20",
+                    "type": "send",
+                    "status": "failed",
+                    "destinationType": "EXTERNAL",
+                    "sourceAddress": "TL39TM5ZJjhRuv5pZYEcBaRrhAXGbJFM8Q",
+                    "destinationAddress": "TP8iP5xDUaSu92gViDEaz2Ps6aAinRn6iX",
+                    "destinationTag": "",
+                    "sourceVaultId": "a0c829c9-ce1f-4123-9b1d-096b475c3b09",
+                    "destinationVaultId": "",
+                    "apiKey": "90c0cce7fb5cb8820f516fe7afe447fc",
+                    "countryCode": "NG",
+                    "travelRuleData": {
+                      "firstName": "James",
+                      "lastName": "Falola"
+                    },
+                    "error": "insufficient TRX balance for gas fee. required: 4.235, available: 0",
+                    "createdAt": "2026-01-14T10:59:52.763Z",
+                    "updatedAt": "2026-01-14T10:59:58.184Z"
+                  },
+                  {
+                    "id": "6fb8205f-0307-5937-95cf-3b5a69d0a979",
+                    "sequenceId": "14d7ca44-afad-4d08-97d2-e98de10dfaf-55",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "transactionHash": "",
+                    "externalId": "",
+                    "amount": "20.00",
+                    "networkFee": "0.00",
+                    "token": "USDT_TRC20",
+                    "currency": "USDT",
+                    "network": "TRC20",
+                    "type": "send",
+                    "status": "failed",
+                    "destinationType": "EXTERNAL",
+                    "sourceAddress": "a0c829c9-ce1f-4123-9b1d-096b475c3b09",
+                    "destinationAddress": "TP8iP5xDUaSu92gViDEaz2Ps6aAinRn6iX",
+                    "destinationTag": "",
+                    "sourceVaultId": "a0c829c9-ce1f-4123-9b1d-096b475c3b09",
+                    "destinationVaultId": "",
+                    "apiKey": "90c0cce7fb5cb8820f516fe7afe447fc",
+                    "countryCode": "NG",
+                    "travelRuleData": {
+                      "firstName": "James",
+                      "lastName": "Falola"
+                    },
+                    "error": "insufficient TRX balance for gas fee. required: 4.235, available: 0",
+                    "createdAt": "2026-01-14T10:48:13.300Z",
+                    "updatedAt": "2026-01-14T10:48:16.236Z"
+                  },
+                  {
+                    "id": "78514c1a-4b37-57e9-a074-eb60ff315062",
+                    "sequenceId": "4ea8b29a-9862-43ee-a39c6-bd4c450c346d",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "transactionHash": "iFHKf2sjqWgpARiY48hMhb9SrHrwsuGXgajzU3a92HgQeatX82pvXe4XYzH5K2YSVxjif9fEQgT7H5vHTXbDvwS",
+                    "externalId": "cb74acfc-5559-4e47-9c0e-f79501482ddf",
+                    "amount": "0.50",
+                    "networkFee": "0.002049582",
+                    "token": "USDC_SOL",
+                    "currency": "USDC",
+                    "network": "SOL",
+                    "type": "send",
+                    "status": "complete",
+                    "destinationType": "INTERNAL",
+                    "sourceAddress": "840e884c-c194-42d1-9d7e-924eac2a6520",
+                    "destinationAddress": "8wqBZXYJqEaAV6adSb1aF1eCX2xJKCdH6HKJ57tPsaZv",
+                    "destinationTag": "",
+                    "sourceVaultId": "840e884c-c194-42d1-9d7e-924eac2a6520",
+                    "destinationVaultId": "cab7c80e-66b3-420d-acd0-5ef4b3930e1a",
+                    "apiKey": "a228b6b2a07ee85c980d43edad8a3695",
+                    "countryCode": "",
+                    "travelRuleData": {},
+                    "error": "",
+                    "createdAt": "2026-01-12T16:11:04.457Z",
+                    "updatedAt": "2026-01-12T16:11:16.851Z"
+                  },
+                  {
+                    "id": "7ad95972-7db5-56fd-9440-cb7f6fdb50d6",
+                    "sequenceId": "3b0c3f2a-281e-51b2-9995-c40c17235477",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "transactionHash": "",
+                    "externalId": "3b0c3f2a-281e-51b2-9995-c40c17235477",
+                    "amount": "1.00",
+                    "networkFee": "",
+                    "token": "SOL_SOL",
+                    "currency": "SOL",
+                    "network": "SOL",
+                    "type": "receive",
+                    "status": "complete",
+                    "destinationType": "INTERNAL",
+                    "sourceAddress": "9B5XszUGdMaxCZ7uSQhPzdks5ZQSmWxrmzCSvtJ6Ns6g",
+                    "destinationAddress": "3iJJmbUw6hYHxsztdrpnkTzhuvVaKDkXvmDyse9UQ3Mg",
+                    "destinationTag": "",
+                    "sourceVaultId": "",
+                    "destinationVaultId": "",
+                    "apiKey": "",
+                    "countryCode": "",
+                    "travelRuleData": {},
+                    "error": "",
+                    "createdAt": "2026-01-12T16:09:51.466Z",
+                    "updatedAt": "2026-01-12T16:09:51.466Z"
+                  }
+                ],
+                "pagination": {
+                  "pageSize": 10,
+                  "nextCursor": "WzE3NjgyMzQxOTE0NjYsIjdhZDk1OTcyLTdkYjUtNTZmZC05NDQwLWNiN2Y2ZmRiNTBkNiJd",
+                  "total": 12
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "OK"
+    },
+    "201": {
+      "description": "Create Send Transaction",
+      "headers": {
+        "Date": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Content-Length": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "Connection": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "CF-RAY": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "x-amzn-requestid": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "access-control-allow-origin": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amz-apigw-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-trace-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "access-control-allow-credentials": {
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "cf-cache-status": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Set-Cookie": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Strict-Transport-Security": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "expect-ct": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "referrer-policy": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-content-type-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-frame-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-xss-protection": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "X-Hiring": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Server": {
+          "schema": {
+            "type": "string"
+          }
+        }
+      },
+      "content": {
+        "application/json": {
+          "examples": {
+            "": {
+              "summary": "",
+              "value": {
+                "id": "f16f278b-1313-50eb-a511-46ed296c68ec",
+                "sequenceId": "14d7ca44-afad-4d08-97d2-e98de10dfaf-04",
+                "partnerId": "06b3054b-1ac5-42c6-8687-d2195c1f0e4b",
+                "amount": 10,
+                "networkFee": 0,
+                "token": "USDT_TRC20",
+                "countryCode": "NG",
+                "type": "send",
+                "status": "created",
+                "destinationAddress": "9343af1f-cca4-448c-b460-b178c6dbe34f",
+                "destinationType": "INTERNAL",
+                "destinationVaultId": "9343af1f-cca4-448c-b460-b178c6dbe34f",
+                "sourceAddress": "15f62532-a28d-42fd-9997-cdc2876cce13",
+                "sourceVaultId": "15f62532-a28d-42fd-9997-cdc2876cce13",
+                "createdAt": 1761868420068,
+                "updatedAt": 1761868420068
+              }
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "id"
+              },
+              "sequenceId": {
+                "type": "string"
+              },
+              "partnerId": {
+                "type": "string"
+              },
+              "amount": {
+                "type": "integer"
+              },
+              "networkFee": {
+                "type": "integer"
+              },
+              "token": {
+                "type": "string"
+              },
+              "currency": {
+                "type": "string"
+              },
+              "network": {
+                "type": "string"
+              },
+              "type": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "destinationAddress": {
+                "type": "string"
+              },
+              "destinationType": {
+                "type": "string"
+              },
+              "destinationVaultId": {
+                "type": "string"
+              },
+              "sourceAddress": {
+                "type": "string"
+              },
+              "sourceVaultId": {
+                "type": "string"
+              },
+              "createdAt": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "updatedAt": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "ValidationError"
+              },
+              "message": {
+                "type": "string",
+                "example": "vault id not found"
+              }
+            }
+          },
+          "examples": {
+            "Bad Request": {
+              "summary": "Bad Request",
+              "value": {
+                "code": "ValidationError",
+                "message": "vault id not found"
+              }
+            }
+          }
+        }
+      },
+      "description": "Bad Request"
+    },
+    "500": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          },
+          "examples": {
+            "Internal Server Error": {
+              "summary": "Internal Server Error",
+              "value": {
+                "code": "InternalServerError",
+                "message": "something went wrong"
+              }
+            }
+          }
+        }
+      },
+      "description": "Internal Server Error"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

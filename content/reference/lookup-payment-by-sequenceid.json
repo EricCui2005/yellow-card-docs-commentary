@@ -1,0 +1,239 @@
+{
+  "title": "Lookup Send by sequenceId",
+  "slug": "lookup-payment-by-sequenceid",
+  "method": "GET",
+  "path": "/payments/sequence-id/{id}",
+  "description": "Retrieve information about a specific payment using its sequenceId property",
+  "excerpt": "Retrieve information about a specific send using its sequenceId property",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "Unique Payment sequenceId property",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {},
+        "examples": {
+          "Request Example": {
+            "value": {
+              "sender": {
+                "name": "j",
+                "country": "N",
+                "phone": "+12514218828",
+                "address": "12dsa",
+                "dob": "02/01/1997",
+                "email": "justin@yellowcard.io",
+                "idNumber": "12",
+                "idType": "12"
+              },
+              "destination": {
+                "accountName": "Héloïse D'arban",
+                "accountNumber": "0760349371",
+                "accountType": "bank",
+                "networkId": "5f1af11b-305f-4420-8fce-65ed2725a409"
+              },
+              "channelId": "fe8f4989-3bf6-41ca-9621-ffe2bc127569",
+              "sequenceId": "wseks28asdasd",
+              "amount": 50,
+              "currency": "NGN",
+              "country": "NG",
+              "reason": "other",
+              "partnerId": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01",
+              "id": "9ae480ef-71cc-4ba3-9eb8-6970a8d707aa",
+              "status": "created",
+              "convertedAmount": 20026,
+              "rate": 400.52,
+              "expiresAt": "2023-02-02T09:40:48.628Z",
+              "createdAt": "2023-02-02T09:30:48.629Z",
+              "updatedAt": "2023-02-02T09:30:48.629Z"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n  \"sender\": {\n    \"name\": \"james\",\n    \"country\": \"NG\",\n    \"phone\": \"+12514218828\",\n    \"address\": \"Home office, address1\",\n    \"dob\": \"02/01/1997\",\n    \"email\": \"justin@yellowcard.io\",\n    \"idNumber\": \"12910293821\",\n    \"idType\": \"passport\"\n  },\n  \"destination\": {\n    \"accountName\": \"Héloïse D'arban\",\n    \"accountNumber\": \"0760349371\",\n    \"accountType\": \"bank\",\n    \"networkId\": \"5f1af11b-305f-4420-8fce-65ed2725a409\"\n  },\n  \"channelId\": \"fe8f4989-3bf6-41ca-9621-ffe2bc127569\",\n  \"sequenceId\": \"7707c304-4583-4077-9531-de3f7616659c\",\n  \"amount\": 50,\n  \"currency\": \"NGN\",\n  \"country\": \"NG\",\n  \"reason\": \"other\",\n  \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n  \"id\": \"9ae480ef-71cc-4ba3-9eb8-6970a8d707aa\",\n  \"status\": \"complete\",\n  \"sessionId\": \"0192102837711029102930\",\n  \"convertedAmount\": 20026,\n  \"rate\": 400.52,\n  \"expiresAt\": \"2023-02-02T09:40:48.628Z\",\n  \"createdAt\": \"2023-02-02T09:30:48.629Z\",\n  \"updatedAt\": \"2023-02-02T09:30:48.629Z\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "sender": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "james"
+                  },
+                  "country": {
+                    "type": "string",
+                    "example": "NG"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "+12514218828"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Home office, address1"
+                  },
+                  "dob": {
+                    "type": "string",
+                    "example": "02/01/1997"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "justin@yellowcard.io"
+                  },
+                  "idNumber": {
+                    "type": "string",
+                    "example": "12910293821"
+                  },
+                  "idType": {
+                    "type": "string",
+                    "example": "passport"
+                  }
+                }
+              },
+              "destination": {
+                "type": "object",
+                "properties": {
+                  "accountName": {
+                    "type": "string",
+                    "example": "Héloïse D'arban"
+                  },
+                  "accountNumber": {
+                    "type": "string",
+                    "example": "0760349371"
+                  },
+                  "accountType": {
+                    "type": "string",
+                    "example": "bank"
+                  },
+                  "networkId": {
+                    "type": "string",
+                    "example": "5f1af11b-305f-4420-8fce-65ed2725a409"
+                  }
+                }
+              },
+              "channelId": {
+                "type": "string",
+                "example": "fe8f4989-3bf6-41ca-9621-ffe2bc127569"
+              },
+              "sequenceId": {
+                "type": "string",
+                "example": "7707c304-4583-4077-9531-de3f7616659c"
+              },
+              "amount": {
+                "type": "integer",
+                "example": 50,
+                "default": 0
+              },
+              "currency": {
+                "type": "string",
+                "example": "NGN"
+              },
+              "country": {
+                "type": "string",
+                "example": "NG"
+              },
+              "reason": {
+                "type": "string",
+                "example": "other"
+              },
+              "partnerId": {
+                "type": "string",
+                "example": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01"
+              },
+              "id": {
+                "type": "string",
+                "example": "9ae480ef-71cc-4ba3-9eb8-6970a8d707aa"
+              },
+              "status": {
+                "type": "string",
+                "example": "complete"
+              },
+              "sessionId": {
+                "type": "string",
+                "example": "0192102837711029102930"
+              },
+              "convertedAmount": {
+                "type": "integer",
+                "example": 20026,
+                "default": 0
+              },
+              "rate": {
+                "type": "number",
+                "example": 400.52,
+                "default": 0
+              },
+              "expiresAt": {
+                "type": "string",
+                "example": "2023-02-02T09:40:48.628Z"
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2023-02-02T09:30:48.629Z"
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2023-02-02T09:30:48.629Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"BadRequestError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "BadRequestError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<br/>\n<blockquote class=\"callout callout_warn\" theme=\"⚠️\"><span class=\"callout-icon\">⚠️</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"updated-terminology\"></div><div class=\"heading-text\">Updated Terminology</div><a aria-label=\"Skip link to Updated Terminology\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#updated-terminology\"></a></h3><p>Payments are now called Sends. These Send endpoints replace the legacy Payments endpoints. The functionality remains identical, only the terminology has changed. Legacy payment endpoints are deprecated but will continue to  work. We recommend migrating to these new <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/send</code> endpoints for future compatibility.</p></blockquote>"
+}

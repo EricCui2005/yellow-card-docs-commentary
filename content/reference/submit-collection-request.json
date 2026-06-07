@@ -1,0 +1,414 @@
+{
+  "title": "Submit Receive Request",
+  "slug": "submit-collection-request",
+  "method": "POST",
+  "path": "/receive",
+  "description": "Submit a receive request. This will lock in a rate and await approval.",
+  "excerpt": "Submit a receive request. This will lock in a rate and await approval.",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "channelId",
+            "sequenceId",
+            "customerUID",
+            "customerType"
+          ],
+          "properties": {
+            "channelId": {
+              "type": "string",
+              "description": "The identifier of the specific channel to execute payment through"
+            },
+            "sequenceId": {
+              "type": "string",
+              "description": "Represents a unique id for the transaction from your end"
+            },
+            "amount": {
+              "type": "integer",
+              "description": "Amount in USD to transact",
+              "format": "int32"
+            },
+            "localAmount": {
+              "type": "integer",
+              "description": "The amount in local currency to transact",
+              "format": "int32"
+            },
+            "recipient": {
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Recipient's full name.  Required only if `customerType` is retail."
+                },
+                "country": {
+                  "type": "string",
+                  "description": "Recipient's country in ISO 3166 format. Example, NG, CM, GH. https://en.wikipedia.org/wiki/List_of_ISO_3166_country_codes.   Required only if `customerType` is retail."
+                },
+                "address": {
+                  "type": "string",
+                  "description": "Recipient's address.   Required only if `customerType` is retail."
+                },
+                "dob": {
+                  "type": "string",
+                  "description": "Recipient's date of birth (mm/dd/yyyy).   Required only if `customerType` is retail."
+                },
+                "email": {
+                  "type": "string",
+                  "description": "Recipient's email address.   Required for both `customerType` is `retail` and `institution`."
+                },
+                "idNumber": {
+                  "type": "string",
+                  "description": "Recipient's ID number.   Required only if `customerType` is retail."
+                },
+                "idType": {
+                  "type": "string",
+                  "description": "Recipient's identity document type.   Required only if `customerType` is retail."
+                },
+                "additionalIdType": {
+                  "type": "string",
+                  "description": "Recipient's additional ID type.   Required only if `customerType` is retail and recipient country is NG"
+                },
+                "additionalIdNumber": {
+                  "type": "string",
+                  "description": "Recipient's additional ID number.   Required only if `customerType` is retail and recipient country is NG"
+                },
+                "phone": {
+                  "type": "string",
+                  "description": "Recipient's phone number.   Required only if `customerType` is retail."
+                },
+                "businessId": {
+                  "type": "string",
+                  "description": "Recipient's business id. Required only if `customerType` is institution."
+                },
+                "businessName": {
+                  "type": "string",
+                  "description": "Recipient's business name. Required only if `customerType` is institution."
+                }
+              },
+              "type": "object",
+              "description": "Recipient's KYC details"
+            },
+            "source": {
+              "properties": {
+                "accountType": {
+                  "type": "string",
+                  "description": "The type of account ('bank' or 'momo')"
+                },
+                "accountNumber": {
+                  "type": "string",
+                  "description": "For momo account type, Mobile money phone number of the Recipient. In the sandbox environment use 1111111111 simulate a success source and 0000000000 for a failure source for both \"momo\" and \"bank\". Please note that the account number is not required for bank receives in production"
+                },
+                "networkId": {
+                  "type": "string",
+                  "description": "The identifier of the specific network to execute payment through (not required for bank receives)"
+                }
+              },
+              "required": [
+                "accountType"
+              ],
+              "type": "object",
+              "description": "Source account details"
+            },
+            "forceAccept": {
+              "type": "boolean",
+              "description": "Specify whether or not you want to skip the accept collection step",
+              "default": false
+            },
+            "customerType": {
+              "type": "string",
+              "description": "Determines the type of validation that is performed on the recipient. If value is `institution`, the recipient request object will be validated to ensure it includes `businessName` and `businessId` parameter. If the value is `retail`, the recipient request object will be validated to ensure it includes `name`, `phone`, `email`, `country`, `address`, `dob`, `idNumber` and `idType`",
+              "default": "retail",
+              "enum": [
+                "retail",
+                "institution"
+              ]
+            },
+            "redirectUrl": {
+              "type": "string",
+              "description": "This is used to determine where the customer is redirected to after a transaction is initiated for channels that require redirect. This param is required if the selected channel requires redirect and forceAccept is set to true."
+            },
+            "customerUID": {
+              "type": "string",
+              "description": "Unique identifier for the customer"
+            },
+            "country": {
+              "type": "string",
+              "description": "Country ISO 3166 code e.g. NG, KE, CI. This field is only required when using `channelType`"
+            },
+            "currency": {
+              "type": "string",
+              "description": "Currency code e.g. NGN, KES, XAF, XOF. This field is only required when using `channelType`"
+            },
+            "channelType": {
+              "type": "string",
+              "enum": [
+                "bank",
+                "momo"
+              ]
+            }
+          }
+        },
+        "examples": {
+          "Request Example": {
+            "value": {
+              "recipient": {
+                "name": "John Doe",
+                "country": "Nigeria",
+                "phone": "+2349092916898",
+                "address": "Home Address",
+                "dob": "02/01/1997",
+                "email": "john.doe@yellowcard.io",
+                "idNumber": "314159",
+                "idType": "license"
+              },
+              "source": {
+                "accountType": "bank",
+                "accountNumber": "1111111111",
+                "networkId": "6df48502-1ebe-473f-be17-e2cae4dd67ee"
+              },
+              "channelId": "fe8f4989-3bf6-41ca-9621-ffe2bc127569",
+              "sequenceId": "97f7c7f2-f7bb-450c-8f6d-1bd70766d26d",
+              "amount": 20,
+              "currency": "NGN",
+              "country": "Nigeria",
+              "reason": "other"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": {
+                "recipient": {
+                  "name": "John Doe",
+                  "country": "Nigeria",
+                  "phone": "+12514218828",
+                  "address": "Home Address",
+                  "dob": "02/01/1997",
+                  "email": "john.doe@yellowcard.io",
+                  "idNumber": "314159",
+                  "idType": "license"
+                },
+                "source": {
+                  "accountNumber": "0000000000",
+                  "accountType": "momo",
+                  "networkId": "995eb625-e23b-4d0b-bd90-18ce44cc17a3"
+                },
+                "channelId": "79da4d6e-1c42-4aac-ae7d-422730528f96",
+                "sequenceId": "93f7c7f9-f2bb-450c-8f6d-1bd70766d36d",
+                "amount": 1000,
+                "currency": "XAF",
+                "country": "CM",
+                "partnerId": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01",
+                "apiKey": "533fc4c3eaeb2a8f297a740ea178d830",
+                "id": "7a1f2622-29b0-4e23-bb7e-bfc9883b78fa",
+                "status": "created",
+                "convertedAmount": 569480,
+                "rate": 569.48,
+                "serviceFeeAmountLocal": 6000,
+                "serviceFeeAmountUSD": 5,
+                "partnerFeeAmountLocal": 3000,
+                "partnerFeeAmountUSD": 2,
+                "fiatWallet": "USD",
+                "requestSource": "api",
+                "directSettlement": false,
+                "expiresAt": "2023-02-02T13:50:06.298Z",
+                "createdAt": "2023-02-02T13:50:06.298Z",
+                "updatedAt": "2023-02-02T13:50:06.298Z"
+              }
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "recipient": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "country": {
+                    "type": "string",
+                    "example": "Nigeria"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "+12514218828"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Home Address"
+                  },
+                  "dob": {
+                    "type": "string",
+                    "example": "02/01/1997"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john.doe@yellowcard.io"
+                  },
+                  "idNumber": {
+                    "type": "string",
+                    "example": "314159"
+                  },
+                  "idType": {
+                    "type": "string",
+                    "example": "license"
+                  }
+                }
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "accountNumber": {
+                    "type": "string",
+                    "example": "0000000000"
+                  },
+                  "accountType": {
+                    "type": "string",
+                    "example": "momo"
+                  },
+                  "networkId": {
+                    "type": "string",
+                    "example": "995eb625-e23b-4d0b-bd90-18ce44cc17a3"
+                  }
+                }
+              },
+              "channelId": {
+                "type": "string",
+                "example": "79da4d6e-1c42-4aac-ae7d-422730528f96"
+              },
+              "sequenceId": {
+                "type": "string",
+                "example": "93f7c7f9-f2bb-450c-8f6d-1bd70766d36d"
+              },
+              "amount": {
+                "type": "integer",
+                "example": 1000,
+                "default": 0
+              },
+              "currency": {
+                "type": "string",
+                "example": "XAF"
+              },
+              "country": {
+                "type": "string",
+                "example": "CM"
+              },
+              "partnerId": {
+                "type": "string",
+                "example": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01"
+              },
+              "apiKey": {
+                "type": "string",
+                "example": "533fc4c3eaeb2a8f297a740ea178d830"
+              },
+              "id": {
+                "type": "string",
+                "example": "7a1f2622-29b0-4e23-bb7e-bfc9883b78fa"
+              },
+              "status": {
+                "type": "string",
+                "example": "created"
+              },
+              "convertedAmount": {
+                "type": "integer",
+                "example": 569480,
+                "default": 0
+              },
+              "rate": {
+                "type": "number",
+                "example": 569.48,
+                "default": 0
+              },
+              "expiresAt": {
+                "type": "string",
+                "example": "2023-02-02T13:50:06.298Z"
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2023-02-02T13:50:06.298Z"
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2023-02-02T13:50:06.298Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n   \"code\": \"PaymentValidationError\",\n   \"message\": \"amount must be between 0 and 1000\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "PaymentValidationError"
+              },
+              "message": {
+                "type": "string",
+                "example": "amount must be between 0 and 1000"
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "500",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"InternalServerError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<br/>\n<blockquote class=\"callout callout_warn\" theme=\"⚠️\"><span class=\"callout-icon\">⚠️</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"updated-terminology\"></div><div class=\"heading-text\">Updated Terminology</div><a aria-label=\"Skip link to Updated Terminology\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#updated-terminology\"></a></h3><p>Collections are now called Receives. These <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/receive</code> endpoints replace the legacy <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/collections</code> endpoints. The functionality remains identical, only the terminology has changed. Legacy collections endpoints are deprecated but will continue to  work. We recommend migrating to these new <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/receive</code> endpoints for future compatibility.</p></blockquote>\n<blockquote class=\"callout callout_info\" theme=\"📘\"><span class=\"callout-icon\">📘</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"amount-in-usd-or-local-currency\"></div><div class=\"heading-text\">Amount in USD or local currency</div><a aria-label=\"Skip link to Amount in USD or local currency\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#amount-in-usd-or-local-currency\"></a></h3><p>The <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">amount</code> field and the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">localAmount</code> field are interchangeable in the request body. <strong>Either one is required, but not both.</strong> Specifying the USD <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">amount</code> will then calculate an amount in local currency based on the partner rates, while specifying a <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">localAmount</code> in the local currency will fix this amount for the user while calculating the USD amount from the rates. The <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">convertedAmount</code> in the response body indicates the amount in local currency that has either been fixed or calculated.</p></blockquote>\n<blockquote class=\"callout callout_warn\" theme=\"🚧\"><span class=\"callout-icon\">🚧</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"ten-minutes-expiry\"></div><div class=\"heading-text\">Ten minutes expiry</div><a aria-label=\"Skip link to Ten minutes expiry\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#ten-minutes-expiry\"></a></h3><p>Receive requests have ten minutes to be accepted or will automatically mark itself as expired.</p></blockquote>\n<blockquote class=\"callout callout_info\" theme=\"📘\"><span class=\"callout-icon\">📘</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"force-accept\"></div><div class=\"heading-text\">Force Accept</div><a aria-label=\"Skip link to Force Accept\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#force-accept\"></a></h3><p>Setting <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">forceAccept</code> field to <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">true</code> allows you to skip the accept receive request and your collection would start processing once you submit collection request.</p><p><strong>Note</strong>:  You should expect the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">bankInfo</code> object for bank channel type if <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">forceAccept</code> is <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">true</code>,  Also keep in mind force accept for bank channel type adds a bit more latency to your submit receive request.</p><p>When the channel  selected requires a redirect for the receive to be made and the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">forceAccept</code> value is set to <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">true</code>, then the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">redirectUrl</code> field is required and the request will fail if it is not provided.</p><p><strong>Note</strong>: the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">redirectUrl</code>has to be a valid url with the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">http://</code> or <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">https://</code> scheme included.</p></blockquote>\n<blockquote class=\"callout callout_info\" theme=\"📘\"><span class=\"callout-icon\">📘</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"channel-note\"></div><div class=\"heading-text\">Channel Note</div><a aria-label=\"Skip link to Channel Note\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#channel-note\"></a></h3><p>You can now use <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">channelType</code> as an alternative to specifying a channelId in your Submit Receive API request.</p><p>When using <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">channelType</code> you&#x27;re required to pass the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">country</code> and <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">currency</code> in the send request</p><p>When you provide a <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">channelType</code>, <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">country</code> and <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">currency</code>  the system will automatically select an appropriate active channel for your transaction.</p><p>Available Channel Types:</p><ul>\n<li>momo</li>\n<li>bank</li>\n</ul></blockquote>\n<div><div style=\"height:50px;border:1px solid var(--color-border-default, rgba(black, 0.1));border-radius:var(--border-radius-lg, 7.5px);min-width:230px;display:inline-flex;padding:10px\"><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:30px;width:30px\"></div><div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:150px;margin:0 15px;margin-bottom:6px\"></div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:75px;margin:0 15px\"></div></div></div></div>\n<div><div style=\"height:50px;border:1px solid var(--color-border-default, rgba(black, 0.1));border-radius:var(--border-radius-lg, 7.5px);min-width:230px;display:inline-flex;padding:10px\"><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:30px;width:30px\"></div><div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:150px;margin:0 15px;margin-bottom:6px\"></div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:75px;margin:0 15px\"></div></div></div></div>\n<br/>"
+}

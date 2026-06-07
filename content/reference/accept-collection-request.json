@@ -1,0 +1,307 @@
+{
+  "title": "Accept Receive Request",
+  "slug": "accept-collection-request",
+  "method": "POST",
+  "path": "/receive/{id}/accept",
+  "description": "Accept a collection request for execution.",
+  "excerpt": "Accept a receive request for execution.",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "Unique Receive Identifier",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {},
+        "examples": {
+          "Request Example": {
+            "value": {
+              "partnerId": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01",
+              "currency": "NGN",
+              "rate": 487.89,
+              "bankInfo": {
+                "name": "PAGA",
+                "accountNumber": "01234567890",
+                "accountName": "Ken Adams"
+              },
+              "status": "processing",
+              "createdAt": "2023-02-06T13:31:20.108Z",
+              "source": {
+                "accountNumber": "1111111111",
+                "networkId": "6df48502-1ebe-473f-be17-e2cae4dd67ee",
+                "accountType": "bank"
+              },
+              "sequenceId": "11f4c7f2-f7bb-450c-4s6d-1bd70766d26d",
+              "country": "NG",
+              "reference": "JJ8094861",
+              "convertedAmount": 9757.8,
+              "recipient": {
+                "country": "Nigeria",
+                "address": "Home Address",
+                "idType": "license",
+                "phone": "+2349092916898",
+                "dob": "02/01/1997",
+                "name": "John Doe",
+                "idNumber": "314159",
+                "email": "john.doe@yellowcard.io"
+              },
+              "channelId": "fe8f4989-3bf6-41ca-9621-ffe2bc127569",
+              "expiresAt": "2023-02-06T13:41:20.108Z",
+              "updatedAt": "2023-02-06T13:31:48.802Z",
+              "amount": 20,
+              "id": "805b2317-0da9-42b9-89fb-e14e3fe12dd8",
+              "depositId": "47069e2d-b225-4155-9028-2607fe3346bb"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n    \"currency\": \"NGN\",\n    \"rate\": 487.89,\n    \"bankInfo\": {\n        \"name\": \"PAGA\",\n        \"accountNumber\": \"01234567890\",\n        \"accountName\": \"Ken Adams\"\n    },\n    \"status\": \"processing\",\n    \"createdAt\": \"2023-02-06T13:31:20.108Z\",\n    \"source\": {\n        \"accountNumber\": \"1111111111\",\n        \"networkId\": \"6df48502-1ebe-473f-be17-e2cae4dd67ee\",\n        \"accountType\": \"bank\"\n    },\n    \"sequenceId\": \"11f4c7f2-f7bb-450c-4s6d-1bd70766d26d\",\n    \"country\": \"NG\",\n    \"reference\": \"JJ8094861\",\n    \"convertedAmount\": 9757.8,\n    \"recipient\": {\n        \"country\": \"Nigeria\",\n        \"address\": \"Home Address\",\n        \"idType\": \"license\",\n        \"phone\": \"+2349092916898\",\n        \"dob\": \"02/01/1997\",\n        \"name\": \"John Doe\",\n        \"idNumber\": \"314159\",\n        \"email\": \"john.doe@yellowcard.io\"\n    },\n    \"channelId\": \"fe8f4989-3bf6-41ca-9621-ffe2bc127569\",\n    \"expiresAt\": \"2023-02-06T13:41:20.108Z\",\n    \"updatedAt\": \"2023-02-06T13:31:48.802Z\",\n    \"amount\": 20,\n    \"id\": \"805b2317-0da9-42b9-89fb-e14e3fe12dd8\",\n    \"depositId\": \"47069e2d-b225-4155-9028-2607fe3346bb\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "partnerId": {
+                "type": "string",
+                "example": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01"
+              },
+              "currency": {
+                "type": "string",
+                "example": "NGN"
+              },
+              "rate": {
+                "type": "number",
+                "example": 487.89,
+                "default": 0
+              },
+              "bankInfo": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "PAGA"
+                  },
+                  "accountNumber": {
+                    "type": "string",
+                    "example": "01234567890"
+                  },
+                  "accountName": {
+                    "type": "string",
+                    "example": "Ken Adams"
+                  }
+                }
+              },
+              "status": {
+                "type": "string",
+                "example": "processing"
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2023-02-06T13:31:20.108Z"
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "accountNumber": {
+                    "type": "string",
+                    "example": "1111111111"
+                  },
+                  "networkId": {
+                    "type": "string",
+                    "example": "6df48502-1ebe-473f-be17-e2cae4dd67ee"
+                  },
+                  "accountType": {
+                    "type": "string",
+                    "example": "bank"
+                  }
+                }
+              },
+              "sequenceId": {
+                "type": "string",
+                "example": "11f4c7f2-f7bb-450c-4s6d-1bd70766d26d"
+              },
+              "country": {
+                "type": "string",
+                "example": "NG"
+              },
+              "reference": {
+                "type": "string",
+                "example": "JJ8094861"
+              },
+              "convertedAmount": {
+                "type": "number",
+                "example": 9757.8,
+                "default": 0
+              },
+              "recipient": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string",
+                    "example": "Nigeria"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Home Address"
+                  },
+                  "idType": {
+                    "type": "string",
+                    "example": "license"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "+2349092916898"
+                  },
+                  "dob": {
+                    "type": "string",
+                    "example": "02/01/1997"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "idNumber": {
+                    "type": "string",
+                    "example": "314159"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john.doe@yellowcard.io"
+                  }
+                }
+              },
+              "channelId": {
+                "type": "string",
+                "example": "fe8f4989-3bf6-41ca-9621-ffe2bc127569"
+              },
+              "expiresAt": {
+                "type": "string",
+                "example": "2023-02-06T13:41:20.108Z"
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2023-02-06T13:31:48.802Z"
+              },
+              "amount": {
+                "type": "integer",
+                "example": 20,
+                "default": 0
+              },
+              "id": {
+                "type": "string",
+                "example": "805b2317-0da9-42b9-89fb-e14e3fe12dd8"
+              },
+              "depositId": {
+                "type": "string",
+                "example": "47069e2d-b225-4155-9028-2607fe3346bb"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"PaymentExpired\",\n    \"message\": \"Collection request expired\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "PaymentExpired"
+              },
+              "message": {
+                "type": "string",
+                "example": "Collection request expired"
+              }
+            }
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "404",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"CollectionNotFoundError\",\n    \"message\": \"\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "CollectionNotFoundError"
+              },
+              "message": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "500",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"InternalServerError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<br/>\n<blockquote class=\"callout callout_warn\" theme=\"⚠️\"><span class=\"callout-icon\">⚠️</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"updated-terminology\"></div><div class=\"heading-text\">Updated Terminology</div><a aria-label=\"Skip link to Updated Terminology\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#updated-terminology\"></a></h3><p>Collections are now called Receives. These <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/receive</code> endpoints replace the legacy <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/collections</code> endpoints. The functionality remains identical, only the terminology has changed. Legacy collections endpoints are deprecated but will continue to  work. We recommend migrating to these new <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/receive</code> endpoints for future compatibility.</p></blockquote>\n<blockquote class=\"callout callout_info\" theme=\"📘\"><span class=\"callout-icon\">📘</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"channel-note\"></div><div class=\"heading-text\">Channel Note</div><a aria-label=\"Skip link to Channel Note\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#channel-note\"></a></h3><p>When the channel id selected requires a redirect for the receive to be made then the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">redirectUrl</code> field is required and the request will fail if it is not provided in the request to submit receive api. Currently only South African Receive channel requires a <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">redirectUrl</code></p><p><strong>Note</strong>: the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">redirectUrl</code>has to be a valid url with the <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">http://</code> or <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">https://</code> scheme included.</p></blockquote>"
+}

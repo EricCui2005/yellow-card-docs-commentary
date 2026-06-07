@@ -1,0 +1,104 @@
+{
+  "title": "Get Onboarding Status",
+  "slug": "get-onboarding-status",
+  "method": "GET",
+  "path": "/virtual-bank/onboarding",
+  "description": "Retrieves virtual bank onboarding records for the authenticated partner",
+  "excerpt": "Retrieves virtual bank onboarding records for the authenticated partner",
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "onboardings": {
+                "type": "array",
+                "items": {
+                  "properties": {
+                    "provider": {
+                      "type": "string",
+                      "description": "Banking provider (e.g., erebor, uba, etc)"
+                    },
+                    "currencies": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Supported currencies for this onboarding"
+                    },
+                    "status": {
+                      "type": "string",
+                      "description": "Onboarding status",
+                      "enum": [
+                        "SUCCESSFUL",
+                        "INACTIVE",
+                        "PENDING"
+                      ],
+                      "default": "PENDING"
+                    },
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "business",
+                        "individual"
+                      ],
+                      "description": "Onboarding type",
+                      "default": "business"
+                    },
+                    "onboardedAt": {
+                      "type": "string",
+                      "description": "Timestamp when onboarding completed",
+                      "format": "date-time"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "required": [
+              "onboardings"
+            ]
+          },
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "onboardings": [
+                  {
+                    "provider": "erebor",
+                    "currencies": [
+                      "USD"
+                    ],
+                    "status": "SUCCESSFUL",
+                    "type": "business",
+                    "onboardedAt": "2026-02-10T03:07:51.819Z"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "201": {
+      "content": {},
+      "description": "Created"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

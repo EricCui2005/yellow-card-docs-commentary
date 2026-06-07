@@ -1,26 +1,1545 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-primary: #FFCF33;
+  --color-primary-alt: #FBC52F;
+  --color-primary-inverse: #384248;
+  --color-link-primary: #492b7c;
+  --color-link-primary-darken-5: #3e2469;
+  --color-link-primary-darken-20: #1c1130;
+  --color-link-primary-alpha-25: rgba(73, 43, 124, 0.25);
+  --color-link-background: rgba(73, 43, 124, 0.09);
+  --color-tab-active: #2b353b;
+  --color-link-primary-dark: #FFCF33;
+  --font-base: 16px;
+  --sidebar-width: 260px;
+  --header-height: 96px;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-mono: "SF Mono", SFMono-Regular, ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: var(--font-base);
+  line-height: 1.5;
+}
+
+/* ==================== HEADER ==================== */
+.header-top {
+  min-height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.dark .header-top {
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+.header-bottom {
+  min-height: 36px;
+}
+
+.header-nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-primary-inverse);
+  padding: 8px 2px;
+  transition: color 0.15s;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  opacity: 0.6;
+}
+.dark .header-nav-link {
+  color: #d1d5db;
+}
+.header-nav-link:hover {
+  opacity: 1;
+}
+.header-nav-link.active {
+  opacity: 1;
+  border-bottom-color: var(--color-primary);
+}
+
+/* ==================== SIDEBAR ==================== */
+.sidebar-section-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: #6b7280;
+  padding: 12px 10px 4px;
+  margin: 0;
+}
+.dark .sidebar-section-title {
+  color: #9ca3af;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  padding: 6px 5px 6px 10px;
+  font-size: 14px;
+  font-weight: 450;
+  color: #374151;
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  transition: background-color 0.15s, color 0.15s, border-color 0.15s;
+  line-height: 1.4;
+}
+.dark .sidebar-link {
+  color: #d1d5db;
+}
+.sidebar-link:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.dark .sidebar-link:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+.sidebar-link.active {
+  background-color: rgba(255, 207, 51, 0.14);
+  color: #1f2937;
+  font-weight: 600;
+  border-left-color: var(--color-primary);
+}
+.dark .sidebar-link.active {
+  background-color: rgba(255, 207, 51, 0.12);
+  color: var(--color-primary);
+  border-left-color: var(--color-primary);
+}
+
+.sidebar-link-child {
+  padding-left: 23px;
+  font-size: 13px;
+}
+
+/* ==================== MARKDOWN BODY ==================== */
+.markdown-body {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #374151;
+}
+.dark .markdown-body {
+  color: #ffffff;
+}
+
+.markdown-body h1 {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.333;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #111827;
+}
+.dark .markdown-body h1 { color: #ffffff; }
+
+.markdown-body h2 {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-top: 1.25rem;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+.dark .markdown-body h2 { color: #ffffff; }
+
+.markdown-body h3 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.556;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+.dark .markdown-body h3 { color: #ffffff; }
+
+.markdown-body h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+.dark .markdown-body h4 { color: #ffffff; }
+
+.markdown-body p {
+  margin-bottom: 0.75rem;
+}
+
+.markdown-body a {
+  color: var(--color-link-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.dark .markdown-body a {
+  color: var(--color-link-primary-dark);
+}
+.markdown-body a:hover {
+  text-decoration: none;
+}
+
+.markdown-body code {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 0.875em;
+  font-family: "SF Mono", SFMono-Regular, ui-monospace, "DejaVu Sans Mono", Menlo, Consolas, monospace;
+}
+.dark .markdown-body code {
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.markdown-body pre {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin-bottom: 16px;
+}
+.dark .markdown-body pre {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+}
+.markdown-body pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+  font-size: 13px;
+}
+
+.markdown-body ul {
+  list-style-type: disc;
+  padding-left: 1.5em;
+  margin-bottom: 0.75rem;
+}
+.markdown-body ol {
+  list-style-type: decimal;
+  padding-left: 1.5em;
+  margin-bottom: 0.75rem;
+}
+.markdown-body li {
+  margin-bottom: 0.2rem;
+}
+
+.markdown-body blockquote {
+  border-left: 3px solid var(--color-primary);
+  padding: 8px 16px;
+  margin: 12px 0;
+  background-color: #FFFDF0;
+  color: #92400e;
+  border-radius: 0 4px 4px 0;
+}
+.dark .markdown-body blockquote {
+  background-color: rgba(255, 207, 51, 0.05);
+  color: #fbbf24;
+}
+.markdown-body blockquote p {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+.markdown-body th {
+  background-color: #f9fafb;
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 600;
+}
+.dark .markdown-body th {
+  background-color: #1f2937;
+  border-color: #374151;
+  color: #ffffff;
+}
+.markdown-body td {
+  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  vertical-align: top;
+}
+.dark .markdown-body td {
+  border-color: #374151;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 8px 0;
+}
+
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+  margin: 1.5rem 0;
+}
+.dark .markdown-body hr {
+  border-top-color: #374151;
+}
+
+.markdown-body strong {
+  font-weight: 600;
+}
+
+/* ==================== CONTENT HEAD ==================== */
+.content-head {
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 24px;
+  margin-bottom: 0;
+}
+.dark .content-head {
+  border-bottom-color: #374151;
+}
+.content-head h1 {
+  margin: 0;
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #111827;
+  letter-spacing: -0.01em;
+}
+.dark .content-head h1 {
+  color: #ffffff;
+}
+.content-head .excerpt {
+  margin-top: 10px;
+  font-size: 18px;
+  line-height: 1.55;
+  color: #4b5563;
+  font-weight: 450;
+}
+.dark .content-head .excerpt {
+  color: #ffffff;
+}
+
+/* ==================== UPDATED AT ==================== */
+.updated-at {
+  padding-top: 20px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.updated-at svg {
+  opacity: 0.5;
+}
+
+/* ==================== WHAT'S NEXT ==================== */
+.whats-next-heading {
+  font-size: 15px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+.dark .whats-next-heading {
+  color: #d1d5db;
+}
+.whats-next-link {
+  display: block;
+  color: var(--color-link-primary);
+  font-size: 14px;
+  font-weight: 450;
+  text-decoration: none;
+  padding: 4px 0;
+}
+.dark .whats-next-link {
+  color: var(--color-link-primary-dark);
+}
+.whats-next-link:hover {
+  text-decoration: none;
+}
+
+/* ==================== CARDS GRID ==================== */
+/* Mirrors ReadMe's <CardsGrid> component used on the Coverage Map page. */
+.markdown-body .cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.markdown-body .cards-grid .card {
+  display: block;
+  padding: 16px 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.dark .markdown-body .cards-grid .card {
+  border-color: #1f2937;
+}
+.markdown-body .cards-grid .card:hover {
+  border-color: var(--color-primary);
+  background-color: rgba(255, 207, 51, 0.04);
+}
+.markdown-body .cards-grid .card-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: #111827;
+}
+.dark .markdown-body .cards-grid .card-title {
+  color: #ffffff;
+}
+.markdown-body .cards-grid .card p {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+.dark .markdown-body .cards-grid .card p {
+  color: #9ca3af;
+}
+
+/* ==================== CODE TABS ==================== */
+/* Mimics ReadMe's CodeTabs — a dark code panel with a small label tab on top
+   ("JSON", "Sample Request", "cURL", etc). The label paragraph that preceded
+   the code block is converted into a toolbar by rehypeCodeTabLabel. */
+.markdown-body .code-tabs {
+  margin: 0 0 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #1e293b;
+}
+.dark .markdown-body .code-tabs {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+}
+
+.markdown-body .code-tabs-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.markdown-body .code-tabs-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+  letter-spacing: 0.02em;
+}
+
+.markdown-body .code-tabs pre {
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+.dark .markdown-body .code-tabs pre {
+  background-color: transparent;
+  border: 0;
+}
+
+/* ==================== READMERD CALLOUTS ==================== */
+/* These styles target HTML emitted by ReadMe's markdown renderer
+   (rdmd) — used inside the API reference body content. */
+
+.markdown-body .callout {
+  position: relative;
+  display: block;
+  padding: 14px 18px 14px 50px;
+  margin: 16px 0;
+  border-radius: 6px;
+  border-left-width: 4px;
+  border-left-style: solid;
+  background-clip: padding-box;
+  color: #1f2937;
+}
+.dark .markdown-body .callout {
+  color: #e5e7eb;
+}
+
+.markdown-body .callout_info {
+  background-color: #eff6ff;
+  border-left-color: #3b82f6;
+}
+.dark .markdown-body .callout_info {
+  background-color: rgba(59, 130, 246, 0.08);
+  border-left-color: #60a5fa;
+}
+
+.markdown-body .callout_warn {
+  background-color: #fffbeb;
+  border-left-color: #f59e0b;
+}
+.dark .markdown-body .callout_warn {
+  background-color: rgba(245, 158, 11, 0.08);
+  border-left-color: #fbbf24;
+}
+
+.markdown-body .callout_error {
+  background-color: #fef2f2;
+  border-left-color: #ef4444;
+}
+.dark .markdown-body .callout_error {
+  background-color: rgba(239, 68, 68, 0.08);
+  border-left-color: #f87171;
+}
+
+.markdown-body .callout_okay,
+.markdown-body .callout_success {
+  background-color: #f0fdf4;
+  border-left-color: #22c55e;
+}
+.dark .markdown-body .callout_okay,
+.dark .markdown-body .callout_success {
+  background-color: rgba(34, 197, 94, 0.08);
+  border-left-color: #4ade80;
+}
+
+.markdown-body .callout .callout-icon {
+  position: absolute;
+  left: 16px;
+  top: 14px;
+  font-size: 18px;
+  line-height: 1;
+  font-style: normal;
+}
+
+.markdown-body .callout .heading {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  line-height: 1.35;
+  display: flex;
+  align-items: center;
+}
+
+/* Title color per callout variant — distinct from the body text so the
+   title pops the way the original ReadMe rendering does. */
+.markdown-body .callout_info .heading,
+.markdown-body .callout_info .heading .heading-text {
+  color: #1d4ed8;
+}
+.dark .markdown-body .callout_info .heading,
+.dark .markdown-body .callout_info .heading .heading-text {
+  color: #93c5fd;
+}
+
+.markdown-body .callout_warn .heading,
+.markdown-body .callout_warn .heading .heading-text {
+  color: #b45309;
+}
+.dark .markdown-body .callout_warn .heading,
+.dark .markdown-body .callout_warn .heading .heading-text {
+  color: #fcd34d;
+}
+
+.markdown-body .callout_error .heading,
+.markdown-body .callout_error .heading .heading-text {
+  color: #b91c1c;
+}
+.dark .markdown-body .callout_error .heading,
+.dark .markdown-body .callout_error .heading .heading-text {
+  color: #fca5a5;
+}
+
+.markdown-body .callout_okay .heading,
+.markdown-body .callout_okay .heading .heading-text,
+.markdown-body .callout_success .heading,
+.markdown-body .callout_success .heading .heading-text {
+  color: #15803d;
+}
+.dark .markdown-body .callout_okay .heading,
+.dark .markdown-body .callout_okay .heading .heading-text,
+.dark .markdown-body .callout_success .heading,
+.dark .markdown-body .callout_success .heading .heading-text {
+  color: #86efac;
+}
+
+.markdown-body .callout .heading-anchor,
+.markdown-body .callout .heading-anchor-icon {
+  display: none;
+}
+
+.markdown-body .callout .heading-text {
+  display: inline;
+}
+
+.markdown-body .callout p {
+  margin: 4px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: inherit;
+}
+
+.markdown-body .callout p:first-of-type {
+  margin-top: 0;
+}
+
+.markdown-body .callout code {
+  background-color: rgba(0, 0, 0, 0.07);
+}
+.dark .markdown-body .callout code {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Plain headings outside callouts — hide the empty anchor scaffolding,
+   keep the heading text. */
+.markdown-body .heading .heading-anchor,
+.markdown-body .heading .heading-anchor-icon {
+  display: none;
+}
+.markdown-body .heading .heading-text {
+  display: inline;
+}
+
+/* rdmd-code is just inline code; the global .markdown-body code style covers it. */
+.markdown-body code.rdmd-code {
+  font-size: 0.875em;
+}
+
+/* rdmd-table wrapper */
+.markdown-body .rdmd-table {
+  overflow-x: auto;
+  margin: 12px 0;
+}
+.markdown-body .rdmd-table-inner table {
+  margin-bottom: 0;
+}
+
+/* Glossary trigger looks like normal text */
+.markdown-body .GlossaryItem-trigger {
+  border-bottom: 1px dotted currentColor;
+  cursor: help;
+}
+
+/* ==================== COMMENTARY MARKERS ==================== */
+/* Inline annotation pills injected after each anchor in the rendered docs
+   HTML by applyAnnotations(). Empty in SSR; CommentaryMarkers (client)
+   fills them with an icon and wires up the popover. */
+
+.commentary-marker {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin: 0 2px 0 5px;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  border-radius: 50%;
+  cursor: pointer;
+  user-select: none;
+  color: #ffffff;
+  background-color: #9ca3af;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+  transition: transform 0.12s ease, box-shadow 0.12s ease,
+    background-color 0.12s ease;
+  /* Hit-target padding via a transparent outer ring so 18px markers are
+     comfortable to click without affecting layout. */
+  outline: 4px solid transparent;
+  outline-offset: -4px;
+  /* When any scroll mechanism (scrollIntoView, anchor link, focus jump)
+     lands on a marker, push it below the sticky site header. */
+  scroll-margin-top: 140px;
+  scroll-margin-bottom: 100px;
+}
+/* Pre-hydration: marker is empty but still occupies layout as a plain
+   colored dot. Better than display:none because it gives the user a hint
+   that something is there even on a slow first paint. */
+.commentary-marker:hover {
+  transform: scale(1.18);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+.commentary-marker:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+.commentary-marker svg {
+  width: 10px;
+  height: 10px;
+  display: block;
+}
+
+/* Type-specific colors */
+.commentary-marker--commentary {
+  background-color: #3b82f6; /* blue */
+}
+.commentary-marker--issue {
+  background-color: #ef4444; /* red */
+}
+.commentary-marker--project {
+  background-color: #f59e0b; /* amber */
+}
+
+.dark .commentary-marker--commentary {
+  background-color: #60a5fa;
+  color: #0b0c0d;
+}
+.dark .commentary-marker--issue {
+  background-color: #f87171;
+  color: #0b0c0d;
+}
+.dark .commentary-marker--project {
+  background-color: #fbbf24;
+  color: #0b0c0d;
+}
+
+/* ---- Popover ---- */
+.commentary-popover {
+  position: absolute;
+  z-index: 100;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16), 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 14px 16px 14px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #1f2937;
+  animation: commentary-popover-in 0.12s ease-out;
+}
+.dark .commentary-popover {
+  background-color: #111418;
+  border-color: #2a2f36;
+  color: #f3f4f6;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.commentary-popover--commentary {
+  border-top: 3px solid #3b82f6;
+}
+.commentary-popover--issue {
+  border-top: 3px solid #ef4444;
+}
+.commentary-popover--project {
+  border-top: 3px solid #f59e0b;
+}
+
+@keyframes commentary-popover-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.commentary-popover-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.commentary-popover-type {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 8px;
+  border-radius: 12px;
+  line-height: 1.4;
+}
+.commentary-popover-type--commentary {
+  color: #1d4ed8;
+  background-color: #dbeafe;
+}
+.commentary-popover-type--issue {
+  color: #b91c1c;
+  background-color: #fee2e2;
+}
+.commentary-popover-type--project {
+  color: #b45309;
+  background-color: #fef3c7;
+}
+.dark .commentary-popover-type--commentary {
+  color: #93c5fd;
+  background-color: rgba(59, 130, 246, 0.15);
+}
+.dark .commentary-popover-type--issue {
+  color: #fca5a5;
+  background-color: rgba(239, 68, 68, 0.15);
+}
+.dark .commentary-popover-type--project {
+  color: #fcd34d;
+  background-color: rgba(245, 158, 11, 0.15);
+}
+
+.commentary-popover-close {
+  border: none;
+  background: transparent;
+  color: inherit;
+  opacity: 0.5;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  margin: -4px -6px -4px 0;
+  border-radius: 4px;
+}
+.commentary-popover-close:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.dark .commentary-popover-close:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.commentary-popover-body {
+  font-size: 14px;
+  line-height: 1.55;
+}
+.commentary-popover-body p {
+  margin: 0 0 8px;
+}
+.commentary-popover-body p:last-child {
+  margin-bottom: 0;
+}
+.commentary-popover-body code {
+  font-size: 12.5px;
+  padding: 1px 5px;
+  background-color: rgba(0, 0, 0, 0.06);
+  border-radius: 3px;
+}
+.dark .commentary-popover-body code {
+  background-color: rgba(255, 255, 255, 0.10);
+}
+.commentary-popover-body strong {
+  font-weight: 600;
+}
+
+/* ==================== COMMENTARY TOUR ==================== */
+/* Top-right floating widget: collapsed pill / expanded panel / touring bar.
+   Fixed positioning so it stays visible while the user scrolls through
+   the doc. Sits below the sticky site header. */
+
+.commentary-tour {
+  position: fixed;
+  top: 180px;
+  right: 24px;
+  z-index: 80;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* ---- Collapsed pill (idle state) ----
+   Solid brand-yellow fill so the widget reads clearly against either
+   theme without bleeding-through. Shadow gives it a little lift; the
+   colored border keeps it visually anchored. */
+.commentary-tour-trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary-alt);
+  border-radius: 999px;
+  color: #1f2937;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow:
+    0 8px 22px rgba(255, 207, 51, 0.35),
+    0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.14s ease, box-shadow 0.14s ease,
+    background-color 0.14s ease, border-color 0.14s ease;
+}
+.commentary-tour-trigger:hover {
+  transform: translateY(-1px);
+  background-color: var(--color-primary-alt);
+  border-color: #e6b428;
+  box-shadow:
+    0 12px 28px rgba(255, 207, 51, 0.45),
+    0 3px 8px rgba(0, 0, 0, 0.1);
+}
+.commentary-tour-trigger:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(255, 207, 51, 0.55),
+    0 8px 22px rgba(255, 207, 51, 0.35);
+}
+.dark .commentary-tour-trigger {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary-alt);
+  color: #1f2937;
+  box-shadow:
+    0 8px 22px rgba(255, 207, 51, 0.28),
+    0 2px 6px rgba(0, 0, 0, 0.55);
+}
+.dark .commentary-tour-trigger:hover {
+  background-color: var(--color-primary-alt);
+  border-color: #e6b428;
+  box-shadow:
+    0 12px 28px rgba(255, 207, 51, 0.38),
+    0 3px 8px rgba(0, 0, 0, 0.65);
+}
+
+.commentary-tour-trigger-label {
+  letter-spacing: 0.02em;
+}
+.commentary-tour-trigger-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 7px;
+  background-color: #1f2937;
+  color: var(--color-primary);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* ---- Expanded panel (idle but opened) ---- */
+.commentary-tour-panel {
+  width: 320px;
+  max-height: calc(100vh - 180px);
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.14), 0 4px 10px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  animation: commentary-tour-in 0.14s ease-out;
+}
+.dark .commentary-tour-panel {
+  background-color: #111418;
+  border-color: #2a2f36;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+}
+
+@keyframes commentary-tour-in {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.commentary-tour-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid #f3f4f6;
+}
+.dark .commentary-tour-panel-header {
+  border-bottom-color: #1f2937;
+}
+.commentary-tour-panel-title {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+.dark .commentary-tour-panel-title {
+  color: #9ca3af;
+}
+.commentary-tour-panel-close {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.5;
+  cursor: pointer;
+  padding: 0 6px;
+  border-radius: 4px;
+}
+.commentary-tour-panel-close:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.dark .commentary-tour-panel-close:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Scope selector — pill row that picks Global / Guides / Reference. */
+.commentary-tour-scope-row {
+  display: flex;
+  gap: 4px;
+  margin: 10px 12px 0;
+  padding: 3px;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+}
+.dark .commentary-tour-scope-row {
+  background-color: #1a1d22;
+}
+.commentary-tour-scope-btn {
+  flex: 1;
+  padding: 5px 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #4b5563;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+.dark .commentary-tour-scope-btn {
+  color: #9ca3af;
+}
+.commentary-tour-scope-btn:hover {
+  color: #1f2937;
+}
+.dark .commentary-tour-scope-btn:hover {
+  color: #f3f4f6;
+}
+.commentary-tour-scope-btn--active {
+  background-color: #ffffff;
+  color: #1f2937;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+.dark .commentary-tour-scope-btn--active {
+  background-color: #2a2f36;
+  color: #f9f3da;
+}
+
+.commentary-tour-panel-counts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px 4px;
+}
+.commentary-tour-empty {
+  padding: 6px 0;
+  font-size: 12.5px;
+  color: #9ca3af;
+  font-style: italic;
+}
+.commentary-tour-count-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #374151;
+}
+.dark .commentary-tour-count-row {
+  color: #d1d5db;
+}
+.commentary-tour-count-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.commentary-tour-count-row--commentary .commentary-tour-count-dot {
+  background-color: #3b82f6;
+}
+.commentary-tour-count-row--issue .commentary-tour-count-dot {
+  background-color: #ef4444;
+}
+.commentary-tour-count-row--project .commentary-tour-count-dot {
+  background-color: #f59e0b;
+}
+.commentary-tour-count-label {
+  flex: 1;
+}
+.commentary-tour-count-num {
+  font-weight: 600;
+  color: #6b7280;
+}
+.dark .commentary-tour-count-num {
+  color: #9ca3af;
+}
+
+/* Group of "Walk through ..." buttons (one per filter). The first one is
+   the brand-yellow All; the per-type buttons get a colored left rail to
+   visually echo the marker color. */
+.commentary-tour-start-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px 12px;
+}
+.commentary-tour-start {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background-color: #f9fafb;
+  color: #1f2937;
+  font-weight: 600;
+  font-size: 13px;
+  border: 1px solid transparent;
+  border-left-width: 3px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+.dark .commentary-tour-start {
+  background-color: #1a1d22;
+  color: #f3f4f6;
+}
+.commentary-tour-start:hover {
+  background-color: #f3f4f6;
+}
+.dark .commentary-tour-start:hover {
+  background-color: #22272e;
+}
+.commentary-tour-start-label {
+  flex: 1;
+  text-transform: capitalize;
+}
+.commentary-tour-start-count {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background-color: rgba(0, 0, 0, 0.06);
+  color: #4b5563;
+}
+.dark .commentary-tour-start-count {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #d1d5db;
+}
+
+/* "All" gets the brand yellow CTA treatment. */
+.commentary-tour-start--all {
+  background-color: var(--color-primary);
+  border-left-color: var(--color-primary);
+  color: #1f2937;
+}
+.commentary-tour-start--all:hover {
+  background-color: var(--color-primary);
+  filter: brightness(0.95);
+}
+.dark .commentary-tour-start--all {
+  background-color: var(--color-primary);
+  color: #1f2937;
+}
+.dark .commentary-tour-start--all:hover {
+  background-color: var(--color-primary);
+}
+.commentary-tour-start--all .commentary-tour-start-count {
+  background-color: rgba(0, 0, 0, 0.15);
+  color: #1f2937;
+}
+.dark .commentary-tour-start--all .commentary-tour-start-count {
+  background-color: rgba(0, 0, 0, 0.15);
+  color: #1f2937;
+}
+
+/* Per-type accents: colored left rail matching the marker color. */
+.commentary-tour-start--commentary {
+  border-left-color: #3b82f6;
+}
+.commentary-tour-start--issue {
+  border-left-color: #ef4444;
+}
+.commentary-tour-start--project {
+  border-left-color: #f59e0b;
+}
+
+/* Filter tag inside the touring header so the user can see what subset
+   they're walking. Mirrors the popover type pill but smaller. */
+.commentary-tour-step {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 12px;
+  color: #6b7280;
+}
+.dark .commentary-tour-step {
+  color: #9ca3af;
+}
+.commentary-tour-step strong {
+  color: #1f2937;
+  font-weight: 700;
+}
+.dark .commentary-tour-step strong {
+  color: #ffffff;
+}
+.commentary-tour-step-num {
+  font-size: 13px;
+}
+
+/* Wrapper around scope+type tags shown in the touring bar. */
+.commentary-tour-filter-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.commentary-tour-filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+/* Scope tag uses a neutral palette so the type tag pops next to it. */
+.commentary-tour-filter-tag--scope {
+  color: #374151;
+  background-color: #e5e7eb;
+}
+.dark .commentary-tour-filter-tag--scope {
+  color: #d1d5db;
+  background-color: #2a2f36;
+}
+.commentary-tour-filter-tag--guides::before {
+  background-color: #6366f1;
+}
+.commentary-tour-filter-tag--reference::before {
+  background-color: #14b8a6;
+}
+.commentary-tour-filter-tag::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  opacity: 0.85;
+}
+.commentary-tour-filter-tag--all {
+  color: #1f2937;
+  background-color: rgba(255, 207, 51, 0.25);
+}
+.commentary-tour-filter-tag--commentary {
+  color: #1d4ed8;
+  background-color: #dbeafe;
+}
+.commentary-tour-filter-tag--issue {
+  color: #b91c1c;
+  background-color: #fee2e2;
+}
+.commentary-tour-filter-tag--project {
+  color: #b45309;
+  background-color: #fef3c7;
+}
+.dark .commentary-tour-filter-tag--all {
+  color: #fde68a;
+  background-color: rgba(255, 207, 51, 0.18);
+}
+.dark .commentary-tour-filter-tag--commentary {
+  color: #93c5fd;
+  background-color: rgba(59, 130, 246, 0.18);
+}
+.dark .commentary-tour-filter-tag--issue {
+  color: #fca5a5;
+  background-color: rgba(239, 68, 68, 0.18);
+}
+.dark .commentary-tour-filter-tag--project {
+  color: #fcd34d;
+  background-color: rgba(245, 158, 11, 0.18);
+}
+
+/* Tint the progress fill to match the active filter. */
+.commentary-tour--filter-commentary .commentary-tour-progress-fill {
+  background-color: #3b82f6;
+}
+.commentary-tour--filter-issue .commentary-tour-progress-fill {
+  background-color: #ef4444;
+}
+.commentary-tour--filter-project .commentary-tour-progress-fill {
+  background-color: #f59e0b;
+}
+
+.commentary-tour-panel-subhead {
+  padding: 8px 14px 4px;
+  border-top: 1px solid #f3f4f6;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #6b7280;
+}
+.dark .commentary-tour-panel-subhead {
+  border-top-color: #1f2937;
+  color: #9ca3af;
+}
+
+.commentary-tour-panel-list {
+  overflow-y: auto;
+  padding: 4px 0 8px;
+}
+.commentary-tour-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  width: 100%;
+  padding: 8px 14px;
+  background: transparent;
+  border: 0;
+  text-align: left;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: #374151;
+  cursor: pointer;
+  transition: background-color 0.12s ease;
+}
+.dark .commentary-tour-list-item {
+  color: #d1d5db;
+}
+.commentary-tour-list-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.dark .commentary-tour-list-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.commentary-tour-list-dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+.commentary-tour-list-item--commentary .commentary-tour-list-dot {
+  background-color: #3b82f6;
+}
+.commentary-tour-list-item--issue .commentary-tour-list-dot {
+  background-color: #ef4444;
+}
+.commentary-tour-list-item--project .commentary-tour-list-dot {
+  background-color: #f59e0b;
+}
+.commentary-tour-list-text {
+  flex: 1;
+}
+
+/* ---- Tour-active bar ---- */
+.commentary-tour--touring {
+  width: 280px;
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14), 0 3px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  animation: commentary-tour-in 0.14s ease-out;
+}
+.dark .commentary-tour--touring {
+  background-color: #111418;
+  border-color: #2a2f36;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.commentary-tour-progress-line {
+  position: relative;
+  height: 3px;
+  background-color: #f3f4f6;
+}
+.dark .commentary-tour-progress-line {
+  background-color: #1f2937;
+}
+.commentary-tour-progress-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background-color: var(--color-primary);
+  transition: width 0.24s ease;
+}
+
+.commentary-tour-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+}
+.commentary-tour-step {
+  font-size: 13px;
+  color: #6b7280;
+}
+.dark .commentary-tour-step {
+  color: #9ca3af;
+}
+.commentary-tour-step strong {
+  color: #1f2937;
+  font-weight: 700;
+}
+.dark .commentary-tour-step strong {
+  color: #ffffff;
+}
+.commentary-tour-end {
+  background-color: transparent;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #374151;
+  cursor: pointer;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+.dark .commentary-tour-end {
+  border-color: #2a2f36;
+  color: #d1d5db;
+}
+.commentary-tour-end:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+  border-color: #9ca3af;
+}
+.dark .commentary-tour-end:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Compact × in the touring header (since Prev/Next now sit below). */
+.commentary-tour-end-x {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  line-height: 1;
+  color: inherit;
+  opacity: 0.45;
+  cursor: pointer;
+  padding: 0 6px;
+  margin: -4px -6px -4px 0;
+  border-radius: 4px;
+}
+.commentary-tour-end-x:hover {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.dark .commentary-tour-end-x:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Prev / Next row inside the touring widget. Mirrors the popover footer
+   layout so the two controls feel like the same affordance. */
+.commentary-tour-nav {
+  display: flex;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+.commentary-tour-nav-btn {
+  flex: 1;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  color: #374151;
+  transition: background-color 0.12s ease, border-color 0.12s ease,
+    filter 0.12s ease;
+}
+.dark .commentary-tour-nav-btn {
+  background-color: #1a1d22;
+  border-color: #2a2f36;
+  color: #e5e7eb;
+}
+.commentary-tour-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.commentary-tour-nav-btn:not(:disabled):hover {
+  border-color: #9ca3af;
+}
+.commentary-tour-nav-btn--primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #1f2937;
+}
+.commentary-tour-nav-btn--primary:not(:disabled):hover {
+  filter: brightness(0.95);
+}
+
+/* ---- Popover tour Prev/Next ---- */
+.commentary-popover-step {
+  font-weight: 600;
+  opacity: 0.85;
+  margin-left: 4px;
+}
+
+.commentary-popover-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid #f3f4f6;
+}
+.dark .commentary-popover-nav {
+  border-top-color: #1f2937;
+}
+.commentary-nav-btn {
+  flex: 1;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  background-color: #ffffff;
+  color: #374151;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+.dark .commentary-nav-btn {
+  background-color: #1a1d22;
+  border-color: #2a2f36;
+  color: #e5e7eb;
+}
+.commentary-nav-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.commentary-nav-btn:not(:disabled):hover {
+  border-color: #9ca3af;
+}
+.commentary-nav-btn--primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #1f2937;
+}
+.commentary-nav-btn--primary:not(:disabled):hover {
+  filter: brightness(0.95);
+}
+
+/* ---- Narrow viewport: shrink/hide tour widget ---- */
+@media (max-width: 900px) {
+  .commentary-tour {
+    top: auto;
+    bottom: 16px;
+    right: 16px;
+  }
+  .commentary-tour-panel,
+  .commentary-tour--touring {
+    width: min(86vw, 320px);
+  }
+}
+
+/* ==================== TOC ==================== */
+.content-toc .toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.content-toc .toc-list a {
+  display: block;
+  padding: 4px 0 4px 10px;
+  font-size: 12px;
+  color: #6b7280;
+  text-decoration: none;
+  line-height: 1.4;
+  border-left: 2px solid transparent;
+}
+.dark .content-toc .toc-list a {
+  color: #9ca3af;
+}
+.content-toc .toc-list a:hover {
+  color: var(--color-link-primary);
+}
+.content-toc .toc-list ul {
+  list-style: none;
+  padding-left: 12px;
+  margin: 0;
 }

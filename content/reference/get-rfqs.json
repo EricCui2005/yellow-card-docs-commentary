@@ -1,0 +1,219 @@
+{
+  "title": "Get RFQs",
+  "slug": "get-rfqs",
+  "method": "GET",
+  "path": "/rfq",
+  "description": "Retrieve list of all RFQ with pagination",
+  "excerpt": "Retrieve list of all RFQ with pagination",
+  "parameters": [
+    {
+      "in": "query",
+      "name": "pageSize",
+      "schema": {
+        "type": "string"
+      },
+      "description": "Number of transactions to return per page. Defaults to 15, maximum is 100.\n"
+    },
+    {
+      "in": "query",
+      "name": "cursor",
+      "schema": {
+        "type": "string"
+      },
+      "description": "Opaque pagination token returned in pagination.nextCursor from the previous response. Pass this value to retrieve the next page of results.\n"
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "",
+      "content": {
+        "application/json": {
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "rfqs": [
+                  {
+                    "id": "rfq_9798e909-e5dd-4b3e-98c0-c503814db499",
+                    "idempotencyKey": "02-27-unique-request-key-003",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "partnerName": "New Test Partner",
+                    "countryCode": "NG",
+                    "sourceCurrency": "USD",
+                    "sourceCurrencyType": "fiat",
+                    "destinationCurrency": "USDT",
+                    "destinationCurrencyType": "crypto",
+                    "sourceAmount": 1000,
+                    "quotedRate": 0.9113,
+                    "effectiveRate": 0.9,
+                    "feePercentage": 1.25,
+                    "destinationAmount": 1111.111111,
+                    "status": "RFQ_REJECTED_BY_CUSTOMER",
+                    "customerStatus": "Quote declined",
+                    "quoteExpiresAt": "2026-02-28T03:20:49Z",
+                    "createdAt": "2026-02-27T04:19:28.022400389Z",
+                    "updatedAt": "2026-02-27T04:21:07Z",
+                    "rejectionReason": "Rate too high",
+                    "rejectedBy": "customer",
+                    "tradeId": "NG-27022026-0030",
+                    "createdBy": "5cdc3740-6030-4e09-aa8b-9115a3c3048e",
+                    "lastUpdatedBy": "5cdc3740-6030-4e09-aa8b-9115a3c3048e",
+                    "auditTrail": [
+                      {
+                        "timestamp": "2026-02-27T04:19:28.022404Z",
+                        "action": "RFQ_CREATED",
+                        "userId": "5cdc3740-6030-4e09-aa8b-9115a3c3048e",
+                        "userName": "Jimothy",
+                        "role": "admin",
+                        "toStatus": "RFQ_PENDING_REVIEW",
+                        "details": {
+                          "amount": "1000.00",
+                          "destinationCurrency": "USDT",
+                          "destinationCurrencyType": "crypto",
+                          "sourceCurrency": "USD",
+                          "sourceCurrencyType": "fiat"
+                        }
+                      },
+                      {
+                        "timestamp": "2026-02-27T04:20:49.800655Z",
+                        "action": "QUOTE_SENT",
+                        "userId": "45f64186-6a59-43a4-bca3-1bd495e83cfd",
+                        "userName": "James Falola",
+                        "role": "ADMIN",
+                        "fromStatus": "RFQ_PENDING_REVIEW",
+                        "toStatus": "RFQ_QUOTE_SENT",
+                        "details": {
+                          "destinationAmount": "1111.11",
+                          "effectiveRate": "0.9000",
+                          "feePercentage": "1.2500",
+                          "quotedRate": "0.9113",
+                          "validUntil": "2026-02-28T03:20:49Z"
+                        }
+                      },
+                      {
+                        "timestamp": "2026-02-27T04:21:07.422759939Z",
+                        "action": "REJECTED_BY_CUSTOMER",
+                        "userId": "5cdc3740-6030-4e09-aa8b-9115a3c3048e",
+                        "userName": "Jimothy",
+                        "role": "admin",
+                        "fromStatus": "RFQ_QUOTE_SENT",
+                        "toStatus": "RFQ_REJECTED_BY_CUSTOMER",
+                        "details": {
+                          "reason": "Rate too high"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "id": "rfq_eae29860-82fb-472e-ab53-3a0eb756be23",
+                    "idempotencyKey": "02-27-unique-request-key-002",
+                    "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                    "partnerName": "New Test Partner",
+                    "countryCode": "NG",
+                    "sourceCurrency": "NGN",
+                    "sourceCurrencyType": "fiat",
+                    "destinationCurrency": "USDT",
+                    "destinationCurrencyType": "crypto",
+                    "sourceAmount": 510000,
+                    "quotedRate": 1482.2375,
+                    "effectiveRate": 1501,
+                    "feePercentage": 1.25,
+                    "destinationAmount": 339.773484,
+                    "status": "TRANSACTION_COMPLETED",
+                    "customerStatus": "Transaction completed",
+                    "quoteExpiresAt": "2026-02-27T23:23:10Z",
+                    "createdAt": "2026-02-27T02:31:08.483058081Z",
+                    "updatedAt": "2026-02-27T03:23:27Z",
+                    "transferId": "9cee32ac-c549-5194-9b6f-458d5237dd18",
+                    "tradeId": "NG-27022026-0029",
+                    "createdBy": "5cdc3740-6030-4e09-aa8b-9115a3c3048e",
+                    "lastUpdatedBy": "5cdc3740-6030-4e09-aa8b-9115a3c3048e",
+                    "auditTrail": [
+                      {
+                        "timestamp": "2026-02-27T02:31:08.483063502Z",
+                        "action": "RFQ_CREATED",
+                        "userId": "5cdc3740-6030-4e09-aa8b-9115a3c3048e",
+                        "userName": "Jimothy",
+                        "role": "admin",
+                        "toStatus": "RFQ_PENDING_REVIEW",
+                        "details": {
+                          "amount": "510000.00",
+                          "destinationCurrency": "USDT",
+                          "destinationCurrencyType": "crypto",
+                          "sourceCurrency": "NGN",
+                          "sourceCurrencyType": "fiat"
+                        }
+                      },
+                      {
+                        "timestamp": "2026-02-27T03:23:10.002267347Z",
+                        "action": "QUOTE_SENT",
+                        "userId": "45f64186-6a59-43a4-bca3-1bd495e83cfd",
+                        "userName": "James Falola",
+                        "role": "ADMIN",
+                        "fromStatus": "RFQ_PENDING_REVIEW",
+                        "toStatus": "RFQ_QUOTE_SENT",
+                        "details": {
+                          "destinationAmount": "339.77",
+                          "effectiveRate": "1501.0000",
+                          "feePercentage": "1.2500",
+                          "quotedRate": "1482.2375",
+                          "validUntil": "2026-02-27T23:23:10Z"
+                        }
+                      },
+                      {
+                        "timestamp": "2026-02-27T03:23:26.545091618Z",
+                        "action": "ACCEPTED_BY_CUSTOMER",
+                        "userId": "5cdc3740-6030-4e09-aa8b-9115a3c3048e",
+                        "userName": "Jimothy",
+                        "role": "admin",
+                        "fromStatus": "RFQ_QUOTE_SENT",
+                        "toStatus": "RFQ_ACCEPTED"
+                      },
+                      {
+                        "timestamp": "2026-02-27T03:23:26.553042245Z",
+                        "action": "PROCESSING_STARTED",
+                        "userId": "5cdc3740-6030-4e09-aa8b-9115a3c3048e",
+                        "userName": "Jimothy",
+                        "role": "admin",
+                        "fromStatus": "RFQ_ACCEPTED",
+                        "toStatus": "TRANSACTION_PROCESSING_YC"
+                      },
+                      {
+                        "timestamp": "2026-02-27T03:23:27.771660636Z",
+                        "action": "TRANSACTION_COMPLETED",
+                        "userId": "5cdc3740-6030-4e09-aa8b-9115a3c3048e",
+                        "userName": "Jimothy",
+                        "role": "admin",
+                        "fromStatus": "TRANSACTION_PROCESSING_YC",
+                        "toStatus": "TRANSACTION_COMPLETED",
+                        "details": {
+                          "transferId": "9cee32ac-c549-5194-9b6f-458d5237dd18"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "total": 87,
+                "nextCursor": "eyJjcmVhdGVkQXQiOiIyMDI2LTAyLTI3VDAyOjMxOjA4LjQ4MzA1ODA4MVoiLCJpZCI6InJmcV9lYWUyOTg2MC04MmZiLTQ3MmUtYWI1My0zYTBlYjc1NmJlMjMiLCJwYXJ0bmVySWQiOiI5YjgyMTUyMC01MmQ0LTRlOTEtOTkwYy1iMmY1NDUyY2JjMmQifQ==",
+                "hasMore": true
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

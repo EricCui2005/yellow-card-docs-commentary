@@ -1,0 +1,100 @@
+{
+  "title": "Resolve Bank Account",
+  "slug": "resolve-bank-account",
+  "method": "POST",
+  "path": "/details/bank",
+  "description": "Validate a bank account before sending.",
+  "excerpt": "Validate a bank account before sending.",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "accountNumber",
+            "networkId"
+          ],
+          "properties": {
+            "accountNumber": {
+              "type": "string",
+              "description": "Bank Account Number for Recipient"
+            },
+            "networkId": {
+              "type": "string",
+              "description": "Unique identifier of selected network."
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n  \"accountNumber\": \"0123456789\",\n  \"accountName\": \"Emmanuel Doe\",\n  \"accountBank\": \"Access Bank\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "accountNumber": {
+                "type": "string",
+                "example": "0123456789"
+              },
+              "accountName": {
+                "type": "string",
+                "example": "Emmanuel Doe"
+              },
+              "accountBank": {
+                "type": "string",
+                "example": "Access Bank"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"BadRequestError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "BadRequestError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<blockquote class=\"callout callout_info\" theme=\"📘\"><span class=\"callout-icon\">📘</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"only-available-in-select-countries\"></div><div class=\"heading-text\">Only available in select countries</div><a aria-label=\"Skip link to Only available in select countries\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#only-available-in-select-countries\"></a></h3><p>Due to limitations and variation of technology across the continent, only a handful of countries will support this endpoint.</p><p><strong>Currently only required for Nigeria</strong></p></blockquote>"
+}

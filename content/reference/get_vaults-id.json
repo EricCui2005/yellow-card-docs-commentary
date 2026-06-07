@@ -1,0 +1,238 @@
+{
+  "title": "Get Vault by ID",
+  "slug": "get_vaults-id",
+  "method": "GET",
+  "path": "/vaults/{id}",
+  "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code.",
+  "excerpt": "Get details on a Vault.",
+  "parameters": [
+    {
+      "in": "path",
+      "name": "id",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Get Vault by ID",
+      "headers": {
+        "Date": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Transfer-Encoding": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Connection": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Content-Encoding": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-requestid": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "access-control-allow-origin": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amz-apigw-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-trace-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "access-control-allow-credentials": {
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "cf-cache-status": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Strict-Transport-Security": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "expect-ct": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "referrer-policy": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-content-type-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-frame-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-xss-protection": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "X-Hiring": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Set-Cookie": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Server": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "CF-RAY": {
+          "schema": {
+            "type": "integer"
+          }
+        }
+      },
+      "content": {
+        "application/json": {
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "id": "5bb1b7ce-508c-4acc-9e49-44d9ec572a6a",
+                "vaultLabel": "Address vault",
+                "partnerId": "06b3054b-1ac5-42c6-8687-d2195c1f0e4b",
+                "assets": [
+                  {
+                    "id": "PYUSD_ERC20",
+                    "available": "0",
+                    "pending": "0"
+                  },
+                  {
+                    "id": "SOL_SOL",
+                    "available": "2.2",
+                    "pending": "0"
+                  },
+                  {
+                    "id": "USDC_SOL",
+                    "available": "100",
+                    "pending": "0"
+                  }
+                ]
+              }
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "5bb1b7ce-508c-4acc-9e49-44d9ec572a6a"
+              },
+              "name": {
+                "type": "string",
+                "example": "Address vault"
+              },
+              "partnerId": {
+                "type": "string",
+                "example": "06b3054b-1ac5-42c6-8687-d2195c1f0e4b"
+              },
+              "assets": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "PYUSD_ERC20"
+                    },
+                    "available": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "pending": {
+                      "type": "string",
+                      "example": "0"
+                    },
+                    "depositAddress": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          },
+          "examples": {
+            "Internal Server Error": {
+              "summary": "Internal Server Error",
+              "value": {
+                "code": "InternalServerError",
+                "message": "something went wrong"
+              }
+            }
+          }
+        }
+      },
+      "description": "Internal Server Error"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

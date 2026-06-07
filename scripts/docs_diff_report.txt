@@ -1,0 +1,268 @@
+# Docs comparison report
+# Source: https://docs.yellowcard.engineering/docs/
+# Compared 45 pages.
+
+## Summary
+  getting-started                          OK         missing=0   extra=0
+  getting-started-api                      OK         missing=0   extra=0
+  getting-started-1                        DRIFT      missing=0   extra=1
+  go-live-api                              OK         missing=0   extra=0
+  making-a-collection                      DRIFT      missing=0   extra=8
+  disbursement-user-journey                DRIFT      missing=0   extra=7
+  send-cross-border-remittances            OK         missing=0   extra=0
+  pay-global-suppliers-invoices            OK         missing=0   extra=0
+  accept-stablecoin-payments               OK         missing=0   extra=0
+  accept-local-currency-payments           OK         missing=0   extra=0
+  buy-sell-digital-assets                  DRIFT      missing=0   extra=2
+  digital-asset-wallet-functionality       DRIFT      missing=0   extra=1
+  access-to-usdeur                         OK         missing=0   extra=0
+  authentication-api                       DRIFT      missing=1   extra=0
+  environments-api                         OK         missing=0   extra=0
+  sandbox-testing-api                      DRIFT      missing=0   extra=4
+  coverage-api                             DRIFT      missing=0   extra=1
+  africa                                   OK         missing=0   extra=0
+  latin-america                            OK         missing=0   extra=0
+  asia                                     OK         missing=0   extra=0
+  europe                                   OK         missing=0   extra=0
+  api-transaction-limits                   OK         missing=0   extra=0
+  channels-api                             OK         missing=0   extra=0
+  networks                                 OK         missing=0   extra=0
+  using-rates-data                         DRIFT      missing=0   extra=1
+  kyc-metadata                             DRIFT      missing=0   extra=1
+  webhooks-api                             DRIFT      missing=0   extra=3
+  events-api                               OK         missing=0   extra=0
+  errors-api                               OK         missing=0   extra=0
+  list-collections-guide-api               OK         missing=0   extra=0
+  payment-reasons-api                      OK         missing=0   extra=0
+  error-codes                              OK         missing=0   extra=0
+  cancellation-refunds-collection-requests OK         missing=0   extra=0
+  request-for-quote                        OK         missing=0   extra=0
+  direct-settlement                        DRIFT      missing=0   extra=2
+  wallet-infrastructure-guide              OK         missing=0   extra=0
+  virtual-accounts                         DRIFT      missing=0   extra=8
+  creating-a-virtual-account               DRIFT      missing=0   extra=5
+  initiating-sends                         DRIFT      missing=0   extra=6
+  webhooks                                 DRIFT      missing=0   extra=1
+  integration-security-guide               OK         missing=0   extra=0
+  settlement-api                           OK         missing=0   extra=0
+  sso                                      DRIFT      missing=4   extra=5
+  api-glossary                             OK         missing=0   extra=0
+  mcp                                      DRIFT      missing=0   extra=1
+
+# Per-page detail
+
+## getting-started
+  orig_chunks=13 local_chunks=13 missing=0 extra=0
+
+## getting-started-api
+  orig_chunks=22 local_chunks=22 missing=0 extra=0
+
+## getting-started-1
+  orig_chunks=66 local_chunks=69 missing=0 extra=1
+  EXTRA (in local, absent from original):
+    + JSON
+
+## go-live-api
+  orig_chunks=18 local_chunks=19 missing=0 extra=0
+
+## making-a-collection
+  orig_chunks=109 local_chunks=65 missing=0 extra=8
+  EXTRA (in local, absent from original):
+    + 1. Payment screen
+    + 2. Chooses a preferred payment channel
+    + 2a. IF they chose Mobile Money: Provide Mobile Money Details screen
+    + 3. Enter reason for sending
+    + 4. Review payment details
+    + 5. Initiate payment
+    + 6. Payment successful
+    + 7. Retrieve information about a specific payment
+
+## disbursement-user-journey
+  orig_chunks=183 local_chunks=140 missing=0 extra=7
+  EXTRA (in local, absent from original):
+    + 1. Retrieve Get Channels
+    + 2. Get Rates
+    + 3. Get Networks Reason for sending = Payment Reasons
+    + 4. Submit Send Request
+    + 5. Accept Send Request Deny Send Request
+    + 6. n/a Webhooks to determine status of transaction
+    + 7. Lookup Send
+
+## send-cross-border-remittances
+  orig_chunks=28 local_chunks=28 missing=0 extra=0
+
+## pay-global-suppliers-invoices
+  orig_chunks=36 local_chunks=36 missing=0 extra=0
+
+## accept-stablecoin-payments
+  orig_chunks=33 local_chunks=33 missing=0 extra=0
+
+## accept-local-currency-payments
+  orig_chunks=35 local_chunks=35 missing=0 extra=0
+
+## buy-sell-digital-assets
+  orig_chunks=47 local_chunks=49 missing=0 extra=2
+  EXTRA (in local, absent from original):
+    + JSON
+    + JSON
+
+## digital-asset-wallet-functionality
+  orig_chunks=37 local_chunks=37 missing=0 extra=1
+  EXTRA (in local, absent from original):
+    + USDC ConfigUSDC Networks List
+
+## access-to-usdeur
+  orig_chunks=11 local_chunks=11 missing=0 extra=0
+
+## authentication-api
+  orig_chunks=15 local_chunks=15 missing=1 extra=0
+  MISSING (in original, absent from local):
+    - For POST and PUT requests a base64 encoded sha256 hash of the request body Example message to sign, 2022-01-11T15:48:37.424Z/paymentPOSTuisbibf/sadf+== .
+
+## environments-api
+  orig_chunks=6 local_chunks=6 missing=0 extra=0
+
+## sandbox-testing-api
+  orig_chunks=44 local_chunks=49 missing=0 extra=4
+  EXTRA (in local, absent from original):
+    + JSON
+    + JSON
+    + JSON
+    + JSON
+
+## coverage-api
+  orig_chunks=4 local_chunks=1 missing=0 extra=1
+  EXTRA (in local, absent from original):
+    + Africa __See list of supported countries and payment methods in Africa Latin America __See list of supported countries and payment methods in Latin America Asia __See list of supported countries and payment methods in Asia Europe …
+
+## africa
+  orig_chunks=165 local_chunks=166 missing=0 extra=0
+
+## latin-america
+  orig_chunks=73 local_chunks=73 missing=0 extra=0
+
+## asia
+  orig_chunks=15 local_chunks=15 missing=0 extra=0
+
+## europe
+  orig_chunks=11 local_chunks=11 missing=0 extra=0
+
+## api-transaction-limits
+  orig_chunks=260 local_chunks=261 missing=0 extra=0
+
+## channels-api
+  orig_chunks=287 local_chunks=288 missing=0 extra=0
+
+## networks
+  orig_chunks=9 local_chunks=10 missing=0 extra=0
+
+## using-rates-data
+  orig_chunks=4 local_chunks=5 missing=0 extra=1
+  EXTRA (in local, absent from original):
+    + json
+
+## kyc-metadata
+  orig_chunks=34 local_chunks=36 missing=0 extra=1
+  EXTRA (in local, absent from original):
+    + JSON
+
+## webhooks-api
+  orig_chunks=48 local_chunks=53 missing=0 extra=3
+  EXTRA (in local, absent from original):
+    + JSON
+    + JSON
+    + json
+
+## events-api
+  orig_chunks=60 local_chunks=30 missing=0 extra=0
+
+## errors-api
+  orig_chunks=60 local_chunks=45 missing=0 extra=0
+
+## list-collections-guide-api
+  orig_chunks=112 local_chunks=113 missing=0 extra=0
+
+## payment-reasons-api
+  orig_chunks=42 local_chunks=42 missing=0 extra=0
+
+## error-codes
+  orig_chunks=29 local_chunks=29 missing=0 extra=0
+
+## cancellation-refunds-collection-requests
+  orig_chunks=30 local_chunks=32 missing=0 extra=0
+
+## request-for-quote
+  orig_chunks=34 local_chunks=34 missing=0 extra=0
+
+## direct-settlement
+  orig_chunks=28 local_chunks=25 missing=0 extra=2
+  EXTRA (in local, absent from original):
+    + Sample RequestSample Response
+    + Sample RequestSample ResponseSample Request (Lightning)Sample Request (refundAddress)Sample Request (refundToSourceAddress)Sample Response (Lightning)
+
+## wallet-infrastructure-guide
+  orig_chunks=76 local_chunks=76 missing=0 extra=0
+
+## virtual-accounts
+  orig_chunks=125 local_chunks=133 missing=0 extra=8
+  EXTRA (in local, absent from original):
+    + Sample Response
+    + Sample Response
+    + Sample Request
+    + Sample Response
+    + CoffeeScript
+    + Sample Request
+    + Sample Request
+    + Sample Response
+
+## creating-a-virtual-account
+  orig_chunks=28 local_chunks=33 missing=0 extra=5
+  EXTRA (in local, absent from original):
+    + CoffeeScript
+    + Sample Request
+    + Sample Response
+    + Sample Request
+    + Sample Response
+
+## initiating-sends
+  orig_chunks=151 local_chunks=158 missing=0 extra=6
+  EXTRA (in local, absent from original):
+    + Sample Request
+    + Sample Request
+    + Sample Request
+    + Sample Request
+    + Sample Request
+    + Sample Request
+
+## webhooks
+  orig_chunks=52 local_chunks=52 missing=0 extra=1
+  EXTRA (in local, absent from original):
+    + VIBAN.PENDINGVIBAN.ACTIVE
+
+## integration-security-guide
+  orig_chunks=49 local_chunks=49 missing=0 extra=0
+
+## settlement-api
+  orig_chunks=33 local_chunks=34 missing=0 extra=0
+
+## sso
+  orig_chunks=329 local_chunks=333 missing=4 extra=5
+  MISSING (in original, absent from local):
+    - Configure Attribute Mappings (Choose one approach): 💡 Okta has two approaches for configuring SAML attributes. Both achieve the same result, but note the different expression syntax between the two interfaces. Option A: Configure …
+    - User Attributes & Claims (Required): Name Format Value http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress URI Reference user.mail http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname URI Reference user.g…
+    - Attribute Mapping (Required): Name Format Value http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress URI Reference Basic Information > Primary email http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname URI…
+    - In Treasury Portal: Protocol : SAML Metadata URL : Copy from Google Admin Console ⚠️ Single Logout is not supported with Google Workspace SAML
+  EXTRA (in local, absent from original):
+    + Assignments : Assign to appropriate groups/users 2. In Treasury Portal:
+    + Metadata URL : Copy from Okta application settings (under "Sign On" tab) 4. Configure Single Logout in Okta (required for propagated logout):
+    + Note the secret value (copy immediately) 2. In Treasury Portal:
+    + Metadata URL : Copy from Azure (SAML-based sign-on section) 4. Configure Single Logout in Entra ID (required for propagated logout):
+    + Authorized redirect URIs : https://sso.portal.yellowcard.io/oauth2/idpresponse 2. In Treasury Portal:
+
+## api-glossary
+  orig_chunks=72 local_chunks=72 missing=0 extra=0
+
+## mcp
+  orig_chunks=17 local_chunks=19 missing=0 extra=1
+  EXTRA (in local, absent from original):
+    + CursorWindsurfClaude Desktop

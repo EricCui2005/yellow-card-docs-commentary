@@ -1,0 +1,224 @@
+{
+  "title": "Submit Crypto Send Request",
+  "slug": "submit-settlement-request",
+  "method": "POST",
+  "path": "/send/crypto",
+  "description": "Submit a settlement request. Withdraw from your balance to a wallet address. You can set up settlement webhook to receive status update on your settlement.",
+  "excerpt": "Submit a crypto send. Pay from your balance to a wallet address. You can set up crypto send webhook to receive status update on your crypto send.",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "amount",
+            "walletAddress",
+            "cryptoCurrency",
+            "cryptoNetwork",
+            "sequenceId",
+            "travelRuleInfo"
+          ],
+          "properties": {
+            "amount": {
+              "type": "integer",
+              "description": "Crypto amount",
+              "format": "int64"
+            },
+            "walletAddress": {
+              "type": "string",
+              "description": "Recipient wallet address"
+            },
+            "cryptoCurrency": {
+              "type": "string",
+              "description": "Recipient wallet crypto currency"
+            },
+            "cryptoNetwork": {
+              "type": "string",
+              "description": "Recipient wallet network"
+            },
+            "sequenceId": {
+              "type": "string",
+              "description": "Represents a unique id for the transaction from your end"
+            },
+            "travelRuleInfo": {
+              "type": "object",
+              "description": "travel rule info belonging to address owner",
+              "required": [
+                "name",
+                "businessRegistrationNumber"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "businessRegistrationNumber": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "examples": {
+          "Request Example": {
+            "value": {
+              "walletAddress": "TKMBToq6W21b6Q7158DvFca1MmXAxbcwD3",
+              "cryptoNetwork": "TRC20",
+              "cryptoCurrency": "USDT",
+              "amount": 50
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\"partnerId\":\"1sds9b-7911-490e-9a9f-e5ffae71a2\",\n\"cryptoRate\":1,\n\"externalWalletAddress\":\"GAfSIRLFKIBWRFL34ZZ57UQVDALF75FMYSFUA5\",\n\"status\":\"pending\",\n\"createdAt\":\"2024-09-05T10:39:59.449Z\",\n\"fiatAmountUSD\":500,\n\"source\":\"api\",\n\"sequenceId\":\"a0c30fd4-b292-4303-90fd-c579f9687769\",\n\"cryptoCurrency\":\"USDC\",\n\"network\":\"XLM\",\n\"cryptoAmount\":500,\n\"updatedAt\":\"2024-09-05T10:39:59.449Z\",\n\"provider\":\"fireblocks\",\n\"id\":\"874d7db5-4d76-4802-82eb-823d65ce2a14\",\n\"walletBalanceUSD\":4653.76,\n\"type\":\"payout\"}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "partnerId": {
+                "type": "string",
+                "example": "1sds9b-7911-490e-9a9f-e5ffae71a2"
+              },
+              "cryptoRate": {
+                "type": "integer",
+                "example": 1,
+                "default": 0
+              },
+              "externalWalletAddress": {
+                "type": "string",
+                "example": "GAfSIRLFKIBWRFL34ZZ57UQVDALF75FMYSFUA5"
+              },
+              "status": {
+                "type": "string",
+                "example": "pending"
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2024-09-05T10:39:59.449Z"
+              },
+              "fiatAmountUSD": {
+                "type": "integer",
+                "example": 500,
+                "default": 0
+              },
+              "source": {
+                "type": "string",
+                "example": "api"
+              },
+              "sequenceId": {
+                "type": "string",
+                "example": "a0c30fd4-b292-4303-90fd-c579f9687769"
+              },
+              "cryptoCurrency": {
+                "type": "string",
+                "example": "USDC"
+              },
+              "network": {
+                "type": "string",
+                "example": "XLM"
+              },
+              "cryptoAmount": {
+                "type": "integer",
+                "example": 500,
+                "default": 0
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2024-09-05T10:39:59.449Z"
+              },
+              "provider": {
+                "type": "string",
+                "example": "fireblocks"
+              },
+              "id": {
+                "type": "string",
+                "example": "874d7db5-4d76-4802-82eb-823d65ce2a14"
+              },
+              "walletBalanceUSD": {
+                "type": "number",
+                "example": 4653.76,
+                "default": 0
+              },
+              "type": {
+                "type": "string",
+                "example": "payout"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n   \"code\": \"PaymentValidationError\",\n   \"message\": \"invalid amount entered\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "PaymentValidationError"
+              },
+              "message": {
+                "type": "string",
+                "example": "invalid amount entered"
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "500",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"InternalServerError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<br/>\n<blockquote class=\"callout callout_warn\" theme=\"⚠️\"><span class=\"callout-icon\">⚠️</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"updated-terminology\"></div><div class=\"heading-text\">Updated Terminology</div><a aria-label=\"Skip link to Updated Terminology\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#updated-terminology\"></a></h3><p>Settlements are now called Crypto Sends. These <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/send/crypto</code> endpoints handle cryptocurrency conversions and replace the legacy <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/settlements</code> endpoints. The functionality remains identical, only the terminology has changed. Legacy collections endpoints are deprecated but will continue to  work. We recommend migrating to these new <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/send/crypto</code> endpoints for future compatibility.</p></blockquote>\n<h2 class=\"heading heading-2 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"supported-stablecoin-settlement\"></div><div class=\"heading-text\">Supported Stablecoin settlement</div><a aria-label=\"Skip link to Supported Stablecoin settlement\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#supported-stablecoin-settlement\"></a></h2>\n<p>You can settle via the api in the following stablecoins.</p>\n<div class=\"rdmd-table\"><div class=\"rdmd-table-inner\"><table><thead><tr><th style=\"text-align:left\">Crypto</th><th style=\"text-align:left\">cryptoCurrency</th><th style=\"text-align:left\">cryptoNetwork</th></tr></thead><tbody><tr><td style=\"text-align:left\">USDC Eth</td><td style=\"text-align:left\">USDC</td><td style=\"text-align:left\">ERC20</td></tr><tr><td style=\"text-align:left\">USDC Stellar</td><td style=\"text-align:left\">USDC</td><td style=\"text-align:left\">XLM</td></tr><tr><td style=\"text-align:left\">USDT Tron</td><td style=\"text-align:left\">USDT</td><td style=\"text-align:left\">TRC20</td></tr></tbody></table></div></div>"
+}

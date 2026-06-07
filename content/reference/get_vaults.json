@@ -1,0 +1,220 @@
+{
+  "title": "Get Vaults",
+  "slug": "get_vaults",
+  "method": "GET",
+  "path": "/vaults",
+  "description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data.",
+  "excerpt": "Get all vaults.",
+  "parameters": [],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Get Vaults",
+      "headers": {
+        "Date": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Transfer-Encoding": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Connection": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Content-Encoding": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-requestid": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "access-control-allow-origin": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amz-apigw-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-trace-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "access-control-allow-credentials": {
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "cf-cache-status": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Strict-Transport-Security": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "expect-ct": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "referrer-policy": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-content-type-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-frame-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-xss-protection": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "X-Hiring": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Set-Cookie": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Server": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "CF-RAY": {
+          "schema": {
+            "type": "integer"
+          }
+        }
+      },
+      "content": {
+        "application/json": {
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "vaults": [
+                  {
+                    "vaultLabel": "Collection Test Vault",
+                    "createdAt": "2025-10-31T13:06:27.143Z",
+                    "vaultAccountId": "436403",
+                    "partnerId": "7882e37a-51c7-4e6f-80cc-4d9ca99e39ae",
+                    "id": "ec96d00e-67d3-4da0-8022-cf267f7e67e5",
+                    "updatedAt": "2025-10-31T13:07:35.313Z"
+                  },
+                  {
+                    "updatedAt": "2025-10-31T13:40:18.897Z",
+                    "vaultLabel": "Address Vault",
+                    "id": "9f4b8b2d-0b90-4176-8f51-d04df121bc04",
+                    "vaultAccountId": "436404",
+                    "createdAt": "2025-10-31T13:21:21.807Z",
+                    "partnerId": "7882e37a-51c7-4e6f-80cc-4d9ca99e39ae"
+                  }
+                ]
+              }
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "vaults": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "example": "Collection Test Vault"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2025-10-31T13:06:27.143Z"
+                    },
+                    "partnerId": {
+                      "type": "string",
+                      "example": "7882e37a-51c7-4e6f-80cc-4d9ca99e39ae"
+                    },
+                    "id": {
+                      "type": "string",
+                      "example": "ec96d00e-67d3-4da0-8022-cf267f7e67e5"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2025-10-31T13:07:35.313Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          },
+          "examples": {
+            "Internal Server Error": {
+              "summary": "Internal Server Error",
+              "value": {
+                "code": "InternalServerError",
+                "message": "something went wrong"
+              }
+            }
+          }
+        }
+      },
+      "description": "Internal Server Error"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

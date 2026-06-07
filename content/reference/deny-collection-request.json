@@ -1,0 +1,215 @@
+{
+  "title": "Deny Receive Request",
+  "slug": "deny-collection-request",
+  "method": "POST",
+  "path": "/receive/{id}/deny",
+  "description": "Deny a collection request.",
+  "excerpt": "Deny a receive request.",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "Unique Receive Identifier",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n    \"currency\": \"NGN\",\n    \"rate\": 767.21,\n    \"status\": \"denied\",\n    \"createdAt\": \"2023-03-21T17:03:18.336Z\",\n    \"source\": {\n        \"accountNumber\": \"1111111111\",\n        \"networkId\": \"3d4d08c1-4811-4fee-9349-a302328e55c1\",\n        \"accountType\": \"bank\"\n    },\n    \"sequenceId\": \"3hfgk3c5-hhvb-76gc-462d-1bd707h6d46d\",\n    \"country\": \"NG\",\n    \"convertedAmount\": 60000,\n    \"recipient\": {\n        \"country\": \"Nigeria\",\n        \"address\": \"Home Address\",\n        \"idType\": \"license\",\n        \"phone\": \"+2349092916898\",\n        \"dob\": \"02/01/1997\",\n        \"name\": \"John Doe\",\n        \"idNumber\": \"314159\",\n        \"email\": \"john.doe@yellowcard.io\"\n    },\n    \"channelId\": \"fe8f4989-3bf6-41ca-9621-ffe2bc127569\",\n    \"expiresAt\": \"2023-03-21T17:13:18.330Z\",\n    \"updatedAt\": \"2023-03-21T17:03:33.499Z\",\n    \"amount\": 78.21,\n    \"refundRetry\": 0,\n    \"id\": \"d55bd8b2-c530-5afa-8c44-2b61a159fed0\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "partnerId": {
+                "type": "string",
+                "example": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01"
+              },
+              "currency": {
+                "type": "string",
+                "example": "NGN"
+              },
+              "rate": {
+                "type": "number",
+                "example": 767.21,
+                "default": 0
+              },
+              "status": {
+                "type": "string",
+                "example": "denied"
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2023-03-21T17:03:18.336Z"
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "accountNumber": {
+                    "type": "string",
+                    "example": "1111111111"
+                  },
+                  "networkId": {
+                    "type": "string",
+                    "example": "3d4d08c1-4811-4fee-9349-a302328e55c1"
+                  },
+                  "accountType": {
+                    "type": "string",
+                    "example": "bank"
+                  }
+                }
+              },
+              "sequenceId": {
+                "type": "string",
+                "example": "3hfgk3c5-hhvb-76gc-462d-1bd707h6d46d"
+              },
+              "country": {
+                "type": "string",
+                "example": "NG"
+              },
+              "convertedAmount": {
+                "type": "integer",
+                "example": 60000,
+                "default": 0
+              },
+              "recipient": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string",
+                    "example": "Nigeria"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Home Address"
+                  },
+                  "idType": {
+                    "type": "string",
+                    "example": "license"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "+2349092916898"
+                  },
+                  "dob": {
+                    "type": "string",
+                    "example": "02/01/1997"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "idNumber": {
+                    "type": "string",
+                    "example": "314159"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john.doe@yellowcard.io"
+                  }
+                }
+              },
+              "channelId": {
+                "type": "string",
+                "example": "fe8f4989-3bf6-41ca-9621-ffe2bc127569"
+              },
+              "expiresAt": {
+                "type": "string",
+                "example": "2023-03-21T17:13:18.330Z"
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2023-03-21T17:03:33.499Z"
+              },
+              "amount": {
+                "type": "number",
+                "example": 78.21,
+                "default": 0
+              },
+              "refundRetry": {
+                "type": "integer",
+                "example": 0,
+                "default": 0
+              },
+              "id": {
+                "type": "string",
+                "example": "d55bd8b2-c530-5afa-8c44-2b61a159fed0"
+              }
+            }
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "404",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"CollectionNotFoundError\",\n    \"message\": \"\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "CollectionNotFoundError"
+              },
+              "message": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "500",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"InternalServerError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<br/>\n<blockquote class=\"callout callout_warn\" theme=\"⚠️\"><span class=\"callout-icon\">⚠️</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"updated-terminology\"></div><div class=\"heading-text\">Updated Terminology</div><a aria-label=\"Skip link to Updated Terminology\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#updated-terminology\"></a></h3><p>Collections are now called Receives. These <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/receive</code> endpoints replace the legacy <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/collections</code> endpoints. The functionality remains identical, only the terminology has changed. Legacy collections endpoints are deprecated but will continue to  work. We recommend migrating to these new <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/receive</code> endpoints for future compatibility.</p></blockquote>"
+}

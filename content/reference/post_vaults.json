@@ -1,0 +1,186 @@
+{
+  "title": "Create Vault",
+  "slug": "post_vaults",
+  "method": "POST",
+  "path": "/vaults",
+  "description": "Create vault account with a custom vault name.",
+  "excerpt": "Create vault account with a custom vault name.",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "default": "",
+              "description": "Vault name for identification"
+            }
+          },
+          "required": [
+            "name"
+          ]
+        },
+        "examples": {
+          "": {
+            "summary": "",
+            "value": {
+              "name": "Main Treasury Vault"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "201": {
+      "description": "Create Vault",
+      "headers": {
+        "Date": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Content-Length": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "Connection": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Server": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "CF-Ray": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "CF-Cache-Status": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Access-Control-Allow-Origin": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Set-Cookie": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Strict-Transport-Security": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "access-control-allow-credentials": {
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "x-amz-apigw-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-requestid": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "x-amzn-trace-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "X-Hiring": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Vary": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "expect-ct": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "referrer-policy": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-content-type-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-frame-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-xss-protection": {
+          "schema": {
+            "type": "integer"
+          }
+        }
+      },
+      "content": {
+        "application/json": {
+          "examples": {
+            "Created": {
+              "summary": "Created",
+              "value": {
+                "id": "vaultinternal-uuid-239292",
+                "vaultLabel": "Main Treasury Vault",
+                "partnerId": "partneruuid-00293"
+              }
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "vaultinternal-uuid-239292"
+              },
+              "vaultLabel": {
+                "type": "string",
+                "example": "Main Treasury Vault"
+              },
+              "partnerId": {
+                "type": "string",
+                "example": "partneruuid-00293"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

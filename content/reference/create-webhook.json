@@ -1,0 +1,130 @@
+{
+  "title": "Create Webhook",
+  "slug": "create-webhook",
+  "method": "POST",
+  "path": "/webhooks",
+  "description": "Create a webhook for a given transaction state, or for all states.",
+  "excerpt": "Create a webhook for a given transaction state, or for all states.",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "required": [
+            "url"
+          ],
+          "properties": {
+            "url": {
+              "type": "string",
+              "description": "The URL to which the event will be posted to."
+            },
+            "state": {
+              "type": "string",
+              "description": "The transaction status event that this webhook will be activated for. If omitted, the webhook will receive all events."
+            },
+            "active": {
+              "type": "boolean",
+              "description": "Whether this webhook is currently active or not. Defaults to `true` if omitted.",
+              "default": true
+            }
+          }
+        },
+        "examples": {
+          "Request Example": {
+            "value": {
+              "url": "https://test.sample.com/webhook/test",
+              "state": "collection.complete",
+              "active": true
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n    \"url\": \"https://test.sample.com/webhook/test\",\n    \"state\": \"collection.complete\",\n    \"active\": true,\n    \"createdAt\": \"2022-12-14T11:56:09.617Z\",\n    \"updatedAt\": \"2022-12-14T11:56:09.617Z\",\n    \"id\": \"4fb49434-077e-49dd-ac41-74f58c3c779c\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "partnerId": {
+                "type": "string",
+                "example": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01"
+              },
+              "url": {
+                "type": "string",
+                "example": "https://test.sample.com/webhook/test"
+              },
+              "state": {
+                "type": "string",
+                "example": "collection.complete"
+              },
+              "active": {
+                "type": "boolean",
+                "example": true,
+                "default": true
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2022-12-14T11:56:09.617Z"
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2022-12-14T11:56:09.617Z"
+              },
+              "id": {
+                "type": "string",
+                "example": "4fb49434-077e-49dd-ac41-74f58c3c779c"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"BadRequestError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "BadRequestError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<div><div style=\"height:50px;border:1px solid var(--color-border-default, rgba(black, 0.1));border-radius:var(--border-radius-lg, 7.5px);min-width:230px;display:inline-flex;padding:10px\"><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:30px;width:30px\"></div><div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:150px;margin:0 15px;margin-bottom:6px\"></div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:75px;margin:0 15px\"></div></div></div></div>"
+}

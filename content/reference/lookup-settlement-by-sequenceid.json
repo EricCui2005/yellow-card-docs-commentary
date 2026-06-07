@@ -1,0 +1,173 @@
+{
+  "title": "Lookup Crypto Send by sequenceId",
+  "slug": "lookup-settlement-by-sequenceid",
+  "method": "GET",
+  "path": "/send/crypto/sequence-id/{id}",
+  "description": "Retrieve information about a specific receive request using its sequenceId property",
+  "excerpt": "Retrieve information about a specific receive request using its sequenceId property",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "Unique Settlement sequenceId property",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\"partnerId\":\"1sds9b-7911-490e-9a9f-e5ffae71a2\",\n\"cryptoRate\":1,\n\"externalWalletAddress\":\"GAfSIRLFKIBWRFL34ZZ57UQVDALF75FMYSFUA5\",\n\"status\":\"pending\",\n\"createdAt\":\"2024-09-05T10:39:59.449Z\",\n\"fiatAmountUSD\":500,\n\"source\":\"api\",\n\"sequenceId\":\"a0c30fd4-b292-4303-90fd-c579f9687769\",\n\"cryptoCurrency\":\"USDC\",\n\"network\":\"XLM\",\n\"cryptoAmount\":500,\n\"updatedAt\":\"2024-09-05T10:39:59.449Z\",\n\"provider\":\"fireblocks\",\n\"id\":\"874d7db5-4d76-4802-82eb-823d65ce2a14\",\n\"transactionHash\":\"0xf2c461b949632abdc497160333465f8576b01f70ca2cc022a1402b323090c6c1\",\n\"walletBalanceUSD\":4653.76,\n\"type\":\"payout\"}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "partnerId": {
+                "type": "string",
+                "example": "1sds9b-7911-490e-9a9f-e5ffae71a2"
+              },
+              "cryptoRate": {
+                "type": "integer",
+                "example": 1,
+                "default": 0
+              },
+              "externalWalletAddress": {
+                "type": "string",
+                "example": "GAfSIRLFKIBWRFL34ZZ57UQVDALF75FMYSFUA5"
+              },
+              "status": {
+                "type": "string",
+                "example": "pending"
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2024-09-05T10:39:59.449Z"
+              },
+              "fiatAmountUSD": {
+                "type": "integer",
+                "example": 500,
+                "default": 0
+              },
+              "source": {
+                "type": "string",
+                "example": "api"
+              },
+              "sequenceId": {
+                "type": "string",
+                "example": "a0c30fd4-b292-4303-90fd-c579f9687769"
+              },
+              "cryptoCurrency": {
+                "type": "string",
+                "example": "USDC"
+              },
+              "network": {
+                "type": "string",
+                "example": "XLM"
+              },
+              "cryptoAmount": {
+                "type": "integer",
+                "example": 500,
+                "default": 0
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2024-09-05T10:39:59.449Z"
+              },
+              "provider": {
+                "type": "string",
+                "example": "fireblocks"
+              },
+              "id": {
+                "type": "string",
+                "example": "874d7db5-4d76-4802-82eb-823d65ce2a14"
+              },
+              "transactionHash": {
+                "type": "string",
+                "example": "0xf2c461b949632abdc497160333465f8576b01f70ca2cc022a1402b323090c6c1"
+              },
+              "walletBalanceUSD": {
+                "type": "number",
+                "example": 4653.76,
+                "default": 0
+              },
+              "type": {
+                "type": "string",
+                "example": "payout"
+              }
+            }
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "404",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"CollectionNotFoundError\",\n    \"message\": \"\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "CollectionNotFoundError"
+              },
+              "message": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "500",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"InternalServerError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<br/>\n<blockquote class=\"callout callout_warn\" theme=\"⚠️\"><span class=\"callout-icon\">⚠️</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"updated-terminology\"></div><div class=\"heading-text\">Updated Terminology</div><a aria-label=\"Skip link to Updated Terminology\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#updated-terminology\"></a></h3><p>Settlements are now called Crypto Sends. These <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/send/crypto</code> endpoints handle cryptocurrency conversions and replace the legacy <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/settlements</code> endpoints. The functionality remains identical, only the terminology has changed. Legacy collections endpoints are deprecated but will continue to  work. We recommend migrating to these new <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/send/crypto</code> endpoints for future compatibility.</p></blockquote>\n<br/>"
+}

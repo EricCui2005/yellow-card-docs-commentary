@@ -1,0 +1,125 @@
+{
+  "title": "Get Wallets",
+  "slug": "get-wallets",
+  "method": "GET",
+  "path": "/sub-wallets",
+  "description": "Returns a list of all sub-wallets associated with the authenticated partner account. Each wallet includes its current available balance. Optionally, you can request linked virtual bank account details for each wallet.",
+  "excerpt": "Returns a list of all sub-wallets associated with the authenticated partner account. Each wallet includes its current available balance. Optionally, you can request linked virtual bank account details for each wallet.",
+  "parameters": [
+    {
+      "in": "query",
+      "name": "withVirtualAccount\t",
+      "schema": {
+        "type": "boolean",
+        "default": "false"
+      },
+      "description": "Set to true to include the linked virtual bank account details on each sub-wallet in the response.\n"
+    },
+    {
+      "in": "query",
+      "name": "pageSize",
+      "schema": {
+        "type": "string",
+        "default": "15"
+      },
+      "description": "Number of transactions to return per page. Defaults to 15, maximum is 100."
+    },
+    {
+      "in": "query",
+      "name": "cursor",
+      "schema": {
+        "type": "string"
+      },
+      "description": "Opaque pagination token returned in pagination.nextCursor from the previous response. Pass this value to retrieve the next page of results."
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "subwallets": [
+                  {
+                    "id": "550e8400-e29b-41d4-a716-446655440000",
+                    "partnerId": "partner-123",
+                    "sequenceId": "customer-123",
+                    "name": "Customer NGN Wallet",
+                    "currency": "NGN",
+                    "status": "active",
+                    "availableBalance": 1500.5,
+                    "metadata": {
+                      "customerId": "12345"
+                    },
+                    "createdAt": "2024-01-15T10:30:00Z",
+                    "updatedAt": "2024-01-15T14:25:00Z",
+                    "virtualAccount": {
+                      "id": "va-550e8400-e29b-41d4-a716-446655440000",
+                      "userId": "partner-123",
+                      "subwalletId": "550e8400-e29b-41d4-a716-446655440000",
+                      "currency": "USD",
+                      "accountNumber": "1234567890",
+                      "routingNumber": "021000021",
+                      "accountName": "Partner Corp",
+                      "bankName": "Example Bank",
+                      "bankAddress": "123 Main St, New York, NY 10001",
+                      "swiftCode": "EXAMUS33",
+                      "status": "ACTIVE",
+                      "createdAt": "2024-01-15T10:30:00Z",
+                      "updatedAt": "2024-01-15T14:25:00Z"
+                    }
+                  }
+                ],
+                "pagination": {
+                  "pageSize": 10,
+                  "nextCursor": "WzE3NjgyMzQxOTE0NjYsIjdhZDk1OTcyLTdkYjUtNTZmZC05NDQwLWNiN2Y2ZmRiNTBkNiJd",
+                  "total": 12
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "OK"
+    },
+    "500": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "examples": {
+            "Internal Server Error": {
+              "summary": "Internal Server Error",
+              "value": {
+                "code": "InternalServerError",
+                "message": "something went wrong"
+              }
+            }
+          }
+        }
+      },
+      "description": "Internal Server Error"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

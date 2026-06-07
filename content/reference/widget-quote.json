@@ -1,0 +1,202 @@
+{
+  "title": "Widget Quote",
+  "slug": "widget-quote",
+  "method": "POST",
+  "path": "/widget/quote",
+  "description": "Gets a quote for a widget transaction",
+  "excerpt": "Gets a quote for a widget transaction",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string",
+              "description": "Local currency user is buying tokens with"
+            },
+            "localAmount": {
+              "type": "integer",
+              "description": "Total amount of local currency user is wanting to buy of tokens. This should only be used for BUY transactionType",
+              "format": "int32"
+            },
+            "cryptoAmount": {
+              "type": "number",
+              "description": "Total amount of crypto currency user is wanting to sell of tokens. This should only be used for SELL transactionType",
+              "format": "float"
+            },
+            "coin": {
+              "type": "string",
+              "description": "The type of coin/token that the user is wanting to buy"
+            },
+            "network": {
+              "type": "string",
+              "description": "The network of the coin/token that the user is wanting to buy"
+            },
+            "channelId": {
+              "type": "string",
+              "description": "The channelId of the payment method that the user is wanting to use. This will be retrieved from the getChannels API"
+            },
+            "transactionType": {
+              "type": "string",
+              "description": "Type of the transaction wanting to be conducted by the user. This will be 'Buy' or 'Sell'"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"currency\": \"NGN\",\n    \"coin\": \"USDC\",\n    \"cryptoAmount\": 100,\n    \"network\": \"ERC20\",\n    \"channelId\": \"d01e48c1-8ada-408b-8bee-c62090cfb24a\",\n    \"transactionType\": \"Sell\",\n    \"fiatReceived\": 153430.08,\n    \"convertedAmount\": 159823,\n    \"rateLocal\": 1598.23,\n    \"serviceFeeLocal\": 1598.23,\n    \"serviceFeeUSD\": 1,\n    \"partnerFeeLocal\": 4794.69,\n    \"partnerFeeUSD\": 3,\n    \"paymentMethod\": \"p2p\",\n    \"settlement\": \"instant\",\n    \"updatedAt\": \"2024-12-09T11:46:23.325Z\",\n    \"expireAt\": \"2024-12-09T11:56:23.325Z\",\n    \"transactionLimitMin\": 10000,\n    \"transactionLimitMax\": 500000,\n    \"cryptoMaxLimit\": 312.85,\n    \"cryptoMinLimit\": 6.26\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "currency": {
+                "type": "string",
+                "example": "NGN"
+              },
+              "coin": {
+                "type": "string",
+                "example": "USDC"
+              },
+              "cryptoAmount": {
+                "type": "integer",
+                "example": 100,
+                "default": 0
+              },
+              "network": {
+                "type": "string",
+                "example": "ERC20"
+              },
+              "channelId": {
+                "type": "string",
+                "example": "d01e48c1-8ada-408b-8bee-c62090cfb24a"
+              },
+              "transactionType": {
+                "type": "string",
+                "example": "Sell"
+              },
+              "fiatReceived": {
+                "type": "number",
+                "example": 153430.08,
+                "default": 0
+              },
+              "convertedAmount": {
+                "type": "integer",
+                "example": 159823,
+                "default": 0
+              },
+              "rateLocal": {
+                "type": "number",
+                "example": 1598.23,
+                "default": 0
+              },
+              "serviceFeeLocal": {
+                "type": "number",
+                "example": 1598.23,
+                "default": 0
+              },
+              "serviceFeeUSD": {
+                "type": "integer",
+                "example": 1,
+                "default": 0
+              },
+              "partnerFeeLocal": {
+                "type": "number",
+                "example": 4794.69,
+                "default": 0
+              },
+              "partnerFeeUSD": {
+                "type": "integer",
+                "example": 3,
+                "default": 0
+              },
+              "paymentMethod": {
+                "type": "string",
+                "example": "p2p"
+              },
+              "settlement": {
+                "type": "string",
+                "example": "instant"
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2024-12-09T11:46:23.325Z"
+              },
+              "expireAt": {
+                "type": "string",
+                "example": "2024-12-09T11:56:23.325Z"
+              },
+              "transactionLimitMin": {
+                "type": "integer",
+                "example": 10000,
+                "default": 0
+              },
+              "transactionLimitMax": {
+                "type": "integer",
+                "example": 500000,
+                "default": 0
+              },
+              "cryptoMaxLimit": {
+                "type": "number",
+                "example": 312.85,
+                "default": 0
+              },
+              "cryptoMinLimit": {
+                "type": "number",
+                "example": 6.26,
+                "default": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"InternalServerError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": ""
+}

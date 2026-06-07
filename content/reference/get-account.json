@@ -1,0 +1,106 @@
+{
+  "title": "Get Account",
+  "slug": "get-account",
+  "method": "GET",
+  "path": "/account",
+  "description": "Retrieve information about accounts, including available balance.",
+  "excerpt": "Retrieve information about accounts, including available balance.",
+  "parameters": [],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {},
+        "examples": {
+          "Request Example": {
+            "value": {
+              "accounts": [
+                {
+                  "available": 237735.2,
+                  "currency": "USD",
+                  "currencyType": "fiat"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"accounts\": [\n        {\n            \"available\": 237735.2,\n            \"currency\": \"USD\",\n            \"currencyType\": \"fiat\"\n        }\n    ]\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "accounts": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "available": {
+                      "type": "number",
+                      "example": 237735.2,
+                      "default": 0
+                    },
+                    "currency": {
+                      "type": "string",
+                      "example": "USD"
+                    },
+                    "currencyType": {
+                      "type": "string",
+                      "example": "fiat"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "500",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n  \"code\": \"InternalServerError\",\n  \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": ""
+}

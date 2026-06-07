@@ -1,0 +1,236 @@
+{
+  "title": "Cancel Receive",
+  "slug": "cancel-collection",
+  "method": "POST",
+  "path": "/receive/{id}/cancel",
+  "description": "Cancel collection request while it's pending or processing.",
+  "excerpt": "Cancel receive request while it's pending or processing.",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "Unique receive identifier",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n    \"currency\": \"NGN\",\n    \"rate\": 486.3,\n    \"bankInfo\": {\n        \"name\": \"PAGA\",\n        \"accountNumber\": \"01234567890\",\n        \"accountName\": \"Ken Adams\"\n    },\n    \"status\": \"cancelled\",\n    \"createdAt\": \"2023-02-24T23:36:28.692Z\",\n    \"source\": {\n        \"accountNumber\": \"5678987667\",\n        \"accountType\": \"bank\"\n    },\n    \"sequenceId\": \"53f7c7f9-f2bb-450c-8f6d-1vd707s66d30c\",\n    \"country\": \"NG\",\n    \"reference\": \"JJ0487919\",\n    \"convertedAmount\": 4863,\n    \"recipient\": {\n        \"country\": \"Nigeria\",\n        \"address\": \"Home Address\",\n        \"idType\": \"license\",\n        \"phone\": \"+2349092916898\",\n        \"dob\": \"02/01/1997\",\n        \"name\": \"John Doe\",\n        \"idNumber\": \"314159\",\n        \"email\": \"john.doe@yellowcard.io\"\n    },\n    \"channelId\": \"af944f0c-ba70-47c7-86dc-1bad5a6ab4e4\",\n    \"expiresAt\": \"2023-02-24T23:46:28.691Z\",\n    \"updatedAt\": \"2023-02-24T23:39:46.013Z\",\n    \"amount\": 10,\n    \"refundRetry\": 0,\n    \"id\": \"58cadfdc-8264-59eb-90c6-cd9e969305aa\",\n    \"depositId\": \"19b2dad8-2fd1-4b5a-b621-bb37cd9e755b\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "partnerId": {
+                "type": "string",
+                "example": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01"
+              },
+              "currency": {
+                "type": "string",
+                "example": "NGN"
+              },
+              "rate": {
+                "type": "number",
+                "example": 486.3,
+                "default": 0
+              },
+              "bankInfo": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "example": "PAGA"
+                  },
+                  "accountNumber": {
+                    "type": "string",
+                    "example": "01234567890"
+                  },
+                  "accountName": {
+                    "type": "string",
+                    "example": "Ken Adams"
+                  }
+                }
+              },
+              "status": {
+                "type": "string",
+                "example": "cancelled"
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2023-02-24T23:36:28.692Z"
+              },
+              "source": {
+                "type": "object",
+                "properties": {
+                  "accountNumber": {
+                    "type": "string",
+                    "example": "5678987667"
+                  },
+                  "accountType": {
+                    "type": "string",
+                    "example": "bank"
+                  }
+                }
+              },
+              "sequenceId": {
+                "type": "string",
+                "example": "53f7c7f9-f2bb-450c-8f6d-1vd707s66d30c"
+              },
+              "country": {
+                "type": "string",
+                "example": "NG"
+              },
+              "reference": {
+                "type": "string",
+                "example": "JJ0487919"
+              },
+              "convertedAmount": {
+                "type": "integer",
+                "example": 4863,
+                "default": 0
+              },
+              "recipient": {
+                "type": "object",
+                "properties": {
+                  "country": {
+                    "type": "string",
+                    "example": "Nigeria"
+                  },
+                  "address": {
+                    "type": "string",
+                    "example": "Home Address"
+                  },
+                  "idType": {
+                    "type": "string",
+                    "example": "license"
+                  },
+                  "phone": {
+                    "type": "string",
+                    "example": "+2349092916898"
+                  },
+                  "dob": {
+                    "type": "string",
+                    "example": "02/01/1997"
+                  },
+                  "name": {
+                    "type": "string",
+                    "example": "John Doe"
+                  },
+                  "idNumber": {
+                    "type": "string",
+                    "example": "314159"
+                  },
+                  "email": {
+                    "type": "string",
+                    "example": "john.doe@yellowcard.io"
+                  }
+                }
+              },
+              "channelId": {
+                "type": "string",
+                "example": "af944f0c-ba70-47c7-86dc-1bad5a6ab4e4"
+              },
+              "expiresAt": {
+                "type": "string",
+                "example": "2023-02-24T23:46:28.691Z"
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2023-02-24T23:39:46.013Z"
+              },
+              "amount": {
+                "type": "integer",
+                "example": 10,
+                "default": 0
+              },
+              "refundRetry": {
+                "type": "integer",
+                "example": 0,
+                "default": 0
+              },
+              "id": {
+                "type": "string",
+                "example": "58cadfdc-8264-59eb-90c6-cd9e969305aa"
+              },
+              "depositId": {
+                "type": "string",
+                "example": "19b2dad8-2fd1-4b5a-b621-bb37cd9e755b"
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"PaymentInvalidState\",\n    \"message\": \"collection is not in processing/pending state.\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "PaymentInvalidState"
+              },
+              "message": {
+                "type": "string",
+                "example": "collection is not in processing/pending state."
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "500",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"InternalServerError\",\n    \"message\": \"Internal Server Error\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "Internal Server Error"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<br/>\n<blockquote class=\"callout callout_warn\" theme=\"⚠️\"><span class=\"callout-icon\">⚠️</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"updated-terminology\"></div><div class=\"heading-text\">Updated Terminology</div><a aria-label=\"Skip link to Updated Terminology\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#updated-terminology\"></a></h3><p>Collections are now called Receives. These <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/receive</code> endpoints replace the legacy <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/collections</code> endpoints. The functionality remains identical, only the terminology has changed. Legacy collections endpoints are deprecated but will continue to  work. We recommend migrating to these new <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/receive</code> endpoints for future compatibility.</p></blockquote>\n<blockquote class=\"callout callout_warn\" theme=\"🚧\"><span class=\"callout-icon\">🚧</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"cancellation-status\"></div><div class=\"heading-text\">Cancellation status</div><a aria-label=\"Skip link to Cancellation status\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#cancellation-status\"></a></h3><p>You can only cancel a receive when it&#x27;s in <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">pending</code> or <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">processing</code> state.  If we receive the collection after it&#x27;s cancelled a refund is triggered for the receive.</p></blockquote>"
+}

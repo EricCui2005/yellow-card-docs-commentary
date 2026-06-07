@@ -1,0 +1,135 @@
+{
+  "title": "Get Rates",
+  "slug": "get-rates",
+  "method": "GET",
+  "path": "/rates",
+  "description": "Retrieve rates for supported countries",
+  "excerpt": "Retrieve rates for supported countries",
+  "parameters": [
+    {
+      "name": "currency",
+      "in": "query",
+      "description": "ISO 4217 Currency Code",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {},
+        "examples": {
+          "Request Example": {
+            "value": {
+              "partnerId": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01",
+              "buy": 569.48,
+              "marginLock": "absolute",
+              "buyBase": 567.18,
+              "locale": "NG",
+              "rateId": "naira",
+              "createdAt": "2021-12-03T05:15:08.340Z",
+              "sell": 558.08,
+              "code": "NGN",
+              "sellMargin": -10,
+              "updatedAt": "2021-12-30T09:13:54.544Z",
+              "sellBase": 568.08,
+              "buyMargin": 2.3,
+              "id": "57ec1c37d9ca050fc56ae67a9378ca90c2e195ed"
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n  \"rates\": [\n        {\n            \"buy\": 13.23,\n            \"sell\": 10.83,\n            \"locale\": \"GH\",\n            \"rateId\": \"cedi\",\n            \"code\": \"GHS\",\n            \"updatedAt\": \"2023-12-05T11:35:44.140Z\"\n        },\n        {\n            \"buy\": 608.14,\n            \"sell\": 595.84,\n            \"locale\": \"CM\",\n            \"rateId\": \"franc\",\n            \"code\": \"XAF\",\n            \"updatedAt\": \"2023-12-05T11:35:47.455Z\"\n        },\n        {\n            \"buy\": 153.4,\n            \"sell\": 153.4,\n            \"locale\": \"KE\",\n            \"rateId\": \"kenyan-shilling\",\n            \"code\": \"KES\",\n            \"updatedAt\": \"2023-12-05T11:35:51.281Z\"\n        },\n        {\n            \"buy\": 608.5,\n            \"sell\": 521.2,\n            \"locale\": \"NG\",\n            \"rateId\": \"naira\",\n            \"code\": \"NGN\",\n            \"updatedAt\": \"2023-12-05T11:36:13.499Z\"\n        }\n    ]\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "rates": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "buy": {
+                      "type": "number",
+                      "example": 13.23,
+                      "default": 0
+                    },
+                    "sell": {
+                      "type": "number",
+                      "example": 10.83,
+                      "default": 0
+                    },
+                    "locale": {
+                      "type": "string",
+                      "example": "GH"
+                    },
+                    "rateId": {
+                      "type": "string",
+                      "example": "cedi"
+                    },
+                    "code": {
+                      "type": "string",
+                      "example": "GHS"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2023-12-05T11:35:44.140Z"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"BadRequestError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "BadRequestError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": ""
+}

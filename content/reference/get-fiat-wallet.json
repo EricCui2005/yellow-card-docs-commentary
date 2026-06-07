@@ -1,0 +1,276 @@
+{
+  "title": "Get Wallet",
+  "slug": "get-fiat-wallet",
+  "method": "GET",
+  "path": "/sub-wallets/{id}",
+  "description": "Get Wallet details and available balance",
+  "excerpt": "Get Wallet details and available balance",
+  "parameters": [
+    {
+      "in": "path",
+      "name": "id",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    },
+    {
+      "in": "query",
+      "name": "withVirtualAccount",
+      "schema": {
+        "type": "boolean",
+        "default": "false"
+      },
+      "description": "When true, includes virtual bank account data for the sub-wallet in the response"
+    }
+  ],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "Wallet name. e.g. NGN Trading ",
+              "default": "NGN Trading"
+            },
+            "sequenceId": {
+              "type": "string",
+              "default": "6fb07a60-a2c2-5eb6-bb4b-6a91b04962b1",
+              "description": "Unique wallet identifier / idempotency key"
+            },
+            "currency": {
+              "type": "string",
+              "description": "YC Supported fiat currency. e.g. NGN, KES",
+              "default": "NGN"
+            }
+          },
+          "required": [
+            "sequenceId",
+            "name",
+            "currency"
+          ]
+        },
+        "examples": {}
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "example": "6fb07a60-a2c2-5eb6-bb4b-6a91b04962b1"
+              },
+              "partnerId": {
+                "type": "string",
+                "example": "9b821520-52d4-4e91-990c-b2f5452cbc2d"
+              },
+              "sequenceId": {
+                "type": "string",
+                "example": "james-uuid-test-3"
+              },
+              "name": {
+                "type": "string",
+                "example": "NGN Primary"
+              },
+              "metadata": {
+                "type": "object",
+                "properties": {}
+              },
+              "currency": {
+                "type": "string",
+                "example": "NGN"
+              },
+              "status": {
+                "type": "string",
+                "example": "active"
+              },
+              "createdAt": {
+                "type": "integer",
+                "example": 1768578971832,
+                "default": 0
+              },
+              "updatedAt": {
+                "type": "integer",
+                "example": 1768578971832,
+                "default": 0
+              },
+              "availableBalance": {
+                "type": "integer",
+                "example": 0,
+                "default": 0
+              },
+              "virtualAccount": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "example": "d7fbe40a-6d50-4607-8648-9827a54947c3"
+                  },
+                  "subwalletId": {
+                    "type": "string",
+                    "example": "6959f27c-9886-536b-a276-e1f4c2e632db"
+                  },
+                  "provider": {
+                    "type": "string",
+                    "example": "erebor"
+                  },
+                  "currency": {
+                    "type": "string",
+                    "example": "USD"
+                  },
+                  "accountNumber": {
+                    "type": "string",
+                    "example": "1234567890"
+                  },
+                  "routingNumber": {
+                    "type": "string",
+                    "example": "125108405"
+                  },
+                  "swiftCode": {
+                    "type": "string",
+                    "example": "12345"
+                  },
+                  "accountName": {
+                    "type": "string",
+                    "example": "Primary Account Number"
+                  },
+                  "bankName": {
+                    "type": "string",
+                    "example": "Erebor Bank"
+                  },
+                  "bankAddress": {
+                    "type": "string",
+                    "example": ""
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "PENDING"
+                  }
+                },
+                "description": "Returned if `withVirtualAccount` is true"
+              }
+            }
+          },
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "id": "6fb07a60-a2c2-5eb6-bb4b-6a91b04962b1",
+                "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                "sequenceId": "james-uuid-test-3",
+                "name": "NGN Primary",
+                "metadata": {},
+                "currency": "NGN",
+                "status": "active",
+                "createdAt": 1768578971832,
+                "updatedAt": 1768578971832,
+                "availableBalance": 0,
+                "virtualAccount": {
+                  "id": "d7fbe40a-6d50-4607-8648-9827a54947c3",
+                  "subwalletId": "6959f27c-9886-536b-a276-e1f4c2e632db",
+                  "provider": "erebor",
+                  "currency": "USD",
+                  "accountNumber": "1234567890",
+                  "routingNumber": "125108405",
+                  "swiftCode": "12345",
+                  "accountName": "Primary Account Number",
+                  "bankName": "Erebor Bank",
+                  "bankAddress": "",
+                  "status": "PENDING"
+                }
+              }
+            }
+          }
+        }
+      },
+      "description": "OK"
+    },
+    "201": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "examples": {
+            "Succwss": {
+              "summary": "Succwss",
+              "value": {
+                "id": "6fb07a60-a2c2-5eb6-bb4b-6a91b04962b1",
+                "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                "sequenceId": "james-uuid-test-3",
+                "name": "NGN Primary",
+                "metadata": {},
+                "currency": "NGN",
+                "status": "active",
+                "createdAt": 1768578971832,
+                "updatedAt": 1768578971832,
+                "availableBalance": 0
+              }
+            }
+          }
+        }
+      },
+      "description": "Created"
+    },
+    "400": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "examples": {
+            "Bad Request": {
+              "summary": "Bad Request",
+              "value": {
+                "code": "ValidationError",
+                "message": "invalid wallet id"
+              }
+            }
+          }
+        }
+      },
+      "description": "Bad Request"
+    },
+    "500": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "examples": {
+            "Internal Server Error": {
+              "summary": "Internal Server Error",
+              "value": {
+                "code": "InternalServerError",
+                "message": "something went wrong"
+              }
+            }
+          }
+        }
+      },
+      "description": "Internal Server Error"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

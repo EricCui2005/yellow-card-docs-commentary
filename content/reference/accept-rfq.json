@@ -1,0 +1,86 @@
+{
+  "title": "Accept RFQ",
+  "slug": "accept-rfq",
+  "method": "POST",
+  "path": "/rfq/{id}accept",
+  "description": "Accept a quote after it has been provided.",
+  "excerpt": "Accept a quote after it has been provided.",
+  "parameters": [
+    {
+      "in": "path",
+      "name": "id",
+      "schema": {
+        "type": "string",
+        "default": "rfq-uuid-d"
+      },
+      "required": true
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": ""
+    },
+    "201": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {}
+          },
+          "examples": {
+            "Created": {
+              "summary": "Created",
+              "value": {
+                "id": "rfq_f785ce51-596d-4b35-a53b-11d107ca5586",
+                "idempotencyKey": "james-uuid-test-11",
+                "partnerId": "9b821520-52d4-4e91-990c-b2f5452cbc2d",
+                "partnerName": "New Test Partner",
+                "sourceCurrency": "USDT",
+                "sourceCurrencyType": "crypto",
+                "destinationCurrency": "KES",
+                "destinationCurrencyType": "fiat",
+                "sourceAmount": 800,
+                "status": "RFQ_PENDING_REVIEW",
+                "customerStatus": "Quote_PENDING_REVIEW",
+                "createdAt": "2026-02-04T13:04:10.545563845Z",
+                "updatedAt": "2026-02-04T13:04:10.545563845Z",
+                "createdBy": "internal-service",
+                "auditTrail": [
+                  {
+                    "timestamp": "2026-02-04T13:04:10.545566925Z",
+                    "action": "RFQ_CREATED",
+                    "userId": "internal-service",
+                    "userName": "Internal Service",
+                    "role": "system",
+                    "toStatus": "RFQ_PENDING_REVIEW",
+                    "details": {
+                      "amount": "800.00",
+                      "destinationCurrency": "KES",
+                      "destinationCurrencyType": "fiat",
+                      "sourceCurrency": "USDT",
+                      "sourceCurrencyType": "crypto"
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      },
+      "description": "Created"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

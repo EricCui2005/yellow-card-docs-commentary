@@ -1,0 +1,122 @@
+{
+  "sections": [
+    {
+      "title": "Payments API",
+      "pages": [
+        {"slug": "get-channels", "title": "Get Channels", "method": "GET"},
+        {"slug": "get-networks", "title": "Get Networks", "method": "GET"},
+        {"slug": "get-rates", "title": "Get Rates", "method": "GET"},
+        {"slug": "get-account", "title": "Get Account", "method": "GET"},
+        {"slug": "resolve-bank-account", "title": "Resolve Bank Account", "method": "POST"},
+        {"slug": "widget-quote", "title": "Widget Quote", "method": "POST"},
+        {"slug": "crypto-channels", "title": "Get Crypto Channels", "method": "GET"}
+      ]
+    },
+    {
+      "title": "Sends",
+      "pages": [
+        {"slug": "submit-payment", "title": "Submit Send Request", "method": "POST"},
+        {"slug": "accept-payment-request", "title": "Accept Send Request", "method": "POST"},
+        {"slug": "deny-payment-request", "title": "Deny Send Request", "method": "POST"},
+        {"slug": "deny-payment-request-1", "title": "Fail Send Pending Liquidity", "method": "POST"},
+        {"slug": "lookup-payment", "title": "Lookup Send", "method": "GET"},
+        {"slug": "lookup-payment-by-sequenceid", "title": "Lookup Send by sequenceId", "method": "GET"},
+        {"slug": "list-payments", "title": "List Sends", "method": "GET"}
+      ]
+    },
+    {
+      "title": "Receives",
+      "pages": [
+        {"slug": "submit-collection-request", "title": "Submit Receive Request", "method": "POST"},
+        {"slug": "accept-collection-request", "title": "Accept Receive Request", "method": "POST"},
+        {"slug": "deny-collection-request", "title": "Deny Receive Request", "method": "POST"},
+        {"slug": "cancel-collection", "title": "Cancel Receive", "method": "POST"},
+        {"slug": "refund-collection", "title": "Refund Receive", "method": "POST"},
+        {"slug": "lookup-collection", "title": "Lookup Receive", "method": "GET"},
+        {"slug": "lookup-collection-by-sequenceid", "title": "Lookup Receive by sequenceId", "method": "GET"},
+        {"slug": "list-collections", "title": "List Receives", "method": "GET"}
+      ]
+    },
+    {
+      "title": "Fees",
+      "pages": [
+        {"slug": "get-fee-config", "title": "Get Fee Config", "method": "POST"}
+      ]
+    },
+    {
+      "title": "Webhooks",
+      "pages": [
+        {"slug": "create-webhook", "title": "Create Webhook", "method": "POST"},
+        {"slug": "update-webhook", "title": "Update Webhook", "method": "PUT"},
+        {"slug": "remove-webhook", "title": "Remove Webhook", "method": "DELETE"},
+        {"slug": "list-webhooks", "title": "List Webhooks", "method": "GET"}
+      ]
+    },
+    {
+      "title": "Crypto Sends",
+      "pages": [
+        {"slug": "lookup-settlement-by-sequenceid", "title": "Lookup Crypto Send by sequenceId", "method": "GET"},
+        {"slug": "submit-settlement-request", "title": "Submit Crypto Send Request", "method": "POST"},
+        {"slug": "list-settlements", "title": "List Crypto Sends", "method": "GET"}
+      ]
+    },
+    {
+      "title": "Custody as a Service",
+      "subsections": [
+        {
+          "title": "Vaults",
+          "pages": [
+            {"slug": "post_vaults", "title": "Create Vault", "method": "POST"},
+            {"slug": "get_vaults", "title": "Get Vaults", "method": "GET"},
+            {"slug": "get_vaults-id", "title": "Get Vault by ID", "method": "GET"},
+            {"slug": "get_vaults-config", "title": "Get Asset Config", "method": "GET"},
+            {"slug": "post_addresses", "title": "Generate Address", "method": "POST"}
+          ]
+        },
+        {
+          "title": "Transactions",
+          "pages": [
+            {"slug": "post_sends-fee", "title": "Get Fee", "method": "POST"},
+            {"slug": "post_sends", "title": "Create Send Transaction", "method": "POST"},
+            {"slug": "get-transactions", "title": "Get Transactions", "method": "GET"},
+            {"slug": "get_sends-id", "title": "Get Transaction by ID", "method": "GET"},
+            {"slug": "travel-rule-config", "title": "Travel Rule Config", "method": "GET"}
+          ]
+        },
+        {
+          "title": "Fiat Wallets",
+          "pages": [
+            {"slug": "create-wallet", "title": "Create Wallet", "method": "POST"},
+            {"slug": "get-wallets", "title": "Get Wallets", "method": "GET"},
+            {"slug": "get-fiat-wallet", "title": "Get Wallet", "method": "GET"},
+            {"slug": "update-wallet", "title": "Update Wallet", "method": "PATCH"}
+          ]
+        }
+      ]
+    },
+    {
+      "title": "RFQ",
+      "pages": [
+        {"slug": "create-rfq", "title": "Create RFQ", "method": "POST"},
+        {"slug": "accept-rfq", "title": "Accept RFQ", "method": "POST"},
+        {"slug": "create-rfq-1-1", "title": "Get RFQ", "method": "GET"},
+        {"slug": "get-rfqs", "title": "Get RFQs", "method": "GET"}
+      ]
+    },
+    {
+      "title": "Virtual Accounts",
+      "pages": [
+        {"slug": "get-onboarding-status", "title": "Get Onboarding Status", "method": "GET"},
+        {"slug": "list-virtual-accounts", "title": "List Virtual Accounts", "method": "GET"},
+        {"slug": "get-virtual-account-by-id", "title": "Get Virtual Account by ID", "method": "GET"}
+      ]
+    },
+    {
+      "title": "Receive Accounts - Latin America",
+      "pages": [
+        {"slug": "create-virtual-account", "title": "Create Receive Account", "method": "POST"},
+        {"slug": "get-virtual-account", "title": "Get Receive Account", "method": "GET"}
+      ]
+    }
+  ]
+}

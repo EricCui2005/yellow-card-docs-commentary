@@ -1,0 +1,75 @@
+{
+  "title": "Remove Webhook",
+  "slug": "remove-webhook",
+  "method": "DELETE",
+  "path": "/webhooks/{id}",
+  "description": "Remove a given webhook.",
+  "excerpt": "Remove a given webhook.",
+  "parameters": [
+    {
+      "in": "path",
+      "name": "id",
+      "schema": {
+        "type": "string"
+      },
+      "required": true,
+      "description": "The unique ID of the webhook to be removed."
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {}
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"BadRequestError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "BadRequestError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<div><div style=\"height:50px;border:1px solid var(--color-border-default, rgba(black, 0.1));border-radius:var(--border-radius-lg, 7.5px);min-width:230px;display:inline-flex;padding:10px\"><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:30px;width:30px\"></div><div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:150px;margin:0 15px;margin-bottom:6px\"></div><div style=\"border-radius:var(--border-radius-lg, 7.5px);background-color:var(--color-skeleton, #384248);height:12px;width:75px;margin:0 15px\"></div></div></div></div>"
+}

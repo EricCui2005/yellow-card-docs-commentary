@@ -1,0 +1,75 @@
+{
+  "title": "Get Receive Account",
+  "slug": "get-virtual-account",
+  "method": "GET",
+  "path": "/receive-accounts/{alias}",
+  "description": "Fetch the status of the virtual account by the name of the alias.",
+  "excerpt": "Fetch the status of the virtual account by the name of the alias.",
+  "parameters": [
+    {
+      "in": "path",
+      "name": "alias",
+      "schema": {
+        "type": "string"
+      },
+      "required": true,
+      "description": "The name of the alias you created"
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "",
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "alias": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string",
+                "description": "The current status of the virtual account",
+                "enum": [
+                  "pending",
+                  "active",
+                  "failed"
+                ]
+              },
+              "paymentMethodName": {
+                "type": "string",
+                "description": ""
+              },
+              "fiat": {
+                "type": "string",
+                "enum": [
+                  "MXN",
+                  "BRL",
+                  "COP",
+                  "ARS"
+                ]
+              }
+            },
+            "required": [
+              "status",
+              "fiat"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": ""
+}

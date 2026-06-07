@@ -1,0 +1,96 @@
+{
+  "title": "Lookup Receive",
+  "slug": "lookup-collection",
+  "method": "GET",
+  "path": "/receive/{id}",
+  "description": "Retrieve information about a specific collection request",
+  "excerpt": "Retrieve information about a specific receive request",
+  "parameters": [
+    {
+      "name": "id",
+      "in": "path",
+      "description": "Unique Receive Identifier",
+      "schema": {
+        "type": "string"
+      },
+      "required": true
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n    \"currency\": \"NGN\",\n    \"rate\": 487.89,\n    \"bankInfo\": {\n        \"name\": \"PAGA\",\n        \"accountNumber\": \"1234567890\",\n        \"accountName\": \"Ken Adams\"\n    },\n    \"status\": \"complete\",\n    \"createdAt\": \"2023-02-06T13:31:20.108Z\",\n\t   \"source\": {\n\t\t  \"accountBank\": \"Access Bank\",\n  \t\t\"accountName\": \"OLUWATOBILOBA JAMES FALOLA\",\n\t\t  \"accountNumber\": \"9876543210\",\n\t\t  \"accountType\": \"bank\",\n       \"networkId\" \"93f7c7f9-f2bb-450c-8f6d-1bd70766d3850\"\n\t\t },\n    \"sequenceId\": \"11f4c7f2-f7bb-450c-4s6d-1bd70766d26d\",\n    \"country\": \"NG\",\n    \"reference\": \"JJ8094861\",\n    \"convertedAmount\": 9757.8,\n    \"recipient\": {\n        \"country\": \"Nigeria\",\n        \"address\": \"Home Address\",\n        \"idType\": \"license\",\n        \"phone\": \"+2348192039281\",\n        \"dob\": \"02/01/1987\",\n        \"name\": \"John Doe\",\n        \"idNumber\": \"29012938110\",\n        \"email\": \"john.doe@yellowcard.io\"\n    },\n    \"channelId\": \"fe8f4989-3bf6-41ca-9621-ffe2bc127569\",\n    \"expiresAt\": \"2023-02-06T13:41:20.108Z\",\n    \"updatedAt\": \"2023-02-06T13:31:48.802Z\",\n    \"amount\": 20,\n    \"id\": \"805b2317-0da9-42b9-89fb-e14e3fe12dd8\",\n    \"depositId\": \"47069e2d-b225-4155-9028-2607fe3346bb\"\n}"
+            }
+          }
+        }
+      }
+    },
+    "404": {
+      "description": "404",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"CollectionNotFoundError\",\n    \"message\": \"\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "CollectionNotFoundError"
+              },
+              "message": {
+                "type": "string",
+                "example": ""
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "500",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"InternalServerError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<br/>\n<blockquote class=\"callout callout_warn\" theme=\"⚠️\"><span class=\"callout-icon\">⚠️</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"updated-terminology\"></div><div class=\"heading-text\">Updated Terminology</div><a aria-label=\"Skip link to Updated Terminology\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#updated-terminology\"></a></h3><p>Collections are now called Receives. These <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/receive</code> endpoints replace the legacy <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/collections</code> endpoints. The functionality remains identical, only the terminology has changed. Legacy collections endpoints are deprecated but will continue to  work. We recommend migrating to these new <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/receive</code> endpoints for future compatibility.</p></blockquote>"
+}

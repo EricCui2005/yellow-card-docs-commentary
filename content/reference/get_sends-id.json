@@ -1,0 +1,275 @@
+{
+  "title": "Get Transaction by ID",
+  "slug": "get_sends-id",
+  "method": "GET",
+  "path": "/sends/{id}",
+  "description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code.",
+  "excerpt": "Get details on a transaction.",
+  "parameters": [
+    {
+      "in": "path",
+      "name": "id",
+      "schema": {
+        "type": "string"
+      },
+      "required": true,
+      "description": "Unique identifier of the sent trasaction."
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "Get Send Transaction",
+      "headers": {
+        "Date": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Transfer-Encoding": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Connection": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Content-Encoding": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-requestid": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "access-control-allow-origin": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amz-apigw-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-amzn-trace-id": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "access-control-allow-credentials": {
+          "schema": {
+            "type": "boolean"
+          }
+        },
+        "cf-cache-status": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Strict-Transport-Security": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "expect-ct": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "referrer-policy": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-content-type-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-frame-options": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "x-xss-protection": {
+          "schema": {
+            "type": "integer"
+          }
+        },
+        "X-Hiring": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Set-Cookie": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "Server": {
+          "schema": {
+            "type": "string"
+          }
+        },
+        "CF-RAY": {
+          "schema": {
+            "type": "integer"
+          }
+        }
+      },
+      "content": {
+        "application/json": {
+          "examples": {
+            "OK": {
+              "summary": "OK",
+              "value": {
+                "partnerId": "7882e37a-51c7-4e6f-80cc-4d9ca99e39ae",
+                "sourceAddress": "ec96d00e-67d3-4da0-8022-cf267f7e67e5",
+                "currency": "USDT",
+                "destinationType": "EXTERNAL",
+                "status": "complete",
+                "createdAt": "2025-10-31T17:41:38.833Z",
+                "sequenceId": "14d7ca44-afad-4d08-97d2-e98de10dfaf-22",
+                "network": "TRC20",
+                "externalId": "6b4778ab-e65d-531d-8bbe-373ae6edef18",
+                "token": "USDT_TRC20",
+                "updatedAt": "2025-10-31T17:44:11.042Z",
+                "destinationAddress": "TP8iP5xDUaSu92gViDEaz2Ps6aAinRn6iX",
+                "sourceVaultId": "ec96d00e-67d3-4da0-8022-cf267f7e67e5",
+                "amount": 15,
+                "networkFee": 3.08424,
+                "id": "ec409418-d074-527b-bee3-f37df419811c",
+                "transactionHash": "c2e903292295d8fd05a31b8b4e746426e613e57d6fa61517b28afb8ad415e152",
+                "type": "send"
+              }
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "amount": {
+                "type": "integer",
+                "example": 15,
+                "default": 0
+              },
+              "createdAt": {
+                "type": "string",
+                "example": "2025-10-31T17:41:38.833Z"
+              },
+              "currency": {
+                "type": "string",
+                "example": "USDT"
+              },
+              "destinationAddress": {
+                "type": "string",
+                "example": "TP8iP5xDUaSu92gViDEaz2Ps6aAinRn6iX"
+              },
+              "destinationType": {
+                "type": "string",
+                "example": "EXTERNAL"
+              },
+              "destinationVaultId": {
+                "type": "string"
+              },
+              "externalId": {
+                "type": "string",
+                "example": "6b4778ab-e65d-531d-8bbe-373ae6edef18"
+              },
+              "id": {
+                "type": "string",
+                "example": "ec409418-d074-527b-bee3-f37df419811c"
+              },
+              "network": {
+                "type": "string",
+                "example": "TRC20"
+              },
+              "networkFee": {
+                "type": "number",
+                "example": 3.08424,
+                "default": 0
+              },
+              "partnerId": {
+                "type": "string",
+                "example": "7882e37a-51c7-4e6f-80cc-4d9ca99e39ae"
+              },
+              "sequenceId": {
+                "type": "string",
+                "example": "14d7ca44-afad-4d08-97d2-e98de10dfaf-22"
+              },
+              "sourceAddress": {
+                "type": "string",
+                "example": "ec96d00e-67d3-4da0-8022-cf267f7e67e5"
+              },
+              "sourceVaultId": {
+                "type": "string",
+                "example": "ec96d00e-67d3-4da0-8022-cf267f7e67e5"
+              },
+              "status": {
+                "type": "string",
+                "example": "complete"
+              },
+              "token": {
+                "type": "string",
+                "example": "USDT_TRC20"
+              },
+              "type": {
+                "type": "string",
+                "example": "send"
+              },
+              "updatedAt": {
+                "type": "string",
+                "example": "2025-10-31T17:44:11.042Z"
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          },
+          "examples": {
+            "Internal Server Error": {
+              "summary": "Internal Server Error",
+              "value": {
+                "code": "InternalServerError",
+                "message": "something went wrong"
+              }
+            }
+          }
+        }
+      },
+      "description": "Internal Server Error"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/custody"
+    }
+  ],
+  "security": [
+    {
+      "Timestamp": [],
+      "Authorization": []
+    }
+  ],
+  "bodyHtml": ""
+}

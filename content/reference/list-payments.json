@@ -1,0 +1,267 @@
+{
+  "title": "List Sends",
+  "slug": "list-payments",
+  "method": "GET",
+  "path": "/sends",
+  "description": "Get a list of payment requests",
+  "excerpt": "Get a list of send requests",
+  "parameters": [
+    {
+      "name": "endDate",
+      "in": "query",
+      "description": "a date string in ISO format (_2023-02-13T10:08:57.307Z_)",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "startDate",
+      "in": "query",
+      "description": "a date string in ISO format (_2023-02-13T10:08:57.307Z_)",
+      "schema": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "startAt",
+      "in": "query",
+      "description": "a number indicating the where the pagination should start from",
+      "schema": {
+        "type": "integer",
+        "format": "int32"
+      }
+    },
+    {
+      "name": "perPage",
+      "in": "query",
+      "description": "a number indicating the number of items per page",
+      "schema": {
+        "type": "integer",
+        "format": "int32",
+        "default": 100
+      }
+    },
+    {
+      "name": "rangeBy",
+      "in": "query",
+      "description": "a string indicating the field to which the start and end date are applied - either 'createdAt' or 'updatedAt'",
+      "schema": {
+        "type": "string",
+        "default": "createdAt"
+      }
+    },
+    {
+      "name": "sortBy",
+      "in": "query",
+      "description": "a string indicating the field on which to sort by - either 'createdAt' or 'updatedAt'",
+      "schema": {
+        "type": "string",
+        "default": "createdAt"
+      }
+    },
+    {
+      "name": "orderBy",
+      "in": "query",
+      "description": "a string indicating how to order the results - either 'asc' or 'desc'",
+      "schema": {
+        "type": "string",
+        "default": "desc"
+      }
+    }
+  ],
+  "requestBody": null,
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"payments\": [\n        {\n            \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n            \"currency\": \"NGN\",\n            \"rate\": 488.25,\n            \"status\": \"expired\",\n            \"createdAt\": \"2023-02-15T13:01:08.386Z\",\n            \"source\": {\n                \"accountNumber\": \"1111111111\",\n                \"networkId\": \"6df48502-1ebe-473f-be17-e2cae4dd67ee\",\n                \"accountType\": \"bank\"\n            },\n            \"country\": \"NG\",\n            \"convertedAmount\": 9765,\n            \"recipient\": {\n                \"country\": \"Nigeria\",\n                \"address\": \"Home Address\",\n                \"idType\": \"license\",\n                \"phone\": \"+2349092916898\",\n                \"dob\": \"02/01/1997\",\n                \"name\": \"John Doe\",\n                \"idNumber\": \"314159\",\n                \"email\": \"john.doe@yellowcard.io\"\n            },\n            \"channelId\": \"fe8f4989-3bf6-41ca-9621-ffe2bc127569\",\n            \"expiresAt\": \"2023-02-15T13:11:08.386Z\",\n            \"updatedAt\": \"2023-02-15T13:11:11.662Z\",\n            \"amount\": 20,\n            \"id\": \"f39aa0a6-5006-5559-9424-dc72876f0561\"\n        },\n        {\n            \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n            \"currency\": \"NGN\",\n            \"rate\": 487.85,\n            \"status\": \"expired\",\n            \"createdAt\": \"2023-02-16T15:13:17.808Z\",\n            \"source\": {\n                \"accountNumber\": \"1111111111\",\n                \"networkId\": \"6df48502-1ebe-473f-be17-e2cae4dd67ee\",\n                \"accountType\": \"bank\"\n            },\n            \"country\": \"NG\",\n            \"convertedAmount\": 9757,\n            \"recipient\": {\n                \"country\": \"Nigeria\",\n                \"address\": \"Home Address\",\n                \"idType\": \"license\",\n                \"phone\": \"+2349092916898\",\n                \"dob\": \"02/01/1997\",\n                \"name\": \"John Doe\",\n                \"idNumber\": \"314159\",\n                \"email\": \"john.doe@yellowcard.io\"\n            },\n            \"channelId\": \"fe8f4989-3bf6-41ca-9621-ffe2bc127569\",\n            \"expiresAt\": \"2023-02-16T15:23:17.808Z\",\n            \"updatedAt\": \"2023-02-16T15:24:12.982Z\",\n            \"amount\": 20,\n            \"id\": \"5073fa46-59aa-5b82-9349-b415e323cc8e\"\n        },\n        {\n            \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n            \"currency\": \"NGN\",\n            \"rate\": 488.25,\n            \"status\": \"expired\",\n            \"createdAt\": \"2023-02-15T13:01:06.506Z\",\n            \"source\": {\n                \"accountNumber\": \"1111111111\",\n                \"networkId\": \"6df48502-1ebe-473f-be17-e2cae4dd67ee\",\n                \"accountType\": \"bank\"\n            },\n            \"country\": \"NG\",\n            \"convertedAmount\": 9765,\n            \"recipient\": {\n                \"country\": \"Nigeria\",\n                \"address\": \"Home Address\",\n                \"idType\": \"license\",\n                \"phone\": \"+2349092916898\",\n                \"dob\": \"02/01/1997\",\n                \"name\": \"John Doe\",\n                \"idNumber\": \"314159\",\n                \"email\": \"john.doe@yellowcard.io\"\n            },\n            \"channelId\": \"fe8f4989-3bf6-41ca-9621-ffe2bc127569\",\n            \"expiresAt\": \"2023-02-15T13:11:06.505Z\",\n            \"updatedAt\": \"2023-02-15T13:11:08.847Z\",\n            \"amount\": 20,\n            \"id\": \"843479b1-a0fc-5090-90de-f9787a04cad0\"\n        },\n        {\n            \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n            \"currency\": \"NGN\",\n            \"rate\": 487.85,\n            \"status\": \"expired\",\n            \"createdAt\": \"2023-02-16T15:12:50.518Z\",\n            \"source\": {\n                \"accountNumber\": \"1111111111\",\n                \"networkId\": \"6df48502-1ebe-473f-be17-e2cae4dd67ee\",\n                \"accountType\": \"bank\"\n            },\n            \"country\": \"NG\",\n            \"convertedAmount\": 9757,\n            \"recipient\": {\n                \"country\": \"Nigeria\",\n                \"address\": \"Home Address\",\n                \"idType\": \"license\",\n                \"phone\": \"+2349092916898\",\n                \"dob\": \"02/01/1997\",\n                \"name\": \"John Doe\",\n                \"idNumber\": \"314159\",\n                \"email\": \"john.doe@yellowcard.io\"\n            },\n            \"channelId\": \"fe8f4989-3bf6-41ca-9621-ffe2bc127569\",\n            \"expiresAt\": \"2023-02-16T15:22:50.518Z\",\n            \"updatedAt\": \"2023-02-16T15:23:11.048Z\",\n            \"amount\": 20,\n            \"id\": \"19582e7e-f960-5c6f-8688-f1a4c2c36a5d\"\n        },\n        {\n            \"partnerId\": \"9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01\",\n            \"currency\": \"NGN\",\n            \"rate\": 487.21,\n            \"status\": \"expired\",\n            \"createdAt\": \"2023-02-23T14:12:43.187Z\",\n            \"source\": {\n                \"accountNumber\": \"1111111111\",\n                \"networkId\": \"6df48502-1ebe-473f-be17-e2cae4dd67ee\",\n                \"accountType\": \"bank\"\n            },\n            \"sequenceId\": \"test2-c1f913cc-156c-4e60-bd71-887bf4f52287\",\n            \"country\": \"NG\",\n            \"convertedAmount\": 9744.2,\n            \"recipient\": {\n                \"country\": \"Nigeria\",\n                \"address\": \"Home Address\",\n                \"idType\": \"license\",\n                \"phone\": \"+2349092916898\",\n                \"dob\": \"02/01/1997\",\n                \"name\": \"John Doe\",\n                \"idNumber\": \"314159\",\n                \"email\": \"john.doe@yellowcard.io\"\n            },\n            \"channelId\": \"fe8f4989-3bf6-41ca-9621-ffe2bc127569\",\n            \"expiresAt\": \"2023-02-23T14:22:43.187Z\",\n            \"updatedAt\": \"2023-02-23T14:23:53.887Z\",\n            \"amount\": 20,\n            \"id\": \"f51c7b43-140d-51f0-ac5e-841ce3d95160\"\n        }\n      ]\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "payments": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "partnerId": {
+                      "type": "string",
+                      "example": "9ecf5248-17e7-4a2b-b5a8-3bd58ff0fe01"
+                    },
+                    "currency": {
+                      "type": "string",
+                      "example": "NGN"
+                    },
+                    "rate": {
+                      "type": "number",
+                      "example": 488.25,
+                      "default": 0
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": "expired"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "example": "2023-02-15T13:01:08.386Z"
+                    },
+                    "source": {
+                      "type": "object",
+                      "properties": {
+                        "accountNumber": {
+                          "type": "string",
+                          "example": "1111111111"
+                        },
+                        "networkId": {
+                          "type": "string",
+                          "example": "6df48502-1ebe-473f-be17-e2cae4dd67ee"
+                        },
+                        "accountType": {
+                          "type": "string",
+                          "example": "bank"
+                        }
+                      }
+                    },
+                    "country": {
+                      "type": "string",
+                      "example": "NG"
+                    },
+                    "convertedAmount": {
+                      "type": "integer",
+                      "example": 9765,
+                      "default": 0
+                    },
+                    "recipient": {
+                      "type": "object",
+                      "properties": {
+                        "country": {
+                          "type": "string",
+                          "example": "Nigeria"
+                        },
+                        "address": {
+                          "type": "string",
+                          "example": "Home Address"
+                        },
+                        "idType": {
+                          "type": "string",
+                          "example": "license"
+                        },
+                        "phone": {
+                          "type": "string",
+                          "example": "+2349092916898"
+                        },
+                        "dob": {
+                          "type": "string",
+                          "example": "02/01/1997"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "John Doe"
+                        },
+                        "idNumber": {
+                          "type": "string",
+                          "example": "314159"
+                        },
+                        "email": {
+                          "type": "string",
+                          "example": "john.doe@yellowcard.io"
+                        }
+                      }
+                    },
+                    "channelId": {
+                      "type": "string",
+                      "example": "fe8f4989-3bf6-41ca-9621-ffe2bc127569"
+                    },
+                    "expiresAt": {
+                      "type": "string",
+                      "example": "2023-02-15T13:11:08.386Z"
+                    },
+                    "updatedAt": {
+                      "type": "string",
+                      "example": "2023-02-15T13:11:11.662Z"
+                    },
+                    "amount": {
+                      "type": "integer",
+                      "example": 20,
+                      "default": 0
+                    },
+                    "id": {
+                      "type": "string",
+                      "example": "f39aa0a6-5006-5559-9424-dc72876f0561"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "text/plain": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"InvalidInput\",\n    \"message\": \"invalid startDate passed in request\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InvalidInput"
+              },
+              "message": {
+                "type": "string",
+                "example": "invalid startDate passed in request"
+              }
+            }
+          }
+        }
+      }
+    },
+    "500": {
+      "description": "500",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"InternalServerError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "InternalServerError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<br/>\n<blockquote class=\"callout callout_warn\" theme=\"⚠️\"><span class=\"callout-icon\">⚠️</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"updated-terminology\"></div><div class=\"heading-text\">Updated Terminology</div><a aria-label=\"Skip link to Updated Terminology\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#updated-terminology\"></a></h3><p>Payments are now called Sends. These Send endpoints replace the legacy Payments endpoints. The functionality remains identical, only the terminology has changed. Legacy payment endpoints are deprecated but will continue to  work. We recommend migrating to these new <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">/send</code> endpoints for future compatibility.</p></blockquote>"
+}

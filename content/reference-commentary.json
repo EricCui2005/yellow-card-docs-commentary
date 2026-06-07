@@ -1,0 +1,121 @@
+{
+  "get-channels": [
+    {
+      "id": "ref-channelid-opacity",
+      "type": "commentary",
+      "anchor": "currencies are currently supported",
+      "body": "`channelId` is an opaque UUID once it leaves this endpoint. Every downstream context that echoes it (sends, webhooks, logged transactions) drops the `(country, currency, channelType, rampType)` tuple, so integrators end up caching the lookup or re-fetching the full list just to render a label.\n\n*Echo the denormalized tuple alongside `channelId`, or ship a stable composite key (e.g. `NG.bank.NGN.withdraw`) that survives in logs without a second API call.*"
+    },
+    {
+      "id": "ref-channels-filter-default",
+      "type": "project",
+      "anchor": "Always filter by status!",
+      "body": "If a 🚧 warning callout is necessary to tell every integrator to drop `inactive` channels, the default should drop them too. Every careful integrator writes the same `.filter(c => c.status === \"active\")`; everyone who doesn't ships broken UIs.\n\n*Default `GET /channels` to `status=active`; add `?status=all` as the explicit opt-in for admin-style callers.*"
+    },
+    {
+      "id": "ref-channels-widget-status",
+      "type": "commentary",
+      "anchor": "widgetStatus",
+      "body": "Widget integrators are told to filter by `widgetStatus` instead of `status` — the default-filter param should accept `widgetStatus=active` so widget callers stay on the same idiom.\n\nMore broadly: the response shape carries three near-parallel status fields (`status`, `widgetStatus`, `apiStatus`) with no doc-level guidance on how they can diverge. *Add a one-paragraph \"which status do I read?\" decision table.*"
+    }
+  ],
+
+  "get-networks": [
+    {
+      "id": "ref-networks-filter-default",
+      "type": "project",
+      "anchor": "Always filter by status!",
+      "body": "Same shape as `Get Channels` — same callout, same case for server-side default filtering. *Default to `status=active`; add `?status=all` as the opt-in.*"
+    },
+    {
+      "id": "ref-networks-no-by-id",
+      "type": "project",
+      "anchor": "Stanbic Bank Kenya",
+      "body": "No `GET /networks/{id}` endpoint exists, so resolving a `networkId` returned on a send (e.g. inside `destination.networkId`) to a human-readable bank name requires fetching the full country list and looking it up client-side.\n\n*Add the by-ID endpoint, or include `networkName` on any response object that already carries a `networkId`.*"
+    }
+  ],
+
+  "resolve-bank-account": [
+    {
+      "id": "ref-bank-resolution-countries",
+      "type": "commentary",
+      "anchor": "Currently only required for Nigeria",
+      "body": "Two issues in one callout:\n\n1. \"Available in select countries\" never enumerates which countries. Integrators discover the supported set by hitting 400s. *List supported ISO codes in the description, or expose `supportsBankResolution` on `Get Channels`.*\n2. \"Required for Nigeria\" conflates endpoint scope with workflow. The endpoint validates a bank account; whether it's *required* before a send is a workflow decision. *Clarify whether `Submit Send Request` to NGN rejects sends that skipped this step.*"
+    }
+  ],
+
+  "lookup-payment-by-sequenceid": [
+    {
+      "id": "ref-sends-legacy-paths",
+      "type": "issue",
+      "anchor": "Legacy payment endpoints are deprecated",
+      "body": "Two endpoints in the Sends group still use `/payments` paths while the rest are on `/send`:\n\n- `Lookup Send by sequenceId` → `GET /payments/sequence-id/{id}` (this page)\n- `Fail Send Pending Liquidity` → `POST /payments/{id}/fail-pending-liquidity`\n\nForces a `baseUrl + \"/send\"` helper to special-case two endpoints. *Ship `/send/...` aliases for the stragglers and deprecate `/payments/...` — or commit to keeping `/payments` everywhere. Pick one.*"
+    }
+  ],
+
+  "submit-collection-request": [
+    {
+      "id": "ref-receives-legacy-slugs",
+      "type": "issue",
+      "anchor": "the terminology has changed",
+      "body": "Endpoint paths migrated to `/receive`, but the doc-site slugs and prose descriptions still use `collection` everywhere (`submit-collection-request`, `accept-collection-request`, \"Accept a collection request for execution.\", etc.). The Updated Terminology callout acknowledges the rename — the migration just isn't finished."
+    },
+    {
+      "id": "ref-receives-legacy-errors",
+      "type": "commentary",
+      "anchor": "Legacy collections endpoints are deprecated",
+      "body": "Error names (`CollectionNotFoundError`, `\"Collection request expired\"`) are probably back-compat on purpose — but the doc never says so. *Note the back-compat intent alongside this callout, and ship `ReceiveNotFoundError` as an alias so new integrators don't pick up the legacy name.*"
+    }
+  ],
+
+  "create-webhook": [
+    {
+      "id": "ref-webhook-state-example",
+      "type": "issue",
+      "anchor": "Create a webhook for a given transaction state",
+      "body": "Request and response examples on this endpoint both use `\"state\": \"collection.complete\"`. The Webhooks / Events guides have moved to `RECEIVE.*` / `SEND.*` (e.g. `RECEIVE.COMPLETE`); the example here is stale.\n\n*Update to `receive.complete`. Same check needed on `Update Webhook` and `List Webhooks`.*"
+    },
+    {
+      "id": "ref-webhook-state-events-link",
+      "type": "project",
+      "anchor": "or for all states.",
+      "body": "The `state` field is described as \"the transaction status event that this webhook will be activated for,\" but the description doesn't link to the canonical event list — integrators have to leave the page and hunt for it in the Events guide.\n\n*Inline the list (or a link to it) in the body-parameter description.*"
+    }
+  ],
+
+  "submit-settlement-request": [
+    {
+      "id": "ref-crypto-custody-collision",
+      "type": "commentary",
+      "anchor": "endpoints handle cryptocurrency conversions",
+      "body": "Two different services use the word \"send\" for two different operations, with no visual hint in the sidebar:\n\n- Crypto Sends → `POST /business/send/crypto` (partner-rail disbursement, this endpoint).\n- Custody → Create Send Transaction → `POST /custody/sends` (outbound from a custody wallet).\n\nBase URLs differ (`/business` vs. `/custody`) but the sidebar doesn't surface that. *Prefix sidebar entries with the service name, or add a \"Which API am I looking at?\" intro that names the base URL.*"
+    }
+  ],
+
+  "create-rfq": [
+    {
+      "id": "ref-rfq-examples-stop-pending",
+      "type": "project",
+      "anchor": "Create conversion request from one currency to the other.",
+      "body": "`Create RFQ`, `Get RFQ`, and `Accept RFQ` example responses all stop at `RFQ_PENDING_REVIEW`. The fields integrators actually need to render a quote — `destinationAmount`, `quotedRate`, `effectiveRate`, `feePercentage`, `quoteExpiresAt` — only appear in the `Get RFQs` list example (because the seed data there happens to include a `TRANSACTION_COMPLETED` record).\n\n*Add a `QUOTE_SENT` example to each of the three single-RFQ endpoints with all quote fields populated.*"
+    }
+  ],
+
+  "get-rfqs": [
+    {
+      "id": "ref-rfq-status-taxonomy",
+      "type": "commentary",
+      "anchor": "Retrieve list of all RFQ with pagination",
+      "body": "Two status taxonomies run in parallel: `status: RFQ_*` (internal) and `customerStatus: Quote_*` / `\"Transaction completed\"` (customer-facing). The split isn't documented.\n\n*Add a mapping table to the RFQ section overview so integrators know which field to render and which to branch on.*"
+    }
+  ],
+
+  "list-virtual-accounts": [
+    {
+      "id": "ref-virtual-accounts-split",
+      "type": "commentary",
+      "anchor": "Retrieves paginated list of virtual bank accounts for the authenticated partner",
+      "body": "\"Virtual Accounts\" and \"Receive Accounts - Latin America\" describe the same concept in two sibling sidebar sections. The split is presumably regulatory (LatAm rails work differently) but the doc never says so.\n\n*Merge under one heading with a regional sub-grouping, or add a \"Why two sections?\" intro to each.*"
+    }
+  ]
+}

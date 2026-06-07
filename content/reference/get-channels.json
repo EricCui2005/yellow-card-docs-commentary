@@ -1,0 +1,101 @@
+{
+  "title": "Get Channels",
+  "slug": "get-channels",
+  "method": "GET",
+  "path": "/channels",
+  "description": "Retrieve all supported payment ramps (Bank Transfer, Mobile Money, E-Wallets transfers)",
+  "excerpt": "Retrieve all supported payment ramps (Bank Transfer, Mobile Money, E-Wallets transfers)",
+  "parameters": [
+    {
+      "name": "country",
+      "in": "query",
+      "description": "Specific country (ISO 3166-2) to retrieve channels for.",
+      "schema": {
+        "type": "string"
+      }
+    }
+  ],
+  "requestBody": {
+    "content": {
+      "application/json": {
+        "schema": {},
+        "examples": {
+          "Request Example": {
+            "value": {
+              "id": "7844f392-1421-47df-8a90-cbf7096b0441",
+              "max": 5000000,
+              "currency": "NGN",
+              "countryCurrency": "NGN",
+              "status": "active",
+              "widgetStatus": "active",
+              "feeLocal": 2.3,
+              "vendorId": "7844f392-1421-47df-8a90-cbf7096b0441",
+              "createdAt": "2022-08-09T11:41:25.696Z",
+              "country": "NG",
+              "feeUSD": 0.5,
+              "min": 0,
+              "channelType": "bank",
+              "apiStatus": "active",
+              "rampType": "withdraw",
+              "settlementType": "instant",
+              "estimatedSettlementTime": 60,
+              "updatedAt": "2022-08-09T11:41:25.696Z",
+              "balancer": {}
+            }
+          }
+        }
+      }
+    }
+  },
+  "responses": {
+    "200": {
+      "description": "200",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "[\n{\n \"id\": \"7844f392-1421-47df-8a90-cbf7096b0441\",\n \"max\": 5000000,\n \"currency\": \"NGN\",\n \"countryCurrency\": \"NGN\",\n \"status\": \"active\",\n \"widgetStatus\": \"active\",\n \"feeLocal\": 185.2,\n \"createdAt\": \"2022-08-09T11:41:25.696Z\",\n \"vendorId\": \"7844f392-1421-47df-8a90-cbf7096b0441\",\n \"country\": \"NG\",\n \"feeUSD\": 1.2,\n \"min\": 0,\n \"channelType\": \"bank\",\n \"rampType\": \"withdraw\",\n \"apiStatus\": \"active\",\n \"settlementType\": \"instant\",\n \"estimatedSettlementTime\": 60,\n \"updatedAt\": \"2022-08-09T11:41:25.696Z\",\n \"balancer\": {},\n \"widgetMin\":100,\n \"widgetMax\":10000,\n \"countryMin\":0,\n \"countryMax\":10000,\n}\n]"
+            }
+          }
+        }
+      }
+    },
+    "400": {
+      "description": "400",
+      "content": {
+        "application/json": {
+          "examples": {
+            "Result": {
+              "value": "{\n    \"code\": \"BadRequestError\",\n    \"message\": \"something went wrong\"\n}"
+            }
+          },
+          "schema": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string",
+                "example": "BadRequestError"
+              },
+              "message": {
+                "type": "string",
+                "example": "something went wrong"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://sandbox.api.yellowcard.io/business"
+    }
+  ],
+  "security": [
+    {
+      "sec0": [],
+      "sec1": []
+    }
+  ],
+  "bodyHtml": "<p>This endpoint that enables the ability to see a list of all <span class=\"GlossaryItem-trigger\">channels</span> and their status as well as determine which countries and currencies are currently supported.</p>\n<blockquote class=\"callout callout_warn\" theme=\"🚧\"><span class=\"callout-icon\">🚧</span><h3 class=\"heading heading-3 header-scroll\"><div class=\"heading-anchor anchor waypoint\" id=\"always-filter-by-status\"></div><div class=\"heading-text\">Always filter by status!</div><a aria-label=\"Skip link to Always filter by status!\" class=\"heading-anchor-icon fa fa-regular fa-anchor\" href=\"#always-filter-by-status\"></a></h3><p>Payment Channels in Africa do not have perfect uptime. Each channel has a status attached to enable dynamic availability. It is a recommended best practice to dynamic disable/filter out any channels with an &quot;inactive&quot; status.</p><p>if you&#x27;re using the channels endpoint for the widget integration, be sure to filter by <code class=\"rdmd-code lang- theme-undefined\" data-lang=\"\">widgetStatus</code> field on the channels response.</p></blockquote>"
+}
