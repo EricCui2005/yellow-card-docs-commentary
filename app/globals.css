@@ -664,28 +664,81 @@ body {
   display: block;
 }
 
-/* Type-specific colors */
+/* Type-specific colors. The --halo custom property feeds the idle pulse
+   animation below so each marker breathes in its own type color. */
 .commentary-marker--commentary {
   background-color: #3b82f6; /* blue */
+  --halo: rgba(59, 130, 246, 0.4);
 }
 .commentary-marker--issue {
   background-color: #ef4444; /* red */
+  --halo: rgba(239, 68, 68, 0.4);
 }
 .commentary-marker--project {
   background-color: #f59e0b; /* amber */
+  --halo: rgba(245, 158, 11, 0.42);
 }
 
 .dark .commentary-marker--commentary {
   background-color: #60a5fa;
   color: #0b0c0d;
+  --halo: rgba(96, 165, 250, 0.45);
 }
 .dark .commentary-marker--issue {
   background-color: #f87171;
   color: #0b0c0d;
+  --halo: rgba(248, 113, 113, 0.45);
 }
 .dark .commentary-marker--project {
   background-color: #fbbf24;
   color: #0b0c0d;
+  --halo: rgba(251, 191, 36, 0.45);
+}
+
+/* Idle "click me" pulse: a soft colored halo that breathes in and out.
+   Only hydrated markers (with a type class) animate — pre-hydration
+   placeholders stay still so the page doesn't get loud on first paint.
+   Staggered by type so several markers on the same page don't peak in
+   unison. */
+.commentary-marker--commentary,
+.commentary-marker--issue,
+.commentary-marker--project {
+  animation: commentary-marker-pulse 3.2s ease-in-out infinite;
+}
+.commentary-marker--issue {
+  animation-delay: -1.1s;
+}
+.commentary-marker--project {
+  animation-delay: -2.2s;
+}
+
+@keyframes commentary-marker-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.18),
+      0 0 0 0 var(--halo, transparent);
+  }
+  50% {
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.18),
+      0 0 0 5px var(--halo, transparent),
+      0 0 12px 2px var(--halo, transparent);
+  }
+}
+
+/* Hover overrides the animation so the user gets a clean affordance
+   without the pulse competing for attention. */
+.commentary-marker:hover {
+  animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .commentary-marker--commentary,
+  .commentary-marker--issue,
+  .commentary-marker--project {
+    animation: none;
+  }
 }
 
 /* ---- Popover ---- */
@@ -821,7 +874,7 @@ body {
 
 .commentary-tour {
   position: fixed;
-  top: 190px;
+  top: 204px;
   right: 24px;
   z-index: 80;
   font-size: 13px;

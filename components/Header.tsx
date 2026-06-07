@@ -51,10 +51,10 @@ export default function Header() {
           badge so the eye catches it; the rest is plain text. On-brand
           warm cream — a little more saturated than the page bg so it
           reads as a label with weight, not a warning. */}
-      <div className="bg-[#FFE066] dark:bg-[#5a4612] border-b-2 border-[#D4A017] dark:border-[#8a6b18] text-[#3a2f0a] dark:text-[#FFE89A] shadow-[0_2px_8px_rgba(212,160,23,0.2)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-center gap-3 text-[14px] leading-snug text-center">
-          <span className="inline-flex items-center gap-1.5 bg-[#1f2937] dark:bg-[#0b0c0d] text-[#FFCF33] px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase shrink-0 shadow-sm">
-            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+      <div className="bg-[#FFE066] dark:bg-[#5a4612] border-b-2 border-[#D4A017] dark:border-[#8a6b18] text-[#3a2f0a] dark:text-[#FFE89A] shadow-[0_3px_10px_rgba(212,160,23,0.22)] dark:shadow-[0_3px_10px_rgba(0,0,0,0.45)]">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-center gap-3.5 text-[15px] leading-snug text-center">
+          <span className="inline-flex items-center gap-2 bg-[#1f2937] dark:bg-[#0b0c0d] text-[#FFCF33] px-3 py-1.5 rounded-full text-[12px] font-bold tracking-wider uppercase shrink-0 shadow-sm">
+            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <circle cx="12" cy="12" r="10" />
               <line x1="12" y1="8" x2="12" y2="12" />
               <line x1="12" y1="16" x2="12.01" y2="16" />
