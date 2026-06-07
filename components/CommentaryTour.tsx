@@ -12,6 +12,7 @@
 //              progress fill, Prev/Next, End tour
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import {
   useCommentary,
   type AnnotationType,
@@ -86,6 +87,7 @@ export default function CommentaryTour() {
     nextStep,
     prevStep,
   } = useCommentary();
+  const pathname = usePathname();
   const [expanded, setExpanded] = useState(false);
   // Panel scope selector — independent of an in-flight tour's scope.
   // Defaults to the section we're currently viewing (or "all" if neither).
@@ -105,8 +107,10 @@ export default function CommentaryTour() {
   }, [currentSection]);
 
   if (sequence.length === 0) return null;
-  // Hide on routes outside /docs and /reference.
-  if (currentSection === null) return null;
+  // Show on the home page, /docs/*, and /reference/*. Hide on /changelog/*
+  // (not a documentation surface — and the widget would compete with the
+  // changelog entries for attention).
+  if (pathname.startsWith("/changelog")) return null;
 
   const inScope = (item: (typeof sequence)[number], scope: Scope) =>
     scope === "all" || item.section === scope;

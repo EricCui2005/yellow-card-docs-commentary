@@ -10,7 +10,7 @@
       "id": "gla-sandbox-2",
       "type": "project",
       "anchor": "Once you have completed testing in sandbox, our team will need to review and sign off",
-      "body": "Self-serve \"Ready to go live\" dashboard that auto-collects the review artifacts so the human reviewer starts pre-assembled."
+      "body": "Self-serve \"Ready to go live\" dashboard that auto-collects the review artifacts so the human reviewer starts pre-assembled.\n\n**Prototype:** [live demo](https://yellow-card-live-checklist.vercel.app/) · [source](https://github.com/EricCui2005/yellow-card-live-checklist)"
     },
     {
       "id": "gla-prodtest-1",
@@ -276,7 +276,7 @@
       "id": "auth-no-sdk-2",
       "type": "project",
       "anchor": "The message to sign is a concatenation of",
-      "body": "Publish a TypeScript and Python signing helper (~50 lines each) on npm and PyPI. Cheapest meaningful DX win available."
+      "body": "Publish a TypeScript and Python signing helper (~50 lines each) on npm and PyPI. Cheapest meaningful DX win available.\n\n**Prototype:** [live demo](https://yellow-card-signature-helper.vercel.app/) · [source](https://github.com/EricCui2005/yellow-card-signature-helper)"
     }
   ],
   "sandbox-testing-api": [

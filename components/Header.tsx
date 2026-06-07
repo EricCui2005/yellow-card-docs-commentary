@@ -49,11 +49,12 @@ export default function Header() {
 
       {/* Unofficial-mirror disclaimer strip. Lead with a bold UNOFFICIAL
           badge so the eye catches it; the rest is plain text. On-brand
-          warm cream so it reads as a label, not a warning. */}
-      <div className="bg-[#FFE995] dark:bg-[#4a3a0e] border-b-2 border-[#E5B82A] dark:border-[#7a5e15] text-[#4a3a0e] dark:text-[#FFE89A] shadow-sm">
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-2 flex items-center justify-center gap-2.5 text-[13px] leading-snug text-center">
-          <span className="inline-flex items-center gap-1.5 bg-[#1f2937] dark:bg-[#0b0c0d] text-[#FFCF33] px-2 py-0.5 rounded-full text-[10.5px] font-bold tracking-wider uppercase shrink-0">
-            <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+          warm cream — a little more saturated than the page bg so it
+          reads as a label with weight, not a warning. */}
+      <div className="bg-[#FFE066] dark:bg-[#5a4612] border-b-2 border-[#D4A017] dark:border-[#8a6b18] text-[#3a2f0a] dark:text-[#FFE89A] shadow-[0_2px_8px_rgba(212,160,23,0.2)] dark:shadow-[0_2px_8px_rgba(0,0,0,0.4)]">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-center gap-3 text-[14px] leading-snug text-center">
+          <span className="inline-flex items-center gap-1.5 bg-[#1f2937] dark:bg-[#0b0c0d] text-[#FFCF33] px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase shrink-0 shadow-sm">
+            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.4} strokeLinecap="round" strokeLinejoin="round" aria-hidden>
               <circle cx="12" cy="12" r="10" />
               <line x1="12" y1="8" x2="12" y2="12" />
               <line x1="12" y1="16" x2="12.01" y2="16" />

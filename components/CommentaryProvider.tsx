@@ -98,9 +98,9 @@ function routePrefixFor(section: Section): string {
   return section === "guides" ? "/docs" : "/reference";
 }
 
-// Sticky site header is ~150px tall (disclaimer strip + top row + nav row);
+// Sticky site header is ~158px tall (disclaimer strip + top row + nav row);
 // leave a buffer so the marker doesn't end up tucked just under it.
-const HEADER_OFFSET_PX = 184;
+const HEADER_OFFSET_PX = 192;
 const BOTTOM_BUFFER_PX = 80;
 
 function isMarkerComfortablyInView(el: HTMLElement): boolean {
